@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}` || "http://localhost:1337/api", // URL base da API
+  baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`, // URL base da API
   timeout: 10000, // Timeout de requisição
   headers: {
     "Content-Type": "application/json",
@@ -11,6 +11,7 @@ const api = axios.create({
 // Funções genéricas para chamada de API
 export const apiGet = async (endpoint, params = {}) => {
   try {
+    console.log(`API:`,api);
     const response = await api.get(endpoint, { params });
     return response.data;
   } catch (error) {

@@ -23,7 +23,7 @@ const Layout = ({ children, pageTitle }) => {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{pageTitle} - Dukanda, Descubra os Melhores Destinos, Passeios e Agências de Turismo"</title>
+        <title>{pageTitle} - Dukanda, Descubra os Melhores Destinos, Passeios e Agências de Turismo&quot;</title>
       </Head>
       <Preloader loading={loading} />
       <main style={{ opacity: loading ? 0 : 1 }} className="page-wrapper">
