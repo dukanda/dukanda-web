@@ -35,7 +35,7 @@ const Home2 = ({ bannerData }) => {
 export async function getServerSideProps() {
   try {
     const bannerData = await fetchBannerData();
-
+    console.log("Dados do banner:", bannerData);
     return {
       props: {
         bannerData,
