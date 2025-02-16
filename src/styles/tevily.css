@@ -2142,14 +2142,16 @@ ul {
 }
 
 .popular-tours__icon a {
-  width: 38px;
+  width: max-content;
   height: 38px;
-  background-color: rgba(var(--thm-black-rgb), 0.2);
-  border-radius: 50%;
+  /* background-color: rgba(var(--thm-black-rgb), 0.2); */
+  background-color: #ffa601d4;
+  border-radius: 10px;
   text-align: center;
   display: flex;
   font-size: 14px;
   color: #fff;
+  font-weight:600 ;
   position: absolute;
   top: 30px;
   right: 30px;
@@ -2159,6 +2161,9 @@ ul {
   align-items: center;
   justify-content: center;
   line-height: 38px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .popular-tours__single:hover .popular-tours__icon a {

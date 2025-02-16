@@ -1,11 +1,26 @@
 import popularToursTwo from "@/data/popularToursTwo";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SingleTour from "./SingleTour";
+import { api } from "@/api/api";
 
 const { tagline, title, popularTours } = popularToursTwo;
 
 const PopularToursTwo = ({ toursPage = false }) => {
+  const [tours, setTours] = useState();
+
+  async function tourRoutesData() {
+    const response = await api.get("/tours?populate=*");
+    return response.data;
+  }
+
+  useEffect(() => {
+    tourRoutesData().then((data) => {
+      setTours(data.data); // Ajustado para acessar o array correto
+      console.log("tourRoutesData", data.data);
+    });
+  }, []);
+
   return (
     <section className="popular-tours-two">
       <Container>
@@ -16,15 +31,9 @@ const PopularToursTwo = ({ toursPage = false }) => {
           </div>
         )}
         <Row>
-          {popularTours.map((tour) => (
-            <Col
-              key={tour.id}
-              xl={4}
-              lg={6}
-              md={6}
-              className="animated fadeInUp"
-            >
-              <SingleTour tour={tour} userSelect />
+          {tours?.map((tour) => (
+            <Col key={tour.id} xl={4} lg={6} md={6} className="animated fadeInUp">
+              <SingleTour tour={tour} userSelect /> {/* Aqui está a correção */}
             </Col>
           ))}
         </Row>
@@ -34,3 +43,9 @@ const PopularToursTwo = ({ toursPage = false }) => {
 };
 
 export default PopularToursTwo;
+
+
+/*
+
+  
+*/
