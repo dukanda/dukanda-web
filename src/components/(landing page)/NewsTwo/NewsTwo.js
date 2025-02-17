@@ -1,3 +1,4 @@
+"use client"  
 import newsTwo from "@/data/newsTwo";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -60,9 +61,9 @@ const NewsTwo = () => {
             </div>
           </Col>
           <Col xl={8}>
-            <div className="news-two__right">
-              <div className="news-two__carousel">
-                <TinySlider settings={settings}>
+            <div className="news-two__right flex flex-row gap-2">
+              <div className="news-two__carousel flex flex-row gap-5">
+                <TinySlider settings={settings} className="flex flex-row gap-5">
                   {newsData.map((news) => (
                     <SingleNewsOne newsTwo key={news.id} news={news} />
                   ))}

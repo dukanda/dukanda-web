@@ -36,22 +36,22 @@ const newsTwo = {
       comments: 2,
       title: "Things to See and Do When Visiting Japan",
     },
-    {
-      id: 5,
-      image: "news-one-img-2.jpg",
-      date: "28 Aug",
-      author: "Admin",
-      comments: 2,
-      title: "Journeys are Best Measured in New Friends",
-    },
-    {
-      id: 6,
-      image: "news-one-img-3.jpg",
-      date: "28 Aug",
-      author: "Admin",
-      comments: 2,
-      title: "Travel the Most Beautiful Places in the World",
-    },
+    // {
+    //   id: 5,
+    //   image: "news-one-img-2.jpg",
+    //   date: "28 Aug",
+    //   author: "Admin",
+    //   comments: 2,
+    //   title: "Journeys are Best Measured in New Friends",
+    // },
+    // {
+    //   id: 6,
+    //   image: "news-one-img-3.jpg",
+    //   date: "28 Aug",
+    //   author: "Admin",
+    //   comments: 2,
+    //   title: "Travel the Most Beautiful Places in the World",
+    // },
   ],
 };
 

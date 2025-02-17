@@ -1,61 +1,40 @@
+"use client";
 import brandTwo from "@/data/brandTwo";
-import React from "react";
+import React, { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { Container, Image } from "react-bootstrap";
-import SwiperCore, { Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-SwiperCore.use([Autoplay]);
-
-const slideOptions = {
-  spaceBetween: 100,
-  slidesPerView: 5,
-  autoplay: {
-    delay: 5000,
-  },
-  breakpoints: {
-    0: {
-      spaceBetween: 30,
-      slidesPerView: 2,
-    },
-    375: {
-      spaceBetween: 30,
-      slidesPerView: 2,
-    },
-    575: {
-      spaceBetween: 30,
-      slidesPerView: 3,
-    },
-    767: {
-      spaceBetween: 50,
-      slidesPerView: 4,
-    },
-    991: {
-      spaceBetween: 50,
-      slidesPerView: 5,
-    },
-    1199: {
-      spaceBetween: 100,
-      slidesPerView: 5,
-    },
-  },
-};
 
 const BrandTwo = ({ brandThree = false }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+  });
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.scrollTo(0); // Inicia no primeiro slide
+    }
+  }, [emblaApi]);
+
   return (
-    <section className={brandThree ? "brand-two brand-three" : "brand-two"}>
+    <section className={`${brandThree ? "brand-two brand-three" : "brand-two"} py-10`}>
       <Container>
-        <Swiper className="thm-swiper__slider" {...slideOptions}>
-          <div className="swiper-wrapper">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex space-x-6 md:space-x-10">
             {brandTwo.map((brand, index) => (
-              <SwiperSlide key={index}>
+              <div
+                key={index}
+                className="min-w-[120px] sm:min-w-[140px] md:min-w-[160px] lg:min-w-[180px] xl:min-w-[200px] px-2"
+              >
                 <Image
                   src={require(`@/assets/images/brand/${brand}`).default.src}
                   alt=""
+                  className="w-full object-contain"
                 />
-              </SwiperSlide>
+              </div>
             ))}
           </div>
-        </Swiper>
+        </div>
       </Container>
     </section>
   );

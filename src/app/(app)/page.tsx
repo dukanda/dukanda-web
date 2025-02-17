@@ -26,8 +26,8 @@ export default function App() {
       <AboutTwo />
       <TourTypes />
       <BrandTwo />
-      <NewsTwo />
-      <BookNow />
+       <NewsTwo /> 
+       <BookNow /> 
     </Layout>
   )
 }
