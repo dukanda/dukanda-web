@@ -1,4 +1,4 @@
-import { useRootContext } from "@/context/context";
+import { useRootContext } from "@/components/(landing page)/context/context";
 import React from "react";
 
 const Search = () => {

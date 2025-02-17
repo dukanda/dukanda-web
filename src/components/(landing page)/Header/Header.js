@@ -1,4 +1,5 @@
-import { useRootContext } from "@/context/context";
+
+import { useRootContext } from "@/components/(landing page)/context/context";
 import headerData from "@/data/headerData";
 import useScroll from "@/hooks/useScroll";
 import Link from "next/link";
@@ -10,13 +11,13 @@ const { icons, navItems, social, logo, logo2 } = headerData;
 
 const Header = ({ pageTitle }) => {
   const scrollTop = useScroll(130);
+  //Mario
   const { toggleMenu, toggleSearch } = useRootContext();
 
   return (
     <header
-      className={`main-header${
-        pageTitle === "Home Two" ? " main-header-two" : ""
-      } clearfix`}
+      className={`main-header${pageTitle === "Home Two" ? " main-header-two" : ""
+        } clearfix`}
     >
       <div className="main-header__top">
         {/* <Container>
@@ -57,12 +58,10 @@ const Header = ({ pageTitle }) => {
       <nav
         className={
           scrollTop
-            ? `stricky-header stricked-menu main-menu${
-                pageTitle === "Home Two" ? " main-menu-two" : ""
-              } stricky-fixed slideInDown animated clearfix`
-            : `main-menu${
-                pageTitle === "Home Two" ? " main-menu-two" : ""
-              } slideIn animated clearfix`
+            ? `stricky-header stricked-menu main-menu${pageTitle === "Home Two" ? " main-menu-two" : ""
+            } stricky-fixed slideInDown animated clearfix`
+            : `main-menu${pageTitle === "Home Two" ? " main-menu-two" : ""
+            } slideIn animated clearfix`
         }
       >
         <div
@@ -85,6 +84,7 @@ const Header = ({ pageTitle }) => {
                     </a>
                   </Link>
                 </div>
+                {/*  Mario Comment */} 
                 <div className="main-menu-wrapper__main-menu">
                   <span
                     onClick={() => toggleMenu()}
@@ -99,14 +99,15 @@ const Header = ({ pageTitle }) => {
                   </ul>
                 </div>
               </div>
-              <div className="main-menu-wrapper__right">
+              {/* Mario Comment*/}
+               <div className="main-menu-wrapper__right">
                 <span
                   onClick={toggleSearch}
                   style={{ cursor: "pointer" }}
                   className="main-menu__search search-toggler icon-magnifying-glass"
                 ></span>
                 <a href="#" className="main-menu__user icon-avatar"></a>
-              </div>
+              </div> 
             </div>
           </Container>
         </div>

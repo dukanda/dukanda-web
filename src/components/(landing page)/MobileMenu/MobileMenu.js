@@ -1,4 +1,4 @@
-import { useRootContext } from "@/context/context";
+import { useRootContext } from "@/components/(landing page)/context/context";
 import headerData from "@/data/headerData";
 import Link from "next/link";
 import React from "react";
@@ -12,9 +12,8 @@ const MobileMenu = () => {
 
   return (
     <div
-      className={`mobile-nav__wrapper  animated fadeInLeft${
-        menuStatus ? " expanded" : ""
-      }`}
+      className={`mobile-nav__wrapper  animated fadeInLeft${menuStatus ? " expanded" : ""
+        }`}
     >
       <div
         onClick={() => toggleMenu()}

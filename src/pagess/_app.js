@@ -1,4 +1,4 @@
-import ContextProvider from "@/context/ContextProvider";
+import ContextProvider from "@/components/(landing page)/context/ContextProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "node_modules/swiper/swiper-bundle.min.css";
 import "tiny-slider/dist/tiny-slider.css";

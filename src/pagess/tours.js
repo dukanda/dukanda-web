@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout/Layout";
-import PageHeader from "@/components/PageHeader/PageHeader";
-import PopularToursTwo from "@/components/PopularTours/PopularToursTwo";
+import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
+import PopularToursTwo from "@/components/(landing page)/PopularTours/PopularToursTwo";
 import React from "react";
 
 const Tours = () => {

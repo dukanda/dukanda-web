@@ -1,3 +1,4 @@
+"use client";
 import popularToursTwo from "@/data/popularToursTwo";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";

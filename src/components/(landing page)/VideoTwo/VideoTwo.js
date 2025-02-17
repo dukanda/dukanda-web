@@ -2,10 +2,10 @@ import videoTwo from "@/data/videoTwo";
 import dynamic from "next/dynamic";
 import React, { Fragment, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import JarallaxImage from "../Jarallax/JarallaxImage";
+import JarallaxImage from "../(landing page)/Jarallax/JarallaxImage";
 import VideoModal from "../VideoModal/VideoModal";
 
-const Jarallax = dynamic(() => import("@/components/Jarallax/Jarallax"), {
+const Jarallax = dynamic(() => import("@/components/(landing page)/Jarallax/Jarallax"), {
   ssr: false,
 });
 

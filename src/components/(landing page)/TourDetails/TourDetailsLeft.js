@@ -1,4 +1,4 @@
-import SingleTour from "@/components/PopularTours/SingleTour";
+import SingleTour from "@/components/(landing page)/PopularTours/SingleTour";
 import popularTours from "@/data/popularTours";
 import { tourDetailsLeft } from "@/data/tourDetailsPage";
 import React, { useState } from "react";
@@ -57,9 +57,8 @@ const TourDetailsLeft = () => {
         <div className="accrodion-grp faq-one-accrodion">
           {faq.map(({ id, title, text, lists }) => (
             <div
-              className={`accrodion overflow-hidden${
-                active === id ? " active" : ""
-              }`}
+              className={`accrodion overflow-hidden${active === id ? " active" : ""
+                }`}
               key={id}
             >
               <div onClick={() => setActive(id)} className="accrodion-title">
@@ -68,9 +67,8 @@ const TourDetailsLeft = () => {
                 </h4>
               </div>
               <div
-                className={`accrodion-content animated ${
-                  active === id ? "slideInUp d-block" : "slideInDown d-none"
-                }`}
+                className={`accrodion-content animated ${active === id ? "slideInUp d-block" : "slideInDown d-none"
+                  }`}
               >
                 <div className="inner">
                   <p>{text}</p>

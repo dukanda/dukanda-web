@@ -5,7 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import JarallaxImage from "../Jarallax/JarallaxImage";
 import VideoModal from "../VideoModal/VideoModal";
 
-const Jarallax = dynamic(() => import("@/components/Jarallax/Jarallax"), {
+const Jarallax = dynamic(() => import("@/components/(landing page)/Jarallax/Jarallax"), {
   ssr: false,
 });
 

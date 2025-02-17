@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout/Layout";
-import NewsPage from "@/components/NewsPage/NewsPage";
-import PageHeader from "@/components/PageHeader/PageHeader";
+import NewsPage from "@/components/(landing page)/NewsPage/NewsPage";
+import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 import React from "react";
 
 const News = () => {

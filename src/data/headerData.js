@@ -1,5 +1,8 @@
-import logo from "@/images/resources/logo-1.png";
-import logo2 from "@/images/resources/logo-2.png";
+// import logo from "@/images/resources/logo-1.png";
+// import logo2 from "@/images/resources/logo-2.png";
+
+import logo from "@/assets/images/resources/logo-1.png";
+import logo2 from "@/assets/images/resources/logo-2.png";
 
 const navItems = [
   {

@@ -1,6 +1,6 @@
-import DestinationsDetailsPage from "@/components/DestinationsDetails/DestinationsDetailsPage";
+import DestinationsDetailsPage from "@/components/(landing page)/DestinationsDetails/DestinationsDetailsPage";
 import Layout from "@/components/Layout/Layout";
-import PageHeader from "@/components/PageHeader/PageHeader";
+import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 import React from "react";
 
 const DestinationsDetails = () => {

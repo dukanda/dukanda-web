@@ -1,16 +1,17 @@
-import AboutTwo from "@/components/AboutTwo/AboutTwo";
-import BannerTwo from "@/components/BannerTwo/BannerTwo";
-import BookNow from "@/components/BookNow/BookNow";
-import BrandTwo from "@/components/BrandTwo/BrandTwo";
-import CounterOne from "@/components/CounterOne/CounterOne";
-import DestinationsTwo from "@/components/DestinationsTwo/DestinationsTwo";
-import Layout from "@/components/Layout/Layout";
-import PopularToursTwo from "@/components/PopularTours/PopularToursTwo";
-import SingaporeTour from "@/components/SingaporeTour/SingaporeTour";
-import ThreeIconBox from "@/components/ThreeIconBox/ThreeIconBox";
-import TourTypes from "@/components/TourTypes/TourTypes";
-import VideoTwo from "@/components/VideoTwo/VideoTwo";
-import NewsTwo from "@/components/NewsTwo/NewsTwo";
+import React from "react";
+import Layout from "@/components/(landing page)/Layout/Layout";
+import BannerTwo from "@/components/(landing page)/BannerTwo/BannerTwo";
+import ThreeIconBox from "@/components/(landing page)/ThreeIconBox/ThreeIconBox";
+import PopularToursTwo from "@/components/(landing page)/PopularToursTwo/PopularToursTwo";
+import SingaporeTour from "@/components/(landing page)/SingaporeTour/SingaporeTour";
+import VideoTwo from "@/components/(landing page)/VideoTwo/VideoTwo";
+import CounterOne from "@/components/(landing page)/CounterOne/CounterOne";
+import DestinationsTwo from "@/components/(landing page)/DestinationsTwo/DestinationsTwo";
+import AboutTwo from "@/components/(landing page)/AboutTwo/AboutTwo";
+import TourTypes from "@/components/(landing page)/TourTypes/TourTypes";
+import BrandTwo from "@/components/(landing page)/BrandTwo/BrandTwo";
+import NewsTwo from "@/components/(landing page)/NewsTwo/NewsTwo";
+import BookNow from "@/components/(landing page)/BookNow/BookNow";
 import fetchBannerData from "@/api/Banner/getBanner";
 
 const Home2 = ({ bannerData }) => {

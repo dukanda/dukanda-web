@@ -1,8 +1,8 @@
-import ContactPage from "@/components/ContactPage/ContactPage";
-import GoogleMap from "@/components/GoogleMap/GoogleMap";
-import Information from "@/components/Information/Information";
+import ContactPage from "@/components/(landing page)/ContactPage/ContactPage";
+import GoogleMap from "@/components/(landing page)/GoogleMap/GoogleMap";
+import Information from "@/components/(landing page)/Information/Information";
 import Layout from "@/components/Layout/Layout";
-import PageHeader from "@/components/PageHeader/PageHeader";
+import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 import React from "react";
 
 const Contact = () => {

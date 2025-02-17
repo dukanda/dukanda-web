@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const NavItem = ({ navItem = {} }) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
+
+  console.log("pathname", pathname);
 
   const { name, href, subNavItems } = navItem;
   const subHref = subNavItems.map((item) => item.href);

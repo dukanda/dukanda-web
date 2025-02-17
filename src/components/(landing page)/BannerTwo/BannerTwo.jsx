@@ -1,10 +1,11 @@
+"use client";
 import React from "react";
 import BackgroundSlider from "react-background-slider";
 import { Col, Container, Row } from "react-bootstrap";
 import TourSearchForm from "../TourSearchForm/TourSearchForm";
-import setImage from "../../utils/imageUtil"
+import setImage from "../../../utils/imageUtil"
 
-const BannerTwo = ({ data }) => {
+const   BannerTwo = ({ data }) => {
   if (!data) return null; // Evitar erro ao renderizar antes de carregar os dados
 
   const { subTitle, title, bottomText, slides } = data;
@@ -12,7 +13,7 @@ const BannerTwo = ({ data }) => {
     <section className="banner-two">
       <BackgroundSlider
         className="banner-bg-slide"
-        images={slides?.map(item=> setImage(item))}
+        images={slides?.map(item => setImage(item))}
         duration={10}
         transition={2}
       />
