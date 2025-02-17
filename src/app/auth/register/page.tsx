@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import logo from "@/assets/images/resources/logo-1.png";  
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -23,10 +25,13 @@ export default function Register() {
       <div className="flex w-full h-full">
         {/* Coluna da Imagem */}
         <div className="w-1/2 h-screen relative hidden md:block">
-          <img
+          <Image
+            width={500}
+            height={500}
             src={"/ducanda.jpg"}
             alt="Imagem de fundo"
             className="object-cover w-full h-full"
+            priority
           />
         </div>
 
@@ -34,10 +39,11 @@ export default function Register() {
         <div className="w-full md:w-1/2 h-screen flex items-center justify-center bg-white">
           <div className="w-full max-w-md p-6">
             <div className="text-center mb-6 ">
-              <img
-                src="/path/to/logo.png"
+              <Image
+                src={logo}
                 alt="Logo"
                 className="mb-4 mx-auto"
+                priority
               />
             </div>
             <h2 className="text-center text-green-600 text-2xl mb-2">Crie sua conta</h2>
