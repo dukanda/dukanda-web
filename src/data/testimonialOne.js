@@ -1,6 +1,9 @@
-import bg from "@/images/shapes/about-page-testimonial-map.png";
-import shape1 from "@/images/shapes/testimonial-one-shape-2.png";
-import shape2 from "@/images/shapes/testimonial-one-shape-3.png";
+// import bg from "@/images/shapes/about-page-testimonial-map.png";
+// import shape1 from "@/images/shapes/testimonial-one-shape-2.png";
+// import shape2 from "@/images/shapes/testimonial-one-shape-3.png";
+import bg from "@/assets/images/shapes/about-page-testimonial-map.png";
+import shape1 from "@/assets/images/shapes/testimonial-one-shape-2.png";
+import shape2 from "@/assets/images/shapes/testimonial-one-shape-3.png";
 
 const testimonialOne = {
   bg,

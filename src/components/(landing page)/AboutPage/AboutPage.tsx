@@ -1,18 +1,23 @@
+"use client";
 import aboutPage from "@/data/aboutPage";
 import React, { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import VisibilitySensor from "react-visibility-sensor";
+import { useInView } from "react-intersection-observer"; // Import the intersection observer
 
 const { image, tagline, title, text1, text2, progress } = aboutPage;
 
 const AboutPage = () => {
   const [countStart, setCountStart] = useState(false);
 
-  const onVisibilityChange = (isVisible) => {
-    if (isVisible) {
-      setCountStart(true);
-    }
-  };
+  // Handling visibility changes using Intersection Observer
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Triggers only once when in view
+    onChange: (inView) => {
+      if (inView) {
+        setCountStart(true); // Start counting when the element is in view
+      }
+    },
+  });
 
   return (
     <section className="about-page">
@@ -37,22 +42,19 @@ const AboutPage = () => {
                 {progress.map(({ id, title, count }) => (
                   <div className="about-page__progress-single" key={id}>
                     <h4 className="about-page__progress-title">{title}</h4>
-                    <VisibilitySensor
-                      offset={{ top: 10 }}
-                      delayedCall={true}
-                      onChange={onVisibilityChange}
+                    <div
+                      ref={ref} // Add the ref for Intersection Observer
+                      className={id === 2 ? "bar marb-0" : "bar"}
                     >
-                      <div className={id === 2 ? "bar marb-0" : "bar"}>
-                        <div
-                          style={{ width: `${countStart ? count : 0}%` }}
-                          className="bar-inner count-bar"
-                        >
-                          <div style={{ opacity: 1 }} className="count-text">
-                            {countStart ? count : 0}%
-                          </div>
+                      <div
+                        style={{ width: `${countStart ? count : 0}%` }}
+                        className="bar-inner count-bar"
+                      >
+                        <div style={{ opacity: 1 }} className="count-text">
+                          {countStart ? count : 0}%
                         </div>
                       </div>
-                    </VisibilitySensor>
+                    </div>
                   </div>
                 ))}
               </div>

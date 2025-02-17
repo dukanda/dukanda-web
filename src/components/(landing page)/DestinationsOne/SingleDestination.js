@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import { Col, Image } from "react-bootstrap";
@@ -10,7 +11,7 @@ const SingleDestination = ({ destination = {} }) => {
       <div className="destinations-one__single">
         <div className="destinations-one__img">
           <Image
-            src={require(`@/images/destination/${image}`).default.src}
+            src={require(`@/assets/images/destination/${image}`).default.src}
             alt=""
           />
           <div className="destinations-one__content">

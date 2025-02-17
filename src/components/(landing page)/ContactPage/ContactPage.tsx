@@ -1,3 +1,4 @@
+"use client";
 import contactPage from "@/data/contactPage";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -7,7 +8,7 @@ const { tagline, title, socials } = contactPage;
 const inputs = ["name", "email", "message"];
 
 const ContactPage = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     const fromData = new FormData(e.target);
     const data = {};

@@ -1,3 +1,4 @@
+"use client";
 import testimonialOne from "@/data/testimonialOne";
 import dynamic from "next/dynamic";
 import React from "react";

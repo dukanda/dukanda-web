@@ -1,3 +1,4 @@
+"use client";
 import destinationsOne from "@/data/destinationsOne";
 import React from "react";
 import { Container } from "react-bootstrap";

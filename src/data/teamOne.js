@@ -1,4 +1,5 @@
-import bg from "@/images/shapes/team-one-map.png";
+// import bg from "@/images/shapes/team-one-map.png";
+import bg from "@/assets/images/shapes/team-one-map.png";
 
 const teamOne = {
   bg,

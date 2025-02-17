@@ -8,7 +8,7 @@ const SingleTeam = ({ team = {} }) => {
     <Col xl={3} lg={6} md={6} className="animated fadeInLeft">
       <div className="team-one__single">
         <div className="team-one__img">
-          <Image src={require(`@/images/team/${image}`).default.src} alt="" />
+          <Image src={require(`@/assets/images/team/${image}`).default.src} alt="" />
         </div>
         <div className="team-one__content">
           <h4 className="team-one__name">{name}</h4>
