@@ -16,9 +16,8 @@ export default function App() {
   const bannerData = ""
   return (
     <Layout pageTitle="Ínicio">
-      <p>ola</p>
-      {/* <BannerTwo data={bannerData} /> */}
-      {/* <ThreeIconBox />
+      <BannerTwo data={bannerData} />
+      <ThreeIconBox />
       <PopularToursTwo />
       <SingaporeTour />
       <VideoTwo />
@@ -28,7 +27,7 @@ export default function App() {
       <TourTypes />
       <BrandTwo />
       <NewsTwo />
-      <BookNow /> */}
+      <BookNow />
     </Layout>
   )
 }

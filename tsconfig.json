@@ -52,6 +52,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.ts"],
   "exclude": ["node_modules"]
 }

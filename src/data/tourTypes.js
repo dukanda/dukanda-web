@@ -1,4 +1,5 @@
-import bg from "@/images/shapes/tour-types-map.png";
+// import bg from "@/images/shapes/tour-types-map.png";
+import bg from "@/assets/images/shapes/tour-types-map.png";
 
 const tourTypes = {
   bg,

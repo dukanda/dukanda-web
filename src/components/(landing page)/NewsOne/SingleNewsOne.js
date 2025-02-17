@@ -13,7 +13,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
       style={{ userSelect: newsTwo ? "none" : "unset" }}
     >
       <div className="news-one__img">
-        <Image src={require(`@/images/blog/${image}`).default.src} alt="" />
+        <Image src={require(`@/assets/images/blog/${image}`).default.src} alt="" />
         <Link href="/news-details" legacyBehavior>
           <a>
             <span className="news-one__plus"></span>
@@ -22,10 +22,10 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
         <div className="news-one__date">
           <p>
             {date.split(" ").map((t, i) => (
-              <Fragment key={i}>
+              <div key={i}>
                 <span>{t}</span>
                 <br />
-              </Fragment>
+              </div>
             ))}
           </p>
         </div>

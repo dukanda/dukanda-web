@@ -10,7 +10,7 @@ const DestinationsTwoSingle = ({ destination = {}, col }) => {
       <div className="destinations-two__top-single animated fadeInUp">
         <div className="destinations-two__top-img">
           <Image
-            src={require(`@/images/resources/${image}`).default.src}
+            src={require(`@/assets/images/resources/${image}`).default.src}
             alt=""
           />
           <div className="destinations-two__top-content">

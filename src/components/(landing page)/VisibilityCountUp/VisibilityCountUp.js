@@ -1,24 +1,15 @@
-import React, { useState } from "react";
+"use client";
+import React from "react";
 import CountUp from "react-countup";
-import VisibilitySensor from "react-visibility-sensor";
+import { useInView } from "react-intersection-observer";
 
 const VisibilityCountUp = ({ count }) => {
-  const [countStart, setCountStart] = useState(false);
-
-  const onVisibilityChange = (isVisible) => {
-    if (isVisible) {
-      setCountStart(true);
-    }
-  };
+  const { ref, inView } = useInView({ triggerOnce: true });
 
   return (
-    <VisibilitySensor
-      offset={{ top: 10 }}
-      delayedCall={true}
-      onChange={onVisibilityChange}
-    >
-      <CountUp start={0} end={countStart ? count : 0} duration={2} />
-    </VisibilitySensor>
+    <div ref={ref}>
+      {inView ? <CountUp start={0} end={count} duration={2} /> : 0}
+    </div>
   );
 };
 

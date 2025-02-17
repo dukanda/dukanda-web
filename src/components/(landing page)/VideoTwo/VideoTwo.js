@@ -1,8 +1,9 @@
+"use client";
 import videoTwo from "@/data/videoTwo";
 import dynamic from "next/dynamic";
 import React, { Fragment, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import JarallaxImage from "../(landing page)/Jarallax/JarallaxImage";
+import JarallaxImage from "@/components/(landing page)/Jarallax/JarallaxImage";
 import VideoModal from "../VideoModal/VideoModal";
 
 const Jarallax = dynamic(() => import("@/components/(landing page)/Jarallax/Jarallax"), {
@@ -39,10 +40,10 @@ const VideoTwo = () => {
                 <p className="video-one__tagline">{tagline}</p>
                 <h2 className="video-one__title">
                   {title.split("\n").map((t, i) => (
-                    <Fragment key={i}>
-                      <span>{t}</span>
+                    <div key={i+1}>
+                      <span >{t}</span>
                       <br />
-                    </Fragment>
+                    </div>
                   ))}
                 </h2>
               </div>

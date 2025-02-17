@@ -1,4 +1,5 @@
-import bg from "@/images/backgrounds/video-one-two-bg.jpg";
+// import bg from "@/images/backgrounds/video-one-two-bg.jpg";
+import bg from "@/assets/images/backgrounds/video-one-two-bg.jpg";
 
 const videoTwo = {
   bg,

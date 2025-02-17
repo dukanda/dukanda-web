@@ -1,3 +1,4 @@
+"use client";
 import aboutTwo from "@/data/aboutTwo";
 import React, { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
