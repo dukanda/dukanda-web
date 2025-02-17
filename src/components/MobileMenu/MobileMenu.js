@@ -29,7 +29,7 @@ const MobileMenu = () => {
         </span>
 
         <div className="logo-box">
-          <Link href="/">
+          <Link href="/" legacyBehavior>
             <a aria-label="logo image">
               <Image src={logo.src} width={155} alt="" />
             </a>

@@ -14,7 +14,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
     >
       <div className="news-one__img">
         <Image src={require(`@/images/blog/${image}`).default.src} alt="" />
-        <Link href="/news-details">
+        <Link href="/news-details" legacyBehavior>
           <a>
             <span className="news-one__plus"></span>
           </a>
@@ -33,7 +33,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
       <div className="news-one__content">
         <ul className="list-unstyled news-one__meta">
           <li>
-            <Link href="/news-details">
+            <Link href="/news-details" legacyBehavior>
               <a>
                 <i className="far fa-user-circle"></i>
                 {author}
@@ -41,7 +41,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
             </Link>
           </li>
           <li>
-            <Link href="/news-details">
+            <Link href="/news-details" legacyBehavior>
               <a>
                 <i className="far fa-comments"></i>
                 {comments} Comments
@@ -50,7 +50,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
           </li>
         </ul>
         <h3 className="news-one__title">
-          <Link href="/news-details">{title}</Link>
+          <Link href="/news-details" legacyBehavior>{title}</Link>
         </h3>
       </div>
     </div>

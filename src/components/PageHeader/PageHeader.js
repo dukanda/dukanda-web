@@ -23,7 +23,7 @@ const PageHeader = ({ title = "", page = "", outerPage = "" }) => {
           <div className="page-header__bottom-inner">
             <ul className="thm-breadcrumb list-unstyled">
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/" legacyBehavior>Home</Link>
               </li>{" "}
               <li>
                 <span>.</span>

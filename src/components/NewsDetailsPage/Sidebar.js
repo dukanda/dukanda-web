@@ -40,7 +40,7 @@ const Sidebar = () => {
                     <i className="far fa-comments"></i>
                     {comments} Comments
                   </a>
-                  <Link href="/news-details">{title}</Link>
+                  <Link href="/news-details" legacyBehavior>{title}</Link>
                 </h3>
               </div>
             </li>

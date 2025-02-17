@@ -76,7 +76,7 @@ const Header = ({ pageTitle }) => {
             <div className="main-menu-wrapper-inner clearfix">
               <div className="main-menu-wrapper__left clearfix">
                 <div className="main-menu-wrapper__logo">
-                  <Link href="/">
+                  <Link href="/" legacyBehavior>
                     <a>
                       <Image
                         src={pageTitle === "Home Two" ? logo2.src : logo.src}

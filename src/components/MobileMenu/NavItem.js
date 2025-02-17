@@ -18,7 +18,7 @@ const NavItem = ({ item = {} }) => {
 
   return (
     <li className={`dropdown${pathname === href ? " current" : ""}`}>
-      <Link href={href}>
+      <Link href={href} legacyBehavior>
         <a className={expand ? " expanded" : ""}>
           {name}
           <button

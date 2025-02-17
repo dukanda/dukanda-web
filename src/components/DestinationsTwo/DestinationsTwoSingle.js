@@ -18,7 +18,7 @@ const DestinationsTwoSingle = ({ destination = {}, col }) => {
               <p className="destinations-two__top-sub-title">{subtitle}</p>
             )}
             <h2 className="destinations-two__top-title">
-              <Link href="/destinations-details">{title}</Link>
+              <Link href="/destinations-details" legacyBehavior>{title}</Link>
             </h2>
           </div>
         </div>

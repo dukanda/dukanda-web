@@ -11,7 +11,7 @@ const NavItem = ({ navItem = {} }) => {
 
   return (
     <li className={`dropdown${current ? " current" : ""}`}>
-      <Link href={href}>
+      <Link href={href} legacyBehavior>
         <a href={href}>{name}</a>
       </Link>
       <ul>
@@ -20,13 +20,13 @@ const NavItem = ({ navItem = {} }) => {
             className={subItem.subItems?.length ? "dropdown" : ""}
             key={subItem.id}
           >
-            <Link href={subItem.href}>
+            <Link href={subItem.href} legacyBehavior>
               <a href={href}>{subItem.name}</a>
             </Link>
             <ul>
               {subItem.subItems?.map((item) => (
                 <li key={item.id}>
-                  <Link href={item.href}>
+                  <Link href={item.href} legacyBehavior>
                     <a href={href}>{item.name}</a>
                   </Link>
                 </li>

@@ -22,7 +22,7 @@ const NewsOne = () => {
             </Col>
             <Col xl={3} lg={3}>
               <div className="news-one__top-right">
-                <Link href="/news-details">
+                <Link href="/news-details" legacyBehavior>
                   <a className="news-one__btn thm-btn">View All posts</a>
                 </Link>
               </div>

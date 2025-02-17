@@ -17,7 +17,7 @@ const SingleTour = ({ tour = {}, userSelect = false }) => {
             alt=""
           />
           <div className="popular-tours__icon">
-            <Link href="/tour-details">
+            <Link href="/tour-details" legacyBehavior>
               <a>
                 <i className="fa fa-heart"></i>
               </a>
@@ -29,7 +29,7 @@ const SingleTour = ({ tour = {}, userSelect = false }) => {
             <i className="far fa-map"></i> {city} 
           </div>
           <h3 className="popular-tours__title">
-            <Link href="/tour-details">{title}</Link>
+            <Link href="/tour-details" legacyBehavior>{title}</Link>
           </h3>
           <p className="popular-tours__rate">
             <span>${rate}</span> / Pessoa
@@ -37,7 +37,7 @@ const SingleTour = ({ tour = {}, userSelect = false }) => {
           <ul className="popular-tours__meta list-unstyled">
             {meta.map((item, index) => (
               <li key={index}>
-                <Link href="/tour-details">{item}</Link>
+                <Link href="/tour-details" legacyBehavior>{item}</Link>
               </li>
             ))}
           </ul>

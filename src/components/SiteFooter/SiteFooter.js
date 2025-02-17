@@ -22,7 +22,7 @@ const SiteFooter = () => {
               <Col xl={4} lg={6} md={6} className="animated fadeInUp">
                 <div className="footer-widget__column footer-widget__about">
                   <div className="footer-widget__about-logo">
-                    <Link href="/">
+                    <Link href="/" legacyBehavior>
                       <a>
                         <Image src={logo.src} alt="" />
                       </a>
@@ -54,7 +54,7 @@ const SiteFooter = () => {
                     {companies.map(({ id, link, title }) => (
                       <li key={id}>
                         {link.includes("/") ? (
-                          <Link href={link}>{title}</Link>
+                          <Link href={link} legacyBehavior>{title}</Link>
                         ) : (
                           <a target="_blank" rel="noreferrer" href={link}>
                             {title}

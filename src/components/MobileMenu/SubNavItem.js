@@ -14,7 +14,7 @@ const SubNavItem = ({ subItem = {} }) => {
 
   return (
     <li>
-      <Link href={href}>
+      <Link href={href} legacyBehavior>
         <a className={expand && subItems?.length ? " expanded" : ""}>
           {name}
           {subItems?.length && (
@@ -35,7 +35,7 @@ const SubNavItem = ({ subItem = {} }) => {
       >
         {subItems?.map((item) => (
           <li key={item.id}>
-            <Link href={item.href}>{item.name}</Link>
+            <Link href={item.href} legacyBehavior>{item.name}</Link>
           </li>
         ))}
       </ul>
