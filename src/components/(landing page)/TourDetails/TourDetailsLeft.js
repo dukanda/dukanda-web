@@ -107,7 +107,7 @@ const TourDetailsLeft = () => {
           <div className="my-auto">
             <h3>{superb}</h3>
             <p>
-              <i className="fa fa-star"></i> Super
+              <i className="fa fa-star"></i> 
             </p>
           </div>
         </div>

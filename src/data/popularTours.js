@@ -5,7 +5,7 @@ const popularTours = [
     title: "Ilha do Mussulo - Passeio Completo",
     superb: "9.5",
     rate: "1500",
-    meta: ["1 Dia", "Todas as idades", "Luanda, Angola"],
+    meta: ["1 Dia", "Luanda, Angola"],
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const popularTours = [
     title: "Pôr do Sol na Ilha do Mussulo",
     superb: "9.2",
     rate: "1200",
-    meta: ["Meio Dia", "Todas as idades", "Luanda, Angola"],
+    meta: ["Meio Dia", "Luanda, Angola"],
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const popularTours = [
     title: "Experiência Gastronômica no Mussulo",
     superb: "9.0",
     rate: "1300",
-    meta: ["1 Dia", "Todas as idades", "Luanda, Angola"],
+    meta: ["1 Dia", "Luanda, Angola"],
   },
   {
     id: 4,
@@ -29,7 +29,7 @@ const popularTours = [
     title: "Passeio de Lancha no Mussulo",
     superb: "9.3",
     rate: "1400",
-    meta: ["3 Horas", "12+", "Luanda, Angola"],
+    meta: ["3 Horas", "Luanda, Angola"],
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const popularTours = [
     title: "Mergulho e Snorkeling na Ilha",
     superb: "9.4",
     rate: "1600",
-    meta: ["4 Horas", "10+", "Luanda, Angola"],
+    meta: ["4 Horas", "Luanda, Angola"],
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const popularTours = [
     title: "Tour Privado na Ilha do Mussulo",
     superb: "9.7",
     rate: "2000",
-    meta: ["1 Dia", "Todas as idades", "Luanda, Angola"],
+    meta: ["1 Dia", "Luanda, Angola"],
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const popularTours = [
     title: "Pesca Esportiva no Mussulo",
     superb: "9.0",
     rate: "1700",
-    meta: ["Meio Dia", "14+", "Luanda, Angola"],
+    meta: ["Meio Dia", "Luanda, Angola"],
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const popularTours = [
     title: "Noite na Ilha com Música ao Vivo",
     superb: "9.6",
     rate: "1800",
-    meta: ["Noite", "18+", "Luanda, Angola"],
+    meta: ["Noite", "Luanda, Angola"],
   }
 ];
 

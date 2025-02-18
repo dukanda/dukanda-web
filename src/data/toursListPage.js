@@ -17,7 +17,7 @@ const toursListPage = {
     {
       id: 1,
       image: "tours-list-img-1.jpg",
-      superb: "9.2",
+      superb: "4.2",
       title: "Descubra a Beleza de Luanda",
       rate: 1200,
       text: "Explore a capital angolana, visitando a Ilha do Mussulo, Marginal de Luanda e a Fortaleza de São Miguel.",
@@ -28,7 +28,7 @@ const toursListPage = {
     {
       id: 2,
       image: "tours-list-img-2.jpg",
-      superb: "9.5",
+      superb: "4.5",
       title: "Maravilhas das Quedas de Kalandula",
       rate: 1500,
       text: "Uma experiência inesquecível explorando uma das maiores quedas d’água de África, cercada por natureza exuberante.",

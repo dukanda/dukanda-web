@@ -5803,6 +5803,10 @@ ul {
   letter-spacing: var(--thm-letter-spacing);
   padding-top: 23px;
   padding-bottom: 33px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .tours-list__meta {

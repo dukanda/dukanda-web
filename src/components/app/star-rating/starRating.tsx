@@ -22,12 +22,12 @@ export const StarRating = ({ maxStars = 5, onRate }: StarRatingProps) => {
         return (
           <Star
             key={starIndex}
-            className={`w-6 h-6 cursor-pointer transition-colors ${starIndex <= (hover || rating) ? "text-yellow-400" : "text-gray-300"
+            className={`w-5 h-5 cursor-pointer transition-colors ${starIndex <= (hover || rating) ? "text-[#FFA801]" : "text-gray-300"
               }`}
             onMouseEnter={() => setHover(starIndex)}
             onMouseLeave={() => setHover(0)}
             onClick={() => handleClick(starIndex)}
-            fill={starIndex <= (hover || rating) ? "#facc15" : "none"}
+            fill={starIndex <= (hover || rating) ? "#ffa801" : "none"}
           />
         );
       })}

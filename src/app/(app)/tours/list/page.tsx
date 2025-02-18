@@ -5,8 +5,8 @@ import ToursListPage from "@/components/(landing page)/ToursListPage/ToursListPa
 
 export default function ToursList() {
   return (
-    <Layout pageTitle="Tours List">
-        <PageHeader title="Tours List" page="Tours" />
+    <Layout pageTitle="Lista de passeios">
+        <PageHeader title="Lista de passeios" page="Passeios" />
         <ToursListPage />
     </Layout>
   )

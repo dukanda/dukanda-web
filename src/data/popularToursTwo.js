@@ -1,4 +1,4 @@
-const popularToursTwo = {
+  const popularToursTwo = {
   tagline: "Destaque",
   title: "Passeios em destaque",
   popularTours: [

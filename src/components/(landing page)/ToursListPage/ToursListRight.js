@@ -27,13 +27,13 @@ const ToursListRight = () => {
               </div>
               <div className="tours-list__content">
                 <div className="tours-list__stars">
-                  <i className="fa fa-star"></i> {superb} Superb
+                  <i className="fa fa-star"></i> {superb} 
                 </div>
                 <h3 className="tours-list__title">
                   <Link href="/tours/12/details" legacyBehavior>{title}</Link>
                 </h3>
                 <p className="tours-list__rate">
-                  <span>{rate} kz</span> / Per Person
+                  <span>{rate} kz</span> / Por pessoa
                 </p>
                 <p className="tours-list__text">{text}</p>
                 <ul className="tours-list__meta list-unstyled">
@@ -45,14 +45,14 @@ const ToursListRight = () => {
                       </a>
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link href="/tours/12/details" legacyBehavior>
                       <a>
                         <i className="far fa-user-circle"></i>
                         {user}
                       </a>
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link href="/tours/12/details" legacyBehavior>
                       <a>

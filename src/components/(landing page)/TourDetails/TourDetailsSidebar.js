@@ -123,20 +123,20 @@ const TourDetailsSidebar = () => {
         </form>
       </div>
       <div className="tour-details-two__last-minute">
-        <h3 className="tour-details-two__sidebar-title">Última Hora
+        <h3 className="tour-details-two__sidebar-title">Recentes
         </h3>
         <ul className="tour-details-two__last-minute-list list-unstyled">
           {tourDetailsSidebar.map(({ id, title, image, price, location }) => (
             <li key={id}>
-              <div className="tour-details-two__last-minute-image">
+              <div className="tour-details-two__last-minute-image cursor-pointer">
                 <Image
                   src={require(`@/assets/images/resources/${image}`).default.src}
                   alt=""
                 />
               </div>
-              <div className="tour-details-two__last-minute-content">
+              <div className="tour-details-two__last-minute-content cursor-pointer">
                 <h6>{price} kz</h6>
-                <h5>{title}</h5>
+                <h5 >{title}</h5>
                 <p>{location}</p>
               </div>
             </li>

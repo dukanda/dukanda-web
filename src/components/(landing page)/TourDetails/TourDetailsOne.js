@@ -30,7 +30,7 @@ const TourDetailsOne = () => {
                         <h6>{duration}</h6>
                       </div>
                     </li>
-                    <li>
+                    {/* <li>
                       <div className="icon">
                         <span className="icon-user"></span>
                       </div>
@@ -38,7 +38,7 @@ const TourDetailsOne = () => {
                         <p>Min Idade</p>
                         <h6>{minAge}</h6>
                       </div>
-                    </li>
+                    </li> */}
                     <li>
                       <div className="icon">
                         <span className="icon-plane"></span>
@@ -71,6 +71,10 @@ const TourDetailsOne = () => {
               <div className="tour-details__bottom-inner">
                 <div className="tour-details__bottom-left">
                   <ul className="list-unstyled tour-details__bottom-list">
+                    <li className="flex items-center gap-2 ">
+                      <div className=" size-10 bg-gray-200 rounded-full"></div>
+                      <span>Ango-Tour</span>
+                    </li>
                     <li>
                       <div className="icon">
                         <span className="icon-clock"></span>
@@ -85,9 +89,9 @@ const TourDetailsOne = () => {
                           <i key={i} className="fa fa-star"></i>
                         ))}
                       </div>
-                      <div className="text">
-                        <p>{superb} Superb</p>
-                      </div>
+                      {/* <div className="text">
+                        <p>{superb}</p>
+                      </div> */}
                     </li>
                   </ul>
                 </div>

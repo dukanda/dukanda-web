@@ -9,19 +9,19 @@ const ReviewForm = ({ reviews = [] }) => {
 
   return (
     <div className="tour-details__review-form">
-      <h3 className="tour-details-two__title">Write a Review</h3>
+      <h3 className="tour-details-two__title">Escrever comentário </h3>
       <Row>
         <Col xl={6}>
           <div className="tour-details__review-form-left">
             <form onSubmit={handleSubmit} className="tour-details__review-form">
               <div className="tour-details__review-form-input">
-                <input type="text" placeholder="Your Name" name="name" />
+                <input type="text" placeholder="Seu nome" name="name" />
               </div>
               <div className="tour-details__review-form-input">
-                <input type="email" placeholder="Email Address" name="email" />
+                <input type="email" placeholder="Seu email" name="email" />
               </div>
               <div className="tour-details__review-form-input">
-                <input type="text" placeholder="Review Title" name="review" />
+                <input type="text" placeholder="Título do comentário" name="review" />
               </div>
             </form>
           </div>
@@ -43,12 +43,12 @@ const ReviewForm = ({ reviews = [] }) => {
       </Row>
       <div className="tour-details__review-form-textarea">
         <form onSubmit={handleSubmit}>
-          <textarea placeholder="Write Comment"></textarea>
+          <textarea placeholder="Escrever comentário"></textarea>
           <button
             type="submit"
             className="thm-btn tour-details__review-form-btn"
           >
-            Submit Review
+           Enviar comentário
           </button>
         </form>
       </div>

@@ -32,7 +32,7 @@ const SingleTour = ({ tour = {}, userSelect = false }) => {
             <Link href="/tour-details" legacyBehavior>{title}</Link>
           </h3>
           <p className="popular-tours__rate">
-            <span>${rate}</span> / Pessoa
+            <span>{rate} kz </span> / Pessoa
           </p>
           <ul className="popular-tours__meta list-unstyled">
             {meta.map((item, index) => (
