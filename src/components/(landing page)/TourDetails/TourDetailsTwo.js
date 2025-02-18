@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import TourDetailsLeft from "./TourDetailsLeft";
 import TourDetailsSidebar from "./TourDetailsSidebar";
+import TourDetailsLeft from "./TourDetailsLeft";
 
 const TourDetailsTwo = () => {
   return (

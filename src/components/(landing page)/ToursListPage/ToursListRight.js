@@ -17,13 +17,13 @@ const ToursListRight = () => {
                   src={require(`@/assets/images/resources/${image}`).default.src}
                   alt=""
                 />
-                <div className="tours-list__icon">
+                {/* <div className="tours-list__icon">
                   <Link href="/tours/12/details" legacyBehavior>
                     <a>
                       <i className="fa fa-heart"></i>
                     </a>
                   </Link>
-                </div>
+                </div> */}
               </div>
               <div className="tours-list__content">
                 <div className="tours-list__stars">
@@ -33,7 +33,7 @@ const ToursListRight = () => {
                   <Link href="/tours/12/details" legacyBehavior>{title}</Link>
                 </h3>
                 <p className="tours-list__rate">
-                  <span>${rate}</span> / Per Person
+                  <span>{rate} kz</span> / Per Person
                 </p>
                 <p className="tours-list__text">{text}</p>
                 <ul className="tours-list__meta list-unstyled">

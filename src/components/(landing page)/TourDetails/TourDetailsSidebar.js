@@ -90,46 +90,11 @@ const TourDetailsSidebar = () => {
   return (
     <div className="tour-details-two__sidebar">
       <div className="tour-details-two__book-tours">
-        <h3 className="tour-details-two__sidebar-title">Book Tours</h3>
+        <h3 className="tour-details-two__sidebar-title">Reservar passeios</h3>
         <form
           onSubmit={handleSubmit}
           className="tour-details-two__sidebar-form"
         >
-          <div className="tour-details-two__sidebar-form-input">
-            <input type="text" placeholder="Where to" name="place" />
-          </div>
-          <div className="tour-details-two__sidebar-form-input">
-            <input type="text" placeholder="When" name="when" />
-          </div>
-          <div className="tour-details-two__sidebar-form-input">
-            <Select
-              name="type"
-              options={typeOptions}
-              onChange={handleSelectType}
-              styles={customStyle}
-              isSearchable={false}
-              components={{
-                IndicatorSeparator: () => null,
-                DropdownIndicator: () => null,
-              }}
-              placeholder="Type"
-              instanceId="tourTypeSelect10"
-            />
-            <div className="tour-details-two__sidebar-form-icon">
-              <i className="fa fa-angle-down"></i>
-            </div>
-          </div>
-          <div className="tour-details-two__sidebar-form-input">
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              placeholderText="Select date"
-              id="datepicker"
-            />
-            <div className="tour-details-two__sidebar-form-icon">
-              <i className="fa fa-angle-down"></i>
-            </div>
-          </div>
           <div className="tour-details-two__sidebar-form-input">
             <Select
               name="ticket"
@@ -141,7 +106,7 @@ const TourDetailsSidebar = () => {
                 IndicatorSeparator: () => null,
                 DropdownIndicator: () => null,
               }}
-              placeholder="Choose Ticket"
+              placeholder="Escolher ticket"
               instanceId="tourTypeSelect15"
             />
             <div className="tour-details-two__sidebar-form-icon">
@@ -153,12 +118,13 @@ const TourDetailsSidebar = () => {
             type="submit"
             className="thm-btn tour-details-two__sidebar-btn"
           >
-            Book Now
+            Reservar
           </button>
         </form>
       </div>
       <div className="tour-details-two__last-minute">
-        <h3 className="tour-details-two__sidebar-title">Last Minute</h3>
+        <h3 className="tour-details-two__sidebar-title">Última Hora
+        </h3>
         <ul className="tour-details-two__last-minute-list list-unstyled">
           {tourDetailsSidebar.map(({ id, title, image, price, location }) => (
             <li key={id}>
@@ -169,7 +135,7 @@ const TourDetailsSidebar = () => {
                 />
               </div>
               <div className="tour-details-two__last-minute-content">
-                <h6>${price}</h6>
+                <h6>{price} kz</h6>
                 <h5>{title}</h5>
                 <p>{location}</p>
               </div>

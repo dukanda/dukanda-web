@@ -16,7 +16,7 @@ const TourDetailsOne = () => {
                 <div className="tour-details__top-left">
                   <h2 className="tour-details__top-title">{title}</h2>
                   <p className="tour-details__top-rate">
-                    <span>${rate}</span> / Per Person
+                    <span>{rate} kz</span> / Por pessoa
                   </p>
                 </div>
                 <div className="tour-details__top-right">
@@ -26,7 +26,7 @@ const TourDetailsOne = () => {
                         <span className="icon-clock"></span>
                       </div>
                       <div className="text">
-                        <p>Duration</p>
+                        <p>Duração</p>
                         <h6>{duration}</h6>
                       </div>
                     </li>
@@ -35,7 +35,7 @@ const TourDetailsOne = () => {
                         <span className="icon-user"></span>
                       </div>
                       <div className="text">
-                        <p>Min Age</p>
+                        <p>Min Idade</p>
                         <h6>{minAge}</h6>
                       </div>
                     </li>
@@ -44,7 +44,7 @@ const TourDetailsOne = () => {
                         <span className="icon-plane"></span>
                       </div>
                       <div className="text">
-                        <p>Tour Type</p>
+                        <p>Tipo de Passeio</p>
                         <h6>{tourType}</h6>
                       </div>
                     </li>
@@ -53,7 +53,7 @@ const TourDetailsOne = () => {
                         <span className="icon-place"></span>
                       </div>
                       <div className="text">
-                        <p>Location</p>
+                        <p>Localização</p>
                         <h6>{location}</h6>
                       </div>
                     </li>
@@ -76,7 +76,7 @@ const TourDetailsOne = () => {
                         <span className="icon-clock"></span>
                       </div>
                       <div className="text">
-                        <p>Posted {date}</p>
+                        <p>Postado {date}</p>
                       </div>
                     </li>
                     <li>
@@ -93,7 +93,7 @@ const TourDetailsOne = () => {
                 </div>
                 <div className="tour-details__bottom-right">
                   <a href="#">
-                    <i className="fas fa-share"></i>share
+                    <i className="fas fa-share"></i>Partilha
                   </a>
                 </div>
               </div>

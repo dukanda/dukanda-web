@@ -1,8 +1,9 @@
-import React from "react";
+import { StarRating } from "@/components/app/star-rating/starRating";
+import React, { FormEvent } from "react";
 import { Col, Row } from "react-bootstrap";
 
 const ReviewForm = ({ reviews = [] }) => {
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:FormEvent) => {
     e.preventDefault();
   };
 
@@ -33,12 +34,7 @@ const ReviewForm = ({ reviews = [] }) => {
                   <span>{title}</span>
                 </div>
                 <div className="tour-details__review-form-rate-right">
-                  {Array.from(Array(5)).map((_, i) => (
-                    <i
-                      key={i}
-                      className={`fa fa-star${i < star ? " active" : ""}`}
-                    ></i>
-                  ))}
+                  <StarRating/>
                 </div>
               </div>
             ))}
