@@ -1,6 +1,9 @@
 "use client";
 // import "node_modules/swiper/swiper-bundle.min.css";
-import "/workspaces/dukanda-web/node_modules/swiper/swiper-bundle.min.css";
+// import "swiper/swiper-bundle.min.css";
+// import "/workspaces/dukanda-web/node_modules/swiper/swiper-bundle.min.css";
+import "@/styles/swiper-bundle.min.css";
+
 import "tiny-slider/dist/tiny-slider.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/assets/vendors/animate/animate.min.css";
