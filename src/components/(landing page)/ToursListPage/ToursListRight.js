@@ -18,7 +18,7 @@ const ToursListRight = () => {
                   alt=""
                 />
                 <div className="tours-list__icon">
-                  <Link href="/tour-details" legacyBehavior>
+                  <Link href="/tour/details" legacyBehavior>
                     <a>
                       <i className="fa fa-heart"></i>
                     </a>
@@ -30,7 +30,7 @@ const ToursListRight = () => {
                   <i className="fa fa-star"></i> {superb} Superb
                 </div>
                 <h3 className="tours-list__title">
-                  <Link href="/tour-details" legacyBehavior>{title}</Link>
+                  <Link href="/tour/details" legacyBehavior>{title}</Link>
                 </h3>
                 <p className="tours-list__rate">
                   <span>${rate}</span> / Per Person
@@ -38,7 +38,7 @@ const ToursListRight = () => {
                 <p className="tours-list__text">{text}</p>
                 <ul className="tours-list__meta list-unstyled">
                   <li>
-                    <Link href="/tour-details" legacyBehavior>
+                    <Link href="/tour/details" legacyBehavior>
                       <a>
                         <i className="far fa-calendar"></i>
                         {date}
@@ -46,7 +46,7 @@ const ToursListRight = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/tour-details" legacyBehavior>
+                    <Link href="/tour/details" legacyBehavior>
                       <a>
                         <i className="far fa-user-circle"></i>
                         {user}
@@ -54,7 +54,7 @@ const ToursListRight = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/tour-details" legacyBehavior>
+                    <Link href="/tour/details" legacyBehavior>
                       <a>
                         <i className="far fa-map"></i>
                         {map}
