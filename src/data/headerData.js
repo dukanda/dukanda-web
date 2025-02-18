@@ -32,7 +32,7 @@ const navItems = [
     href: "/tours",
     subNavItems: [
       // { id: 1, name: "Passeios", href: "/tours" },
-      { id: 1, name: "Ver Passeios", href: "/tours-list" },
+      { id: 1, name: "Ver Passeios", href: "/tours/list" },
       // { id: 3, name: "Detalhes do Passeio", href: "/tour-details" },
     ],
   },
@@ -48,7 +48,7 @@ const navItems = [
     href: "/news",
     subNavItems: [
       { id: 1, name: "Notícias", href: "/news" },
-      { id: 2, name: "Detalhes da Notícia", href: "/news-details" },
+      { id: 2, name: "Detalhes da Notícia", href: "/news/details" },
     ],
   },
   {

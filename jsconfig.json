@@ -2,34 +2,34 @@
   "compilerOptions": {
     "jsx": "react",
     "baseUrl": ".",
-    "paths": {
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/styles/*": [
-        "src/styles/*"
-      ],
-      "@/images/*": [
-        "src/assets/images/*"
-      ],
-      "@/vendors/*": [
-        "src/assets/vendors/*"
-      ],
-      "@/context/*": [
-        "src/components/(landing page)/context/*"
-      ],
-      "@/hooks/*": [
-        "src/hooks/*"
-      ],
-      "@/data/*": [
-        "src/data/*"
-      ],
-      "@/api/*": [
-        "src/api/*"
-      ],
-      "@/utils/*": [
-        "src/utils/*"
-      ]
-    }
+    // "paths": {
+    //   "@/components/*": [
+    //     "src/components/*"
+    //   ],
+    //   "@/styles/*": [
+    //     "src/styles/*"
+    //   ],
+    //   "@/images/*": [
+    //     "src/assets/images/*"
+    //   ],
+    //   "@/vendors/*": [
+    //     "src/assets/vendors/*"
+    //   ],
+    //   "@/context/*": [
+    //     "src/components/(landing page)/context/*"
+    //   ],
+    //   "@/hooks/*": [
+    //     "src/hooks/*"
+    //   ],
+    //   "@/data/*": [
+    //     "src/data/*"
+    //   ],
+    //   "@/api/*": [
+    //     "src/api/*"
+    //   ],
+    //   "@/utils/*": [
+    //     "src/utils/*"
+    //   ]
+    // }
   }
 }

@@ -52,6 +52,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.ts", "src/components/(landing page)/DestinationsOne/SingleDestination.js", "src/components/(landing page)/DestinationsPage/DestinationsPage.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.ts", "src/components/(landing page)/DestinationsOne/SingleDestination.js", "src/components/(landing page)/DestinationsPage/DestinationsPage.js", "src/components/(landing page)/TourDetails/TourDetailsLeft.js", "src/components/(landing page)/TourDetails/TourDetailsPage.js", "src/components/(landing page)/TourDetails/TourDetailsOne.js", "src/components/(landing page)/TourDetails/ReviewScoreBar.js"],
   "exclude": ["node_modules"]
 }

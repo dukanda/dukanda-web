@@ -18,7 +18,7 @@ const DestinationsDetailsRight = () => {
             <li key={id}>
               <div className="tour-details-two__last-minute-image">
                 <Image
-                  src={require(`@/images/resources/${image}`).default.src}
+                  src={require(`@/assets/images/resources/${image}`).default.src}
                   alt=""
                 />
               </div>

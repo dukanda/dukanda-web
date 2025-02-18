@@ -14,7 +14,7 @@ const ToursListRight = () => {
             <div key={id} className="tours-list__single">
               <div className="tours-list__img">
                 <Image
-                  src={require(`@/images/resources/${image}`).default.src}
+                  src={require(`@/assets/images/resources/${image}`).default.src}
                   alt=""
                 />
                 <div className="tours-list__icon">

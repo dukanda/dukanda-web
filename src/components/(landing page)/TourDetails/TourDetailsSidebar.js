@@ -1,3 +1,4 @@
+"use client";
 import { tourDetailsSidebar } from "@/data/tourDetailsPage";
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
@@ -163,7 +164,7 @@ const TourDetailsSidebar = () => {
             <li key={id}>
               <div className="tour-details-two__last-minute-image">
                 <Image
-                  src={require(`@/images/resources/${image}`).default.src}
+                  src={require(`@/assets/images/resources/${image}`).default.src}
                   alt=""
                 />
               </div>

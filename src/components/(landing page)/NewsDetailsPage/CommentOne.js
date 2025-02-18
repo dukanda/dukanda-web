@@ -8,7 +8,7 @@ const CommentOne = ({ comments = [] }) => {
       {comments.map(({ id, image, name, message }) => (
         <div className="comment-one__single" key={id}>
           <div className="comment-one__image">
-            <Image src={require(`@/images/blog/${image}`).default.src} alt="" />
+            <Image src={require(`@/assets/images/blog/${image}`).default.src} alt="" />
           </div>
           <div className="comment-one__content">
             <h3>{name}</h3>

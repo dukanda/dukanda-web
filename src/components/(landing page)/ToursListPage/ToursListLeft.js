@@ -1,3 +1,4 @@
+"use client";
 import toursListPage from "@/data/toursListPage";
 import React, { useState } from "react";
 import Slider from "react-rangeslider";

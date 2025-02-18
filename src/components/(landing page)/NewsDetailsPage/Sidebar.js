@@ -1,3 +1,4 @@
+"use client";
 import { sidebar } from "@/data/newsDetailsPage";
 import Link from "next/link";
 import React from "react";
@@ -30,7 +31,7 @@ const Sidebar = () => {
             <li key={id}>
               <div className="sidebar__post-image">
                 <Image
-                  src={require(`@/images/blog/${image}`).default.src}
+                  src={require(`@/assets/images/blog/${image}`).default.src}
                   alt=""
                 />
               </div>

@@ -1,36 +1,34 @@
 import React, { useState } from "react";
-import ReactVisibilitySensor from "react-visibility-sensor";
+import { useInView } from "react-intersection-observer";
 
 const ReviewScoreBar = ({ review = {} }) => {
   const [countStart, setCountStart] = useState(false);
-
-  const onVisibilityChange = (isVisible) => {
-    if (isVisible) {
-      setCountStart(true);
-    }
-  };
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Executa uma vez ao entrar na vista
+    threshold: 0.1, // Garante que o elemento está pelo menos 10% visível
+  });
 
   const { percent, title } = review;
 
+  React.useEffect(() => {
+    if (inView) {
+      setCountStart(true);
+    }
+  }, [inView]);
+
   return (
-    <ReactVisibilitySensor
-      offset={{ top: 10 }}
-      delayedCall={true}
-      onChange={onVisibilityChange}
-    >
-      <div className="tour-details__review-score__bar">
-        <div className="tour-details__review-score__bar-top">
-          <h3>{title}</h3>
-          <p>{countStart ? percent : 0}%</p>
-        </div>
-        <div className="tour-details__review-score__bar-line">
-          <span
-            className="animated slideInLeft"
-            style={{ width: `${countStart ? percent : 0}%` }}
-          ></span>
-        </div>
+    <div className="tour-details__review-score__bar" ref={ref}>
+      <div className="tour-details__review-score__bar-top">
+        <h3>{title}</h3>
+        <p>{countStart ? percent : 0}%</p>
       </div>
-    </ReactVisibilitySensor>
+      <div className="tour-details__review-score__bar-line">
+        <span
+          className="animated slideInLeft"
+          style={{ width: `${countStart ? percent : 0}%` }}
+        ></span>
+      </div>
+    </div>
   );
 };
 
