@@ -1,11 +1,14 @@
+"use client";
+import ShareButton from "@/components/app/share-button/shareButton";
 import { tourDetailsOne } from "@/data/tourDetailsPage";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
 const { title, rate, duration, minAge, tourType, location, date, superb } =
   tourDetailsOne;
 
 const TourDetailsOne = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <section className="tour-details">
       <div className="tour-details__top">
@@ -95,11 +98,12 @@ const TourDetailsOne = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="tour-details__bottom-right">
-                  <a href="#">
-                    <i className="fas fa-share"></i>Partilha
-                  </a>
-                </div>
+
+                {/* <div className="tour-details__bottom-right">
+                  <ShareButton open={isOpen} setOpen={() => setIsOpen(!isOpen)}>
+                    <i className="fas fa-share"></i> Partilhar
+                  </ShareButton>
+                </div> */}
               </div>
             </Col>
           </Row>

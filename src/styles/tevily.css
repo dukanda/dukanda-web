@@ -142,6 +142,25 @@ ul {
   z-index: 1;
 }
 
+.thm-btn-pay {
+  width: max-content;
+  position: relative;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  border: none;
+  outline: none !important;
+  
+  /* color: var(--thm-base); */
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  /* padding: 8px 30px 8px; */
+  border-radius: 8px;
+  transition: all 0.3s linear;
+  letter-spacing: 0.1em;
+  z-index: 1;
+}
+
 .thm-btn:after {
   position: absolute;
   content: "";
@@ -2142,23 +2161,28 @@ ul {
 }
 
 .popular-tours__icon a {
-  width: 38px;
+  width: max-content;
   height: 38px;
-  background-color: rgba(var(--thm-black-rgb), 0.2);
-  border-radius: 50%;
+  /* background-color: rgba(var(--thm-black-rgb), 0.2); */
+  background-color: #F7931E;
+  border-radius: 10px;
   text-align: center;
   display: flex;
   font-size: 14px;
   color: #fff;
+  font-weight:600 ;
   position: absolute;
   top: 30px;
-  right: 30px;
+  right: 15px;
   z-index: 10;
   -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   align-items: center;
   justify-content: center;
   line-height: 38px;
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .popular-tours__single:hover .popular-tours__icon a {
@@ -6079,7 +6103,7 @@ ul {
   float: right;
 }
 
-.tour-details__bottom-right a {
+.tour-details__bottom-right div {
   position: relative;
   display: inline-block;
   background-color: #faf5ee;
@@ -6092,7 +6116,7 @@ ul {
   transition: all 500ms ease;
 }
 
-.tour-details__bottom-right a i {
+.tour-details__bottom-right div i {
   padding-right: 10px;
 }
 
