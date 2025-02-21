@@ -70,6 +70,9 @@ const StepOneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 };
 
 const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
+
+
+  
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
