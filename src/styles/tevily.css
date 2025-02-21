@@ -5839,7 +5839,7 @@ ul {
   align-items: center;
   background-color: #faf5ee;
   border-radius: var(--thm-border-radius);
-  padding: 0 40px 0;
+  padding: 0 20px 0;
 }
 
 .tours-list__meta li + li {
