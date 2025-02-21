@@ -78,11 +78,11 @@ export default function MultiStepForm<
   );
 
   return (
-    <div>
-      <section className="w-full">
-        <section className="  min-h-full h-screen flex flex-col justify-between">
+    <div className=" h-full">
+      <section className="w-full h-full">
+        <section className=" h-full flex flex-col justify-between">
           <div className="p-2 w-full flex flex-col items-center justify-center gap-2 ">
-            <div className="p-2 w-full flex items-center justify-center gap-2 ">
+            <div className="flex gap-2">
               {steps.map((_, ind) => (
                 <motion.span
                   key={ind}
@@ -129,6 +129,7 @@ export default function MultiStepForm<
               ))}
             </div>
 
+            <div className="w-full h-full flex flex-col items-center justify-center gap-2  ">
             <AnimatePresence mode="popLayout">
               <motion.div
                 key={currentStep}
@@ -151,15 +152,16 @@ export default function MultiStepForm<
               </motion.div>
             </AnimatePresence>
           </div>
+          </div>
 
 
-          <div className="flex justify-between mt-4">
+          <div className="flex   justify-end gap-3 mt-4 text-black">
             {currentStep > 0 && (
-              <button type="button" onClick={onBackStep}>
+              <button type="button" onClick={onBackStep} className="thm-btn h-10" >
                 Voltar
               </button>
             )}
-            <button onClick={() => onStepSubmit({} as TPossibleFormData)}>
+            <button onClick={() => onStepSubmit({} as TPossibleFormData)} className="thm-btn">
               {currentStep < steps.length - 1 ? "Next" : "Finish"}
             </button>
           </div>

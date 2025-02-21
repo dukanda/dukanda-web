@@ -30,7 +30,7 @@ const StepOneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
             <p><strong>Preço:</strong>5000 kz</p>
           </article>
         </section>
-        <div className="tour-details-two__overview-bottom">
+        <div className="">
           <div className="flex flex-col md:flex-row justify-between px-4 gap-4">
             <div className="flex flex-col text-start">
               <h3 className="tour-details-two-overview__title">Incluído</h3>
@@ -120,7 +120,8 @@ export function DialogPayment() {
       </DialogTrigger>
       <DialogContent className="w-[90%] sm:max-w-[800px] h-[70%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden">
         <DialogHeader>
-          <DialogDescription>
+        <DialogTitle></DialogTitle>
+          <DialogDescription className="h-full">
             <MultiStepForm steps={steps} onFinished={handleFinished} />
           </DialogDescription>
         </DialogHeader>
