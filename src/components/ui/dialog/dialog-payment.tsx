@@ -26,8 +26,8 @@ const StepOneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
         <section className="w-full px-4 text-start ">
           <h3 className="text-start text-[12px]">Detalhes da Reserva</h3>
           <article className="flex gap-2">
-            <p><strong>Ticket:</strong>Aventura</p>
-            <p><strong>Preço:</strong>5000 kz</p>
+            <p ><strong className="mr-1">Ticket:</strong>Aventura</p>
+            <p><strong className="mr-1"> Preço:</strong>5000 kz</p>
           </article>
         </section>
         <div className="">
@@ -75,7 +75,7 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
         <h2>Selecionar Método de Pagamento</h2>
-        <div className="w-full flex flex-col items-center p-5 gap-3">
+        <div className="w-full flex flex-col items-center p-0 md:px-5 gap-3  ">
           <button
             className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
           >
@@ -87,6 +87,33 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
               className="rounded-md object-cover"
             />
             <span>Multicaixa Express</span>
+          </button>
+
+          <button
+            className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
+          >
+            <Image
+              src="/visa.png"
+              alt="Visa"
+              width={50}
+              height={50}
+              className="rounded-md object-cover"
+            />
+            <span>Visa</span>
+          </button>
+
+        
+          <button
+            className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
+          >
+            <Image
+              src="/mastercard.png"
+              alt="Mastercard"
+              width={50}
+              height={50}
+              className="rounded-md object-cover"
+            />
+            <span>Mastercard</span>
           </button>
         </div>
       </div>
