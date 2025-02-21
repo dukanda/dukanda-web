@@ -70,7 +70,6 @@ const StepOneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 };
 
 const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
-  const [paymentMethod, setPaymentMethod] = useState("");
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
