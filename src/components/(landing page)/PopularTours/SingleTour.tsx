@@ -11,8 +11,8 @@ const formatCurrency = (value: number) => {
 const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, title, basePrice, agencyLogoUrl }: ITours) => {
 
   const userSelect = false;
-  const formattedStartDate = startDate ? format(new Date(startDate), "dd 'de' MMMM", { locale: ptBR }) : "Data inválida";
-  const formattedEndDate = endDate ? format(new Date(endDate), "dd 'de' MMMM 'de' yyyy", { locale: ptBR }) : "Data inválida";
+  const formattedStartDate = startDate ? format(new Date(startDate), "dd 'de' MMM", { locale: ptBR }) : "Data inválida";
+  const formattedEndDate = endDate ? format(new Date(endDate), "dd 'de' MMM 'de' yyyy", { locale: ptBR }) : "Data inválida";
 
   return (
     <div>
@@ -55,7 +55,7 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
           </div>
 
           <h3 className="popular-tours__title">
-            <Link href="/tours/12/details" legacyBehavior>{title}</Link>
+            <Link href="/tours/12/details" legacyBehavior><a href="">{title}</a></Link>
           </h3>
           <p className="popular-tours__rate">
             <span>{formatCurrency(basePrice ?? 0)} </span> / Pessoa
@@ -64,7 +64,7 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
 
             {/* {meta.map((item, index) => ( */}
             <li>
-              <Link href="/tours/12/details" legacyBehavior>3 dias</Link>
+              <Link href="/tours/12/details" legacyBehavior><a href="">3 dias</a></Link>
             </li>
             {/* ))} */}
           </ul>
