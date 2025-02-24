@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
- import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google';
+import QueryProvider from "@/_module/tanstack-query-config/queryClientProvider";
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: "Dukanda",
@@ -22,12 +23,12 @@ export default function RootLayout({
       <head>
         <link rel="shortcut icon" href="Logomark.svg" type="image/x-icon" />
       </head>
-      <body
-        className={` antialiased ${inter.className}`}
-      >
-        <main>
-          {children}
-        </main>
+      <body className={`antialiased ${inter.className}`}>
+        <QueryProvider>
+          <main>
+            {children}
+          </main>
+        </QueryProvider>
       </body>
     </html>
   );
