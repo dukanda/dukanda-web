@@ -4,6 +4,10 @@ import { Image } from "react-bootstrap";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
+const formatCurrency = (value: number) => {
+  return value.toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' });
+};
+
 const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, title, basePrice, agencyLogoUrl }: ITours) => {
 
   const userSelect = false;
@@ -54,7 +58,7 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
             <Link href="/tours/12/details" legacyBehavior>{title}</Link>
           </h3>
           <p className="popular-tours__rate">
-            <span>{basePrice} kz </span> / Pessoa
+            <span>{formatCurrency(basePrice ?? 0)} </span> / Pessoa
           </p>
           <ul className="popular-tours__meta list-unstyled">
 
