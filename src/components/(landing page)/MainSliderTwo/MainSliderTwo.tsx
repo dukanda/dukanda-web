@@ -1,6 +1,5 @@
 "use client";
 
-import mainSliderTwoData from "@/data/mainSliderTwoData";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
@@ -22,17 +21,16 @@ const mainSlideOptions = {
   },
 };
 
-const MainSliderTwo = () => {
+const MainSliderTwo = ({ coverImageUrl }: { coverImageUrl: string }) => {
+
   return (
     <section className="main-slider tour-details-slider">
       <Swiper {...mainSlideOptions}>
-        {mainSliderTwoData.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <SingleSlide slide={slide} />
-          </SwiperSlide>
-        ))}
+        <SwiperSlide >
+          <SingleSlide coverImageUrl={coverImageUrl} />
+        </SwiperSlide>
       </Swiper>
-      
+
       {/* Botões de navegação */}
       <div className="main-slider-nav">
         <div id="main-slider__swiper-button-prev" className="main-slider-button-prev">
