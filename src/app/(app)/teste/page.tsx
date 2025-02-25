@@ -7,10 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function Teste() {
 
-  const getFeaturedTours = useQuery({
+  const getTourById = useQuery({
     queryKey: ['getFeaturedTours'],
     queryFn: async () => {
-      const response = await toursRoutes.getFeaturedTours();
+      const response = await toursRoutes.getTourById("d4f3c46d-818d-410f-8fb9-b150d5298f64");
       return response;
     },
   })
@@ -24,7 +24,7 @@ export default function Teste() {
   // })
 
 
-  console.log("api", getFeaturedTours.data?.data);
+  console.log("api", getTourById.data?.data);
   return (
     <div>
       {/* <MultiStepPaymentForm />

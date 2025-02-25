@@ -12,6 +12,11 @@ class ToursRoutes {
     return response;
   }
 
+  async getTourById(id: string) {
+    const response = await api.get<ITour>(`${ToursRoutes.TOURS}/${id}`);
+    return response;
+  }
+
 }
 
 export const toursRoutes = new ToursRoutes();
