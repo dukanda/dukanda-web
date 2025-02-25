@@ -71,19 +71,34 @@ interface TourType {
 }
 
 interface ITour {
-  id: string;
-  title: string;
-  description: string;
-  basePrice: number;
-  startDate: string;
-  endDate: string;
-  agencyName: string;
-  agencyLogoUrl: string;
-  cityName: string;
-  coverImageUrl: string;
-  created: string;
-  itineraries: Itinerary[];
-  attractions: Attraction[];
-  packages: Package[];
-  tourTypes: TourType[];
+id?:string;
+title?:string;
+description?:string;
+basePrice?:number;
+startDate?:string;
+endDate?:string;
+agencyName?:string;
+agencyLogoUrl?:string;
+cityName?:string;
+coverImageUrl?:string;
+created?:string;
+itineraries?:Itinerary[];
+attractions?:Attraction[];
+packages?:Package[];
+tourTypes?:TourType[];
 }
+// id: string;
+// title: string;
+// description: string;
+// basePrice: number;
+// startDate: string;
+// endDate: string;
+// agencyName: string;
+// agencyLogoUrl: string;
+// cityName: string;
+// coverImageUrl: string;
+// created: string;
+// itineraries: Itinerary[];
+// attractions: Attraction[];
+// packages: Package[];
+// tourTypes: TourType[];

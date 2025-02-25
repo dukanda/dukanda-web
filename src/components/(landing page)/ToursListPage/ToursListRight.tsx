@@ -8,10 +8,8 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { formatCurrency } from "@/_utils/formatCurrency";
 
-const formatCurrency = (value: number) => {
-  return value.toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' });
-};
 
 const ToursListRight = () => {
 
