@@ -2,7 +2,7 @@
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
 import { MultiStepPaymentForm } from "@/components/app/payment-form/page";
 import { TourManagementTable } from "@/components/app/tour-management-table/page";
-import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
+// import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Teste() {
@@ -29,7 +29,7 @@ export default function Teste() {
     <div>
       {/* <MultiStepPaymentForm />
       <TourManagementTable /> */}
-      <DialogPayment />
+      {/* <DialogPayment /> */}
     </div>
   )
 }

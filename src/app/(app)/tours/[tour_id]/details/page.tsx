@@ -5,6 +5,7 @@ import TourDetailsPage from "@/components/(landing page)/TourDetails/TourDetails
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
+import { ChevronLeft } from "lucide-react";
 
 export default function TourDetails() {
   const { tour_id } = useParams();
@@ -16,9 +17,22 @@ export default function TourDetails() {
       return response;
     },
   })
-  // console.log("api", getTourById.data?.data);
 
-  // console.log(" tour_id",tour_id);
+  if (getTourById.data?.data === undefined) {
+    return (
+      <Layout pageTitle="Tours Details">
+        <div className="flex flex-col items-center justify-center h-96">
+          <p>Tour não encontrada!</p>
+          <button className=" h-10 bg-orange-500 text-white rounded-[8px] px-2 flex gap-2 items-center justify-between" style={{ borderRadius: "8px" }}
+            onClick={() => window.location.href = "/"}
+          >
+            <ChevronLeft />
+            Voltar
+          </button>
+        </div>
+      </Layout>
+    )
+  }
 
   return (
     <Layout pageTitle="Tours Details">

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from 'next/font/google';
 import QueryProvider from "@/_module/tanstack-query-config/queryClientProvider";
 import ContextProvider from "@/components/(landing page)/context/ContextProvider";
+import Head from "next/head";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,9 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <head>
+      <Head>
         <link rel="shortcut icon" href="Logomark.svg" type="image/x-icon" />
-      </head>
+      </Head>
       <body className={`antialiased ${inter.className}`}>
         <QueryProvider>
           <ContextProvider>
