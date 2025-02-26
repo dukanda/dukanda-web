@@ -11,7 +11,7 @@ import { differenceInDays, parseISO, isValid } from "date-fns";
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
-const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDate }: ITour) => {
+const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDate, selectedPackage }: ITour & { selectedPackage: Package | null }) => {
   const [active, setActive] = useState<string | null>(null);
 
   //Verificar se startDate e endDate são válidos antes de converter
@@ -32,6 +32,9 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
     };
   });
 
+  // Ordenar itinerários por dayNumber
+  const orderedItineraries = mappedItineraries.sort((a, b) => (a.dayNumber ?? 0) - (b.dayNumber ?? 0));
+
   // Extrair benefícios únicos
   const allBenefits = (packages ?? []).flatMap((pack) => pack.benefits);
   const uniqueBenefits = Array.from(new Map(allBenefits.map((b) => [b.name, b])).values());
@@ -45,43 +48,29 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
         <p className="tour-details-two__overview-text">{description}</p>
-        {/* 
-        <div className="tour-details-two__overview-bottom">
-          <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
-          <div className="tour-details-two__overview-bottom-inner">
-            <div className="tour-details-two__overview-bottom-left">
+
+        {/* Incluído/Não incluído */}
+        {selectedPackage && (
+          <div className="tour-details-two__overview-bottom">
+            <h3 className="tour-details-two-overview__title">Benefícios do Pacote</h3>
+            <div className="tour-details-two__overview-bottom-inner">
               <ul className="list-unstyled tour-details-two__overview-bottom-list">
-                {overviewList.slice(0, 4).map((over, index) => (
-                  <li key={index}>
+                {selectedPackage.benefits.map((benefit) => (
+                  <li key={benefit.id}>
                     <div className="icon">
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="text">
-                      <p>{over}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="tour-details-two__overview-bottom-right">
-              <ul className="list-unstyled tour-details-two__overview-bottom-right-list">
-                {overviewList.slice(4).map((over, index) => (
-                  <li key={index}>
-                    <div className="icon">
-                      <i className="fa fa-times"></i>
-                    </div>
-                    <div className="text">
-                      <p>{over}</p>
+                      <p>{benefit.description}</p>
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </div> */}
+        )}
 
-        {/* Incluído/Não incluído */}
-        <div className="tour-details-two__overview-bottom">
+        {/* <div className="tour-details-two__overview-bottom">
           <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
           <div className="tour-details-two__overview-bottom-inner">
             <div className="tour-details-two__overview-bottom-left">
@@ -113,7 +102,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
 
       </div>
 
@@ -122,7 +111,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
       <div className="tour-details-two__tour-plan">
         <h3 className="tour-details-two__title">Itinerário do passeio</h3>
         <div className="accrodion-grp faq-one-accrodion">
-          {mappedItineraries.map(({ id, title, description, dayNumber }) =>
+          {orderedItineraries.map(({ id, title, description, dayNumber }) =>
             dayNumber ? (
               <div className={`accrodion overflow-hidden${active === id ? " active" : ""}`} key={id}>
                 <div onClick={() => setActive(active === id ? null : id)} className="accrodion-title">

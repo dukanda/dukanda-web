@@ -1,4 +1,3 @@
-
 "use client";
 import { tourDetailsLeft, tourDetailsSidebar } from "@/data/tourDetailsPage";
 import React, { useState } from "react";
@@ -68,31 +67,18 @@ const customStyle = {
 };
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
-export const TourDetailsSidebar = () => {
-  const [type, setType] = useState("Adventure");
-  const [ticket, setTicket] = useState("Adventure");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [reservationDetails, setReservationDetails] = useState<any>(null);
+export const TourDetailsSidebar = ({ packages, setSelectedPackage }: ITour & { setSelectedPackage: (pack: Package | null) => void }) => {
+  const [selectedPackage, setSelectedPackageState] = useState<Package | null>(null);
 
+  const packageOptions = packages?.map((pack) => ({
+    value: pack.id,
+    label: pack.name,
+  })) || [];
 
-  //@ts-ignore
-  const handleSelectTicket = ({ value }) => {
-
-    setTicket(value);
-  };
-
-  //@ts-ignore
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      type,
-      ticket,
-      place: formData.get("place"),
-      when: formData.get("when"),
-    };
-    setReservationDetails(data);
-    setModalIsOpen(true);
+  const handleSelectPackage = (selectedOption: any) => {
+    const selectedPack = packages?.find((pack) => pack.id === selectedOption.value) || null;
+    setSelectedPackageState(selectedPack);
+    setSelectedPackage(selectedPack);
   };
 
   return (
@@ -100,22 +86,39 @@ export const TourDetailsSidebar = () => {
       <div className="tour-details-two__book-tours">
         <h3 className="tour-details-two__sidebar-title">Reservar passeios</h3>
         <form
-          onSubmit={handleSubmit}
           className="tour-details-two__sidebar-form"
         >
+          {/* <div className="tour-details-two__sidebar-form-input">
+          <Select
+            name="ticket"
+            options={typeOptions}
+            //@ts-ignore
+            onChange={handleSelectTicket}
+            styles={customStyle}
+            isSearchable={false}
+            components={{
+              IndicatorSeparator: () => null,
+              DropdownIndicator: () => null,
+            }}
+            placeholder="Escolher ticket"
+            instanceId="tourTypeSelect15"
+          />
+          <div className="tour-details-two__sidebar-form-icon">
+            <i className="fa fa-angle-down"></i>
+          </div>
+        </div> */}
           <div className="tour-details-two__sidebar-form-input">
             <Select
               name="ticket"
-              options={typeOptions}
-              //@ts-ignore
-              onChange={handleSelectTicket}
+              options={packageOptions}
+              onChange={handleSelectPackage}
               styles={customStyle}
               isSearchable={false}
               components={{
                 IndicatorSeparator: () => null,
                 DropdownIndicator: () => null,
               }}
-              placeholder="Escolher ticket"
+              placeholder="Escolher pacote"
               instanceId="tourTypeSelect15"
             />
             <div className="tour-details-two__sidebar-form-icon">
@@ -125,28 +128,23 @@ export const TourDetailsSidebar = () => {
           <DialogPayment />
         </form>
       </div>
-
-      <div className="tour-details-two__last-minute">
-        <h3 className="tour-details-two__sidebar-title">Recentes</h3>
-        <ul className="tour-details-two__last-minute-list list-unstyled">
-          {tourDetailsSidebar.map(({ id, title, image, price, location }) => (
-            <li key={id}>
-              <div className="tour-details-two__last-minute-image cursor-pointer">
-                <Image
-                  src={require(`@/assets/images/resources/${image}`).default.src}
-                  alt=""
-                />
-              </div>
-              <div className="tour-details-two__last-minute-content cursor-pointer">
-                <h6>{price} kz</h6>
-                <h5>{title}</h5>
-                <p>{location}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* {selectedPackage && (
+        <div className="tour-details-two__package-benefits">
+          <h3 className="tour-details-two__sidebar-title">Benefícios do Pacote</h3>
+          <ul className="list-unstyled">
+            {selectedPackage.benefits.map((benefit) => (
+              <li key={benefit.id}>
+                <div className="icon">
+                  <i className="fa fa-check"></i>
+                </div>
+                <div className="text">
+                  <p>{benefit.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )} */}
     </div>
   );
 };
-
