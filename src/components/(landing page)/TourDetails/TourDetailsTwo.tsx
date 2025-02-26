@@ -21,7 +21,11 @@ const TourDetailsTwo = ({ title, basePrice, startDate, endDate, tourTypes, cityN
             />
           </Col>
           <Col xl={4} lg={5}>
-            <TourDetailsSidebar packages={packages} setSelectedPackage={setSelectedPackage} />
+            <TourDetailsSidebar
+              packages={packages}
+              setSelectedPackage={setSelectedPackage}
+              description={description || ""}
+            />
           </Col>
         </Row>
       </Container>

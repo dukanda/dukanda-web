@@ -1,5 +1,6 @@
 "use client";
-import { tourDetailsLeft } from "@/data/tourDetailsPage";
+import { useState } from "react";
+import { Image } from "react-bootstrap";
 import MultiStepForm from "./multi-step";
 import {
   DialogHeader,
@@ -10,69 +11,50 @@ import {
   DialogDescription,
   DialogFooter,
 } from "./radix-dialog";
-import { useState } from "react";
-import { Image } from "react-bootstrap";
+import { formatCurrency } from "@/_utils/formatCurrency";
 
-const { overviewList } = tourDetailsLeft;
-
-const StepOneForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
+const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="w-full">
         <h2 className="w-full p-2">Visão Geral da Reserva</h2>
-        <p className="w-full pl-4 text-start">
-          Aproveite um dia inesquecível na paradisíaca Ilha do Mussulo, onde águas cristalinas e praias de areia branca proporcionam o cenário perfeito para relaxamento e diversão.
-        </p>
-        <section className="w-full px-4 text-start ">
-          <h3 className="text-start text-[12px]">Detalhes da Reserva</h3>
-          <article className="flex gap-2">
-            <p ><strong className="mr-1">Ticket:</strong>Aventura</p>
-            <p><strong className="mr-1"> Preço:</strong>5000 kz</p>
-          </article>
-        </section>
-        <div className="">
-          <div className="flex flex-col md:flex-row justify-between px-4 gap-4">
-            <div className="flex flex-col text-start">
-              <h3 className="tour-details-two-overview__title">Incluído</h3>
-              <ul className="list-unstyled tour-details-two__overview-bottom-list">
-                {overviewList.slice(0, 4).map((over, index) => (
-                  <li key={index}>
-                    <div className="icon">
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="text">
-                      <p>{over}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+        <p className="w-full pl-4 text-start">{description}</p>
+        {selectedPackage && (
+          <>
+            <section className="w-full px-4 text-start ">
+              <h3 className="text-start text-[12px]">Detalhes da Reserva</h3>
+              <article className="flex flex-col">
+                <p><strong className="mr-1">Pacote:</strong>{selectedPackage.name}</p>
+                <p><strong className="mr-1">Preço:</strong>{formatCurrency(selectedPackage.price)}</p>
+              </article>
+            </section>
+            <div className="">
+              <div className="flex flex-col md:flex-row justify-between px-4 gap-4">
+                <div className="flex flex-col text-start">
+                  <h3 className="tour-details-two-overview__title">Benefícios</h3>
+                  <ul className="list-unstyled tour-details-two__overview-bottom-list">
+                    {selectedPackage.benefits.map((benefit) => (
+                      <li key={benefit.id}>
+                        <div className="icon">
+                          <i className="fa fa-check"></i>
+                        </div>
+                        <div className="text">
+                          <p>{benefit.description}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col text-start h-full">
-              <h3 className="tour-details-two-overview__title">Não incluído</h3>
-              <ul className="list-unstyled tour-details-two__overview-bottom-right-list">
-                {overviewList.slice(4).map((over, index) => (
-                  <li key={index}>
-                    <div className="icon">
-                      <i className="fa fa-times"></i>
-                    </div>
-                    <div className="text">
-                      <p>{over}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </form>
   );
 };
 
 const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
-
-
-  
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
@@ -104,7 +86,6 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
             <span>Visa</span>
           </button>
 
-        
           <button
             className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
           >
@@ -131,9 +112,9 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   );
 };
 
-export function DialogPayment() {
+export function DialogPayment({ selectedPackage, description }: { selectedPackage: Package | null, description: string }) {
   const steps = [
-    { label: "Step 1", form: StepOneForm },
+    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackage} description={description} /> },
     { label: "Step 2", form: StepTwoForm },
     { label: "Step 3", form: StepThreeForm },
   ];
@@ -145,11 +126,18 @@ export function DialogPayment() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="thm-btn tour-details-two__sidebar-btn">Reservar</button>
+        {
+          selectedPackage ? (
+            <button className="thm-btn tour-details-two__sidebar-btn">Reservar</button>
+          ) : (
+            <button className="thm-btn tour-details-two__sidebar-btn" disabled>Reservar</button>
+          )
+        }
+        {/* <button className="thm-btn tour-details-two__sidebar-btn">Reservar</button> */}
       </DialogTrigger>
       <DialogContent className="w-[90%] sm:max-w-[800px] h-[70%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden">
         <DialogHeader>
-        <DialogTitle></DialogTitle>
+          <DialogTitle></DialogTitle>
           <DialogDescription className="h-full">
             <MultiStepForm steps={steps} onFinished={handleFinished} />
           </DialogDescription>

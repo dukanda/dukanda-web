@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import Select from "react-select";
 import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
+// import { toast } from 'react-toastify';
 
 const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
   value: it,
@@ -67,7 +68,7 @@ const customStyle = {
 };
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
-export const TourDetailsSidebar = ({ packages, setSelectedPackage }: ITour & { setSelectedPackage: (pack: Package | null) => void }) => {
+export const TourDetailsSidebar = ({ packages, setSelectedPackage, description }: ITour & { setSelectedPackage: (pack: Package | null) => void, description: string }) => {
   const [selectedPackage, setSelectedPackageState] = useState<Package | null>(null);
 
   const packageOptions = packages?.map((pack) => ({
@@ -125,7 +126,7 @@ export const TourDetailsSidebar = ({ packages, setSelectedPackage }: ITour & { s
               <i className="fa fa-angle-down"></i>
             </div>
           </div>
-          <DialogPayment />
+            <DialogPayment selectedPackage={selectedPackage} description={description} />
         </form>
       </div>
       {/* {selectedPackage && (
