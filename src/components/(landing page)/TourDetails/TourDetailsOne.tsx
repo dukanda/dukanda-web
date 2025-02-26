@@ -1,11 +1,15 @@
-import { tourDetailsOne } from "@/data/tourDetailsPage";
+"use client";
+import ShareButton from "@/components/app/share-button/shareButton";
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
+import { formatCurrency } from "@/_utils/formatCurrency";
+import { calculateDuration, calculatePostedDate } from "@/_utils/calculateDuration";
 
-const { title, rate, duration, minAge, tourType, location, date, superb } =
-  tourDetailsOne;
+const TourDetailsOne = ({ title, basePrice, startDate, endDate, tourTypes, cityName, agencyLogoUrl, agencyName, created }: ITour) => {
 
-const TourDetailsOne = () => {
+  const duration = startDate && endDate ? calculateDuration(startDate, endDate) : 'N/A';
+  const postedDate = created ? calculatePostedDate(created) : 'N/A';
+
   return (
     <section className="tour-details">
       <div className="tour-details__top">
@@ -16,7 +20,7 @@ const TourDetailsOne = () => {
                 <div className="tour-details__top-left">
                   <h2 className="tour-details__top-title">{title}</h2>
                   <p className="tour-details__top-rate">
-                    <span>${rate}</span> / Per Person
+                    <span>{formatCurrency(basePrice ?? 0)}</span> / Por pessoa
                   </p>
                 </div>
                 <div className="tour-details__top-right">
@@ -26,17 +30,8 @@ const TourDetailsOne = () => {
                         <span className="icon-clock"></span>
                       </div>
                       <div className="text">
-                        <p>Duration</p>
+                        <p>Duração</p>
                         <h6>{duration}</h6>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="icon">
-                        <span className="icon-user"></span>
-                      </div>
-                      <div className="text">
-                        <p>Min Age</p>
-                        <h6>{minAge}</h6>
                       </div>
                     </li>
                     <li>
@@ -44,8 +39,12 @@ const TourDetailsOne = () => {
                         <span className="icon-plane"></span>
                       </div>
                       <div className="text">
-                        <p>Tour Type</p>
-                        <h6>{tourType}</h6>
+                        <p>Tipo de Passeio</p>
+                        {
+                          tourTypes?.map((tourType: TourType) => (
+                            <h6 key={tourType.id}>{tourType.name}</h6>
+                          ))
+                        }
                       </div>
                     </li>
                     <li>
@@ -53,8 +52,8 @@ const TourDetailsOne = () => {
                         <span className="icon-place"></span>
                       </div>
                       <div className="text">
-                        <p>Location</p>
-                        <h6>{location}</h6>
+                        <p>Localização</p>
+                        <h6>{cityName}</h6>
                       </div>
                     </li>
                   </ul>
@@ -71,12 +70,20 @@ const TourDetailsOne = () => {
               <div className="tour-details__bottom-inner">
                 <div className="tour-details__bottom-left">
                   <ul className="list-unstyled tour-details__bottom-list">
+                    <li className="flex items-center gap-2 ">
+                      <Image
+                        alt="Agency Image"
+                        className=" size-10 bg-gray-200 rounded-full"
+                        src={agencyLogoUrl}
+                      />
+                      <span>{agencyName}</span>
+                    </li>
                     <li>
                       <div className="icon">
                         <span className="icon-clock"></span>
                       </div>
                       <div className="text">
-                        <p>Posted {date}</p>
+                        <p>Postado {postedDate}</p>
                       </div>
                     </li>
                     <li>
@@ -85,17 +92,15 @@ const TourDetailsOne = () => {
                           <i key={i} className="fa fa-star"></i>
                         ))}
                       </div>
-                      <div className="text">
-                        <p>{superb} Superb</p>
-                      </div>
                     </li>
                   </ul>
                 </div>
-                <div className="tour-details__bottom-right">
-                  <a href="#">
-                    <i className="fas fa-share"></i>share
-                  </a>
-                </div>
+
+                {/* <div className="tour-details__bottom-right">
+                  <ShareButton open={isOpen} setOpen={() => setIsOpen(!isOpen)}>
+                    <i className="fas fa-share"></i> Partilhar
+                  </ShareButton>
+                </div> */}
               </div>
             </Col>
           </Row>

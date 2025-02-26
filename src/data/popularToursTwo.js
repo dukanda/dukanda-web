@@ -8,7 +8,8 @@ const popularToursTwo = {
       title: "Especial Huambo",
       city: "Luanda",
       rate: "110.000kz",
-      meta: ["4 Dias", "Nawa Tour's"],
+      meta: ["4 Dias"],
+      guide: "Nawa Tour's"
     },
     {
       id: 2,
@@ -16,7 +17,8 @@ const popularToursTwo = {
       title: "Cabo Ledo",
       city: "Luanda",
       rate: "25.000kz",
-      meta: ["3 Dias",  "Angola Experience"],
+      meta: ["3 Dias"],
+      guide:"Angola Experience"
     },
     {
       id: 3,
@@ -24,7 +26,8 @@ const popularToursTwo = {
       title: "Passeio Luanda",
       city: "Luanda",
       rate: "90.000kz",
-      meta: ["Agende",  "Ruby Tours"],
+      meta: ["Agende"],
+      guide:"Ruby Tours"
     },
     {
       id: 4,
@@ -32,7 +35,8 @@ const popularToursTwo = {
       title: "Museu da Escravatura",
       city: "Luanda",
       rate: "30.000kz",
-      meta: ["8 Dias",  "Nawatour"],
+      meta: ["8 Dias"],
+      guide:"Nawatour"
     },
     {
       id: 5,
@@ -40,7 +44,9 @@ const popularToursTwo = {
       title: "Dark Forest Adventure",
       city: "Luanda",
       rate: "1870",
-      meta: ["3 Dias", "12+", "Los Angeles"],
+      meta: ["3 Dias"],
+      guide: "Los Angeles"
+
     },
     {
       id: 6,
@@ -48,7 +54,8 @@ const popularToursTwo = {
       title: "Discover Depth of Beach",
       city: "Luanda",
       rate: "1870",
-      meta: ["3 Dias", "12+", "Los Angeles"],
+      meta: ["3 Dias"],
+      guide: "Los Angeles"
     },
   ],
 };

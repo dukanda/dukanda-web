@@ -68,7 +68,7 @@ const ToursListLeft = () => {
   const [showDuration, setShowDuration] = useState(true);
   const [showPrice, setShowPrice] = useState(true);
   const [selected, setSelected] = useState("Adventure");
-  const [priceRange, setPriceRange] = useState(10);
+  const [priceRange, setPriceRange] = useState(2000);
   let count = 6;
 
   const handleSelect = ({ value }) => {
@@ -94,13 +94,13 @@ const ToursListLeft = () => {
     <div className="tours-list__left">
       <div className="tours-list__sidebar">
         <div className="tours-list__sidebar-search">
-          <h3 className="tours-list__sidebar-search-title">Search Tours</h3>
+          <h3 className="tours-list__sidebar-search-title">Pesquisar passeios</h3>
           <form onSubmit={handleSubmit} className="tours-list__sidebar-form">
             <div className="tours-list__sidebar-input">
-              <input type="text" placeholder="Where to" name="place" />
+              <input type="text" placeholder="Onde?" name="place" />
             </div>
             <div className="tours-list__sidebar-input">
-              <input type="text" placeholder="When" name="when" />
+              <input type="text" placeholder="Quando?" name="when" />
             </div>
             <div className="tours-list__sidebar-input">
               <Select
@@ -112,19 +112,19 @@ const ToursListLeft = () => {
                 components={{
                   IndicatorSeparator: () => null,
                 }}
-                placeholder="Type"
+                placeholder="Selecione o tipo de passeio"
                 instanceId="tourTypeSelect4"
               />
             </div>
             <button type="submit" className="thm-btn tours-list__sidebar-btn">
-              search
+              Pesquisar
             </button>
           </form>
         </div>
         <div className="tour-sidebar__sorter-wrap">
           <div className="tour-sidebar__sorter-single">
             <div className="tour-sidebar__sorter-top">
-              <h3>Price</h3>
+              <h3>Preço</h3>
               <button
                 onClick={() => setShowPrice((preShow) => !preShow)}
                 className="tour-sidebar__sorter-toggler"
@@ -135,15 +135,15 @@ const ToursListLeft = () => {
                 <div className="tour-sidebar__price-range">
                   <div className="form-group">
                     <p>
-                      $<span id="min-value-rangeslider">{priceRange}</span>
+                      <span id="min-value-rangeslider">{priceRange} kz</span>
                     </p>
                     <p>
-                      $<span id="max-value-rangeslider">{priceRange}</span>
+                      <span id="max-value-rangeslider">{priceRange} kz</span>
                     </p>
                   </div>
                   <Slider
-                    min={0}
-                    max={200}
+                    min={500}
+                    max={10000}
                     value={priceRange}
                     onChange={handlePriceChange}
                     className="range-slider-price"
@@ -155,7 +155,7 @@ const ToursListLeft = () => {
 
           <div className="tour-sidebar__sorter-single">
             <div className="tour-sidebar__sorter-top">
-              <h3>Review Score</h3>
+              <h3>Estrelas da tour</h3>
               <button
                 onClick={() => setShowReview((preShow) => !preShow)}
                 className="tour-sidebar__sorter-toggler"
@@ -193,7 +193,7 @@ const ToursListLeft = () => {
 
           <div className="tour-sidebar__sorter-single">
             <div className="tour-sidebar__sorter-top">
-              <h3>Categories</h3>
+              <h3>Categoria</h3>
               <button
                 onClick={() => setShowCategory((preShow) => !preShow)}
                 className="tour-sidebar__sorter-toggler"
@@ -219,7 +219,7 @@ const ToursListLeft = () => {
 
           <div className="tour-sidebar__sorter-single">
             <div className="tour-sidebar__sorter-top">
-              <h3>Duration</h3>
+              <h3>Duração</h3>
               <button
                 onClick={() => setShowDuration((preShow) => !preShow)}
                 className="tour-sidebar__sorter-toggler"

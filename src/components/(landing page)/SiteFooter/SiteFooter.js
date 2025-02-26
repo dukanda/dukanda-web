@@ -67,7 +67,7 @@ const SiteFooter = () => {
               </Col>
               <Col xl={2} lg={6} md={6} className="animated fadeInUp">
                 <div className="footer-widget__column footer-widget__explore">
-                  <h3 className="footer-widget__title">Explore</h3>
+                  <h3 className="footer-widget__title">Explorar</h3>
                   <ul className="list-unstyled footer-widget__explore-list">
                     {explore.map(({ id, title, link }) => (
                       <li key={id}>
@@ -87,7 +87,7 @@ const SiteFooter = () => {
                     <div className="footer-widget__newsletter-input-box">
                       <input
                         type="email"
-                        placeholder="Email address"
+                        placeholder="Email "
                         name="email"
                         required
                       />
@@ -95,7 +95,7 @@ const SiteFooter = () => {
                         type="submit"
                         className="footer-widget__newsletter-btn"
                       >
-                        Subscribe
+                        Subscrever
                       </button>
                     </div>
                   </form>
@@ -105,7 +105,7 @@ const SiteFooter = () => {
                       <i className="fa fa-check"></i>
                     </div>
                     <div className="footer-widget__newsletter-bottom-text">
-                      <p>I agree to all terms and policies</p>
+                      <p>Concordo com todos termos e Políticas</p>
                     </div>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ const SiteFooter = () => {
                 </div>
                 <div className="site-footer__bottom-right">
                   <p>
-                    @ All Copyright {year}, <a href="#">{author}</a>
+                    @ Copyright {year}, <a href="#">{author}</a>
                   </p>
                 </div>
                 <div className="site-footer__bottom-left-arrow">

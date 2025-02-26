@@ -1,11 +1,11 @@
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import SubNavItem from "./SubNavItem";
+import { usePathname } from "next/navigation";
 
-const NavItem = ({ item = {} }) => {
-  const { pathname } = useRouter();
-
+const NavItem = ({ item = {}, onClick }) => {
+  const pathname = usePathname();
   const [expand, setExpand] = useState(false);
 
   const handleExpand = (e) => {
@@ -19,22 +19,25 @@ const NavItem = ({ item = {} }) => {
   return (
     <li className={`dropdown${pathname === href ? " current" : ""}`}>
       <Link href={href} legacyBehavior>
-        <a className={expand ? " expanded" : ""}>
+        <a
+          className={expand ? " expanded" : ""}
+          onClick={() => {
+            if (!subNavItems.length) onClick(); // Fecha o menu se não houver submenu
+          }}
+        >
           {name}
-          <button
-            onClick={handleExpand}
-            aria-label="dropdown toggler"
-            className={expand ? "expanded" : ""}
-          >
-            <i className="fa fa-angle-down"></i>
-          </button>
+          {subNavItems.length > 0 && (
+            <button
+              onClick={handleExpand}
+              aria-label="dropdown toggler"
+              className={expand ? "expanded" : ""}
+            >
+              <i className="fa fa-angle-down"></i>
+            </button>
+          )}
         </a>
       </Link>
-      <ul
-        style={{
-          display: expand ? "block" : "none",
-        }}
-      >
+      <ul style={{ display: expand ? "block" : "none" }}>
         {subNavItems.map((subItem) => (
           <SubNavItem subItem={subItem} key={subItem.id} />
         ))}

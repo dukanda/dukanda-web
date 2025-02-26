@@ -5,7 +5,7 @@ import React from "react";
 const NavItem = ({ navItem = {} }) => {
   const pathname = usePathname();
 
-  console.log("pathname", pathname);
+  // console.log("pathname", pathname);
 
   const { name, href, subNavItems } = navItem;
   const subHref = subNavItems.map((item) => item.href);

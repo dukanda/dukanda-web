@@ -37,7 +37,7 @@ const SingleComment = ({ comment = {} }) => {
         <Row>
           <Col md={4}>
             <p>
-              <span>Services</span>
+              <span>Serviços</span>
               {Array.from(Array(5)).map((_, i) => (
                 <i
                   key={i}
@@ -46,7 +46,7 @@ const SingleComment = ({ comment = {} }) => {
               ))}
             </p>
             <p>
-              <span>Locations</span>
+              <span>Localização</span>
               {Array.from(Array(5)).map((_, i) => (
                 <i
                   key={i}
@@ -57,7 +57,7 @@ const SingleComment = ({ comment = {} }) => {
           </Col>
           <Col md={4}>
             <p>
-              <span>Amenities</span>
+              <span>Acomodação</span>
               {Array.from(Array(5)).map((_, i) => (
                 <i
                   key={i}
@@ -66,7 +66,7 @@ const SingleComment = ({ comment = {} }) => {
               ))}
             </p>
             <p>
-              <span>Prices</span>
+              <span>Preços</span>
               {Array.from(Array(5)).map((_, i) => (
                 <i
                   key={i}
@@ -77,7 +77,7 @@ const SingleComment = ({ comment = {} }) => {
           </Col>
           <Col md={4}>
             <p>
-              <span>Food</span>
+              <span>Alimentação</span>
               {Array.from(Array(5)).map((_, i) => (
                 <i
                   key={i}
