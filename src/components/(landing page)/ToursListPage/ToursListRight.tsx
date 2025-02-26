@@ -1,7 +1,6 @@
 "use client";
 
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
-import toursListPage from "@/data/toursListPage";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import React from "react";

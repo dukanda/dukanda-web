@@ -10,14 +10,15 @@ import SingleComment from "./SingleComment";
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
-const TourDetailsLeft = () => {
+const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
   const [active, setActive] = useState(null);
 
   return (
     <div className="tour-details-two__left">
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
-        <p className="tour-details-two__overview-text">{overview}</p>
+        <p className="tour-details-two__overview-text">{description}</p>
+
         <div className="tour-details-two__overview-bottom">
           <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
           <div className="tour-details-two__overview-bottom-inner">
@@ -33,6 +34,17 @@ const TourDetailsLeft = () => {
                     </div>
                   </li>
                 ))}
+
+                {/* {packages?.map((pack, index) => (
+                  <li key={index}>
+                    <div className="icon">
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="text">
+                      <p>{pack.benefits.}</p>
+                    </div>
+                  </li>
+                ))} */}
               </ul>
             </div>
             <div className="tour-details-two__overview-bottom-right">
@@ -51,6 +63,7 @@ const TourDetailsLeft = () => {
             </div>
           </div>
         </div>
+
       </div>
       <div className="tour-details-two__tour-plan">
         <h3 className="tour-details-two__title">Itinerário do passeio
@@ -107,7 +120,7 @@ const TourDetailsLeft = () => {
           <div className="my-auto">
             <h3>{superb}</h3>
             <p>
-              <i className="fa fa-star"></i> 
+              <i className="fa fa-star"></i>
             </p>
           </div>
         </div>
@@ -127,7 +140,7 @@ const TourDetailsLeft = () => {
           ))}
         </div>
       )}
-      <ReviewForm reviews={reviews} /> 
+      <ReviewForm reviews={reviews} />
     </div>
   );
 };

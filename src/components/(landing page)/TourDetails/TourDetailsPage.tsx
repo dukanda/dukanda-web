@@ -15,7 +15,9 @@ const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, city
         agencyName={agencyName}
         created={created}
       />
-      <TourDetailsTwo />
+      <TourDetailsTwo
+      
+      />
     </>
   );
 };

@@ -53,6 +53,6 @@
       "/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.ts", "src/components/(landing page)/DestinationsOne/SingleDestination.js", "src/components/(landing page)/DestinationsPage/DestinationsPage.js", "src/components/(landing page)/TourDetails/TourDetailsLeft.js", "src/components/(landing page)/TourDetails/TourDetailsPage.tsx", "src/components/(landing page)/TourDetails/TourDetailsOne.tsx", "src/components/(landing page)/TourDetails/ReviewScoreBar.js", "src/components/(landing page)/TourDetails/ReviewForm.tsx", "src/components/(landing page)/TourDetails/TourDetailsTwo.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/(landing page)/Layout/Layout.jsx", "src/data/footerData.ts", "src/components/(landing page)/DestinationsOne/SingleDestination.js", "src/components/(landing page)/DestinationsPage/DestinationsPage.js", "src/components/(landing page)/TourDetails/TourDetailsLeft.tsx", "src/components/(landing page)/TourDetails/TourDetailsPage.tsx", "src/components/(landing page)/TourDetails/TourDetailsOne.tsx", "src/components/(landing page)/TourDetails/ReviewScoreBar.js", "src/components/(landing page)/TourDetails/ReviewForm.tsx", "src/components/(landing page)/TourDetails/TourDetailsTwo.tsx"],
   "exclude": ["node_modules"]
 }

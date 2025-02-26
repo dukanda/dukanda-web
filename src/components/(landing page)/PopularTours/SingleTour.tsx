@@ -74,4 +74,28 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
   );
 };
 
+const SingleTourSkeleton = () => {
+  return (
+    <div className="popular-tours__single">
+      <div className="popular-tours__img bg-gray-300 animate-pulse h-64 w-full"></div>
+      <div className="popular-tours__content p-4">
+        <div className="w-full flex items-start gap-2 cursor-pointer mb-2">
+          <div className="h-8 w-8 rounded-full bg-gray-300 animate-pulse"></div>
+          <div className="flex flex-col items-start">
+            <span className="h-4 w-24 bg-gray-300 animate-pulse mb-1"></span>
+            <div className="h-4 w-16 bg-gray-300 animate-pulse"></div>
+          </div>
+        </div>
+        <h3 className="h-6 w-3/4 bg-gray-300 animate-pulse mb-2"></h3>
+        <p className="h-4 w-1/2 bg-gray-300 animate-pulse mb-2"></p>
+        <ul className="popular-tours__meta list-unstyled">
+          <li className="h-4 w-1/4 bg-gray-300 animate-pulse"></li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export { SingleTourSkeleton };
+
 export default SingleTour;

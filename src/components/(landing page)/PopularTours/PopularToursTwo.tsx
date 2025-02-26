@@ -5,9 +5,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import SingleTour from "./SingleTour";
 import { useQuery } from "@tanstack/react-query";
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
+import { SingleTourSkeleton } from "./SingleTour";
 
-const { tagline, title, popularTours } = popularToursTwo;
-
+const { tagline, title } = popularToursTwo;
 
 const PopularToursTwo = () => {
 
@@ -18,7 +18,6 @@ const PopularToursTwo = () => {
       return response;
     },
   })
-  // console.log("api", getFeaturedTours.data?.data);
 
   return (
     <section className="popular-tours-two">
@@ -30,28 +29,36 @@ const PopularToursTwo = () => {
         </div>
         {/* )} */}
         <Row>
-          {getFeaturedTours.data?.data.slice(0, 6).map((tour) => (
-            <Col
-              key={tour.id}
-              xl={4}
-              lg={6}
-              md={6}
-              className="animated fadeInUp"
-            >
-              <SingleTour
-                title={tour.title}
-                coverImageUrl={tour.coverImageUrl}
-                startDate={tour.startDate}
-                endDate={tour.endDate}
-                agencyName={tour.agencyName}
-                cityName={tour.cityName}
-                tourTypes={tour.tourTypes}
-                agencyLogoUrl={tour.agencyLogoUrl}
-                basePrice={tour.basePrice}
-                created={tour.created}
-              />
-            </Col>
-          ))}
+          {getFeaturedTours.isLoading ? (
+            Array.from({ length: 6 }).map((_, index) => (
+              <Col key={index} xl={4} lg={6} md={6} className="animated fadeInUp">
+                <SingleTourSkeleton />
+              </Col>
+            ))
+          ) : (
+            getFeaturedTours.data?.data.slice(0, 6).map((tour) => (
+              <Col
+                key={tour.id}
+                xl={4}
+                lg={6}
+                md={6}
+                className="animated fadeInUp"
+              >
+                <SingleTour
+                  title={tour.title}
+                  coverImageUrl={tour.coverImageUrl}
+                  startDate={tour.startDate}
+                  endDate={tour.endDate}
+                  agencyName={tour.agencyName}
+                  cityName={tour.cityName}
+                  tourTypes={tour.tourTypes}
+                  agencyLogoUrl={tour.agencyLogoUrl}
+                  basePrice={tour.basePrice}
+                  created={tour.created}
+                />
+              </Col>
+            ))
+          )}
         </Row>
       </Container>
     </section>
