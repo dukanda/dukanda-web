@@ -1,7 +1,8 @@
 import TourDetailsOne from "./TourDetailsOne"
 import TourDetailsTwo from "./TourDetailsTwo";
 
-const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, cityName, agencyLogoUrl, agencyName, created }: ITour) => {
+const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, cityName, agencyLogoUrl, agencyName, created, description, packages, itineraries }: ITour) => {
+
   return (
     <>
       <TourDetailsOne
@@ -16,7 +17,11 @@ const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, city
         created={created}
       />
       <TourDetailsTwo
-      
+        description={description}
+        itineraries={itineraries}
+        packages={packages}
+        startDate={startDate}
+        endDate={endDate}
       />
     </>
   );

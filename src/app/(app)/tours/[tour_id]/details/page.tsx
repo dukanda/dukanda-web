@@ -16,7 +16,7 @@ export default function TourDetails() {
       return response;
     },
   })
-  // console.log("api", getTourById.data?.data.coverImageUrl);
+  // console.log("api", getTourById.data?.data);
 
   // console.log(" tour_id",tour_id);
 
@@ -33,6 +33,9 @@ export default function TourDetails() {
         agencyLogoUrl={getTourById.data?.data.agencyLogoUrl as string}
         agencyName={getTourById.data?.data.agencyName as string}
         created={getTourById.data?.data.created as string}
+        description={getTourById.data?.data.description as string}
+        itineraries={getTourById.data?.data.itineraries as Itinerary[]}
+        packages={getTourById.data?.data.packages as Package[]}
       />
     </Layout>
   )

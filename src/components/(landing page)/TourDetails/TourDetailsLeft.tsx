@@ -7,18 +7,45 @@ import { Col, Row } from "react-bootstrap";
 import ReviewForm from "./ReviewForm";
 import ReviewScoreBar from "./ReviewScoreBar";
 import SingleComment from "./SingleComment";
+import { differenceInDays, parseISO, isValid } from "date-fns";
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
-const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
-  const [active, setActive] = useState(null);
+const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDate }: ITour) => {
+  const [active, setActive] = useState<string | null>(null);
+
+  //Verificar se startDate e endDate são válidos antes de converter
+  const start = startDate && isValid(parseISO(startDate)) ? parseISO(startDate) : null;
+  const end = endDate && isValid(parseISO(endDate)) ? parseISO(endDate) : null;
+
+  // Ordenar itinerários por displayOrder
+  const sortedItineraries = itineraries ? [...itineraries].sort((a, b) => a.displayOrder - b.displayOrder) : [];
+
+  // Calcular os dias corretos do itinerário em relação ao startDate
+  const mappedItineraries = sortedItineraries.map((itinerary) => {
+    const itineraryDate = parseISO(itinerary.date);
+    const dayNumber = start ? differenceInDays(itineraryDate, start) + 1 : null; // Adiciona 1 para que o primeiro dia seja "Dia 1"
+
+    return {
+      ...itinerary,
+      dayNumber: dayNumber && dayNumber >= 1 && end && itineraryDate <= end ? dayNumber : null, // Garante que está dentro do intervalo válido
+    };
+  });
+
+  // Extrair benefícios únicos
+  const allBenefits = (packages ?? []).flatMap((pack) => pack.benefits);
+  const uniqueBenefits = Array.from(new Map(allBenefits.map((b) => [b.name, b])).values());
+
+  // Separar benefícios incluídos e não incluídos
+  const includedBenefits = uniqueBenefits.filter((b) => b.name.includes("Rustic"));
+  const notIncludedBenefits = uniqueBenefits.filter((b) => !b.name.includes("Rustic"));
 
   return (
     <div className="tour-details-two__left">
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
         <p className="tour-details-two__overview-text">{description}</p>
-
+        {/* 
         <div className="tour-details-two__overview-bottom">
           <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
           <div className="tour-details-two__overview-bottom-inner">
@@ -34,17 +61,6 @@ const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
                     </div>
                   </li>
                 ))}
-
-                {/* {packages?.map((pack, index) => (
-                  <li key={index}>
-                    <div className="icon">
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="text">
-                      <p>{pack.benefits.}</p>
-                    </div>
-                  </li>
-                ))} */}
               </ul>
             </div>
             <div className="tour-details-two__overview-bottom-right">
@@ -62,36 +78,71 @@ const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
               </ul>
             </div>
           </div>
+        </div> */}
+
+        {/* Incluído/Não incluído */}
+        <div className="tour-details-two__overview-bottom">
+          <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
+          <div className="tour-details-two__overview-bottom-inner">
+            <div className="tour-details-two__overview-bottom-left">
+              <ul className="list-unstyled tour-details-two__overview-bottom-list">
+                {includedBenefits.map((benefit) => (
+                  <li key={benefit.id}>
+                    <div className="icon">
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="text">
+                      <p>{benefit.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="tour-details-two__overview-bottom-right">
+              <ul className="list-unstyled tour-details-two__overview-bottom-right-list">
+                {notIncludedBenefits.map((benefit) => (
+                  <li key={benefit.id}>
+                    <div className="icon">
+                      <i className="fa fa-times"></i>
+                    </div>
+                    <div className="text">
+                      <p>{benefit.description}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
       </div>
+
+
+      {/* Itinerário */}
       <div className="tour-details-two__tour-plan">
-        <h3 className="tour-details-two__title">Itinerário do passeio
-        </h3>
+        <h3 className="tour-details-two__title">Itinerário do passeio</h3>
         <div className="accrodion-grp faq-one-accrodion">
-          {faq.map(({ id, title, text, lists }) => (
-            <div className={`accrodion overflow-hidden${active === id ? " active" : ""}`} key={id}>
-              <div onClick={() => setActive(active === id ? null : id)} className="accrodion-title">
-                <h4>
-                  <span>Dia {id}</span> {title}
-                </h4>
-              </div>
-              {active === id && (
-                <div className="accrodion-content animated slideInUp">
-                  <div className="inner">
-                    <p>{text}</p>
-                    <ul className="list-unstyled">
-                      {lists.map((list, index) => (
-                        <li key={index}>{list}</li>
-                      ))}
-                    </ul>
-                  </div>
+          {mappedItineraries.map(({ id, title, description, dayNumber }) =>
+            dayNumber ? (
+              <div className={`accrodion overflow-hidden${active === id ? " active" : ""}`} key={id}>
+                <div onClick={() => setActive(active === id ? null : id)} className="accrodion-title">
+                  <h4>
+                    <span>Dia {dayNumber}</span> {title}
+                  </h4>
                 </div>
-              )}
-            </div>
-          ))}
+                {active === id && (
+                  <div className="accrodion-content animated slideInUp">
+                    <div className="inner">
+                      <p>{description}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : null
+          )}
         </div>
       </div>
+
       <div className="tour-details-two__location">
         <h3 className="tour-details-two__title">Localização</h3>
         <iframe
@@ -102,7 +153,8 @@ const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
           loading="lazy"
         ></iframe>
       </div>
-      <div className="tour-details-two__related-tours">
+
+      {/* <div className="tour-details-two__related-tours">
         <h3 className="tour-details-two__title">Passeios relacionados
         </h3>
         <Row>
@@ -112,7 +164,9 @@ const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
             </Col>
           ))}
         </Row>
-      </div>
+      </div> */}
+
+
       <h3 className="tour-details-two__title review-scores__title">Pontuações de revisão
       </h3>
       <div className="tour-details__review-score">
@@ -140,6 +194,8 @@ const TourDetailsLeft = ({ description, packages, itineraries }: ITour) => {
           ))}
         </div>
       )}
+
+      {/* @ts-ignore */}
       <ReviewForm reviews={reviews} />
     </div>
   );
