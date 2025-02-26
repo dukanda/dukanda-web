@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from 'next/font/google';
 import QueryProvider from "@/_module/tanstack-query-config/queryClientProvider";
+import ContextProvider from "@/components/(landing page)/context/ContextProvider";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,9 +26,11 @@ export default function RootLayout({
       </head>
       <body className={`antialiased ${inter.className}`}>
         <QueryProvider>
-          <main>
-            {children}
-          </main>
+          <ContextProvider>
+            <main>
+              {children}
+            </main>
+          </ContextProvider>
         </QueryProvider>
       </body>
     </html>
