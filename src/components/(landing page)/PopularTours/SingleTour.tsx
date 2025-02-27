@@ -47,10 +47,7 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
                 {agencyName ? agencyName : "Ango-Tour"}
 
               </span>
-              <div className="popular-tours__stars">
-                <i className="far fa-map"></i>
-                {cityName ? cityName : "Luanda"}
-              </div>
+
             </div>
           </div>
 
@@ -60,13 +57,14 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
           <p className="popular-tours__rate">
             <span>{formatCurrency(basePrice ?? 0)} </span> / Pessoa
           </p>
-          <ul className="popular-tours__meta list-unstyled">
-
-            {/* {meta.map((item, index) => ( */}
+          <ul className="popular-tours__meta list-unstyled flex items-center justify-between ">
+            <div className="popular-tours__stars">
+              <i className="far fa-map"></i>
+              {cityName ? cityName : "Luanda"}
+            </div>
             <li>
               <Link href="/tours/12/details" legacyBehavior><a href="">3 dias</a></Link>
             </li>
-            {/* ))} */}
           </ul>
         </div>
       </div>
