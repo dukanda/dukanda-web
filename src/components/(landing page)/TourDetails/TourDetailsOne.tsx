@@ -77,6 +77,13 @@ const TourDetailsOne = ({ title, basePrice, startDate, endDate, tourTypes, cityN
                         src={agencyLogoUrl}
                       />
                       <span>{agencyName}</span>
+                      {/* <li> */}
+                      <div className="icon">
+                        {Array.from(Array(5)).map((_, i) => (
+                          <i key={i} className="fa fa-star"></i>
+                        ))}
+                      </div>
+                    {/* </li> */}
                     </li>
                     <li>
                       <div className="icon">
@@ -84,13 +91,6 @@ const TourDetailsOne = ({ title, basePrice, startDate, endDate, tourTypes, cityN
                       </div>
                       <div className="text">
                         <p>Postado {postedDate}</p>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="icon">
-                        {Array.from(Array(5)).map((_, i) => (
-                          <i key={i} className="fa fa-star"></i>
-                        ))}
                       </div>
                     </li>
                   </ul>

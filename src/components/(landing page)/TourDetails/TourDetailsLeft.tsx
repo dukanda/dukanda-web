@@ -1,15 +1,6 @@
 "use client";
-import SingleTour from "@/components/(landing page)/PopularTours/SingleTour";
-import popularTours from "@/data/popularTours";
-import { tourDetailsLeft } from "@/data/tourDetailsPage";
 import React, { useState } from "react";
-import { Col, Row } from "react-bootstrap";
-import ReviewForm from "./ReviewForm";
-import ReviewScoreBar from "./ReviewScoreBar";
-import SingleComment from "./SingleComment";
 import { differenceInDays, parseISO, isValid } from "date-fns";
-
-const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
 const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDate, selectedPackage }: ITour & { selectedPackage: Package | null }) => {
   const [active, setActive] = useState<string | null>(null);
@@ -39,17 +30,12 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
   const allBenefits = (packages ?? []).flatMap((pack) => pack.benefits);
   const uniqueBenefits = Array.from(new Map(allBenefits.map((b) => [b.name, b])).values());
 
-  // Separar benefícios incluídos e não incluídos
-  const includedBenefits = uniqueBenefits.filter((b) => b.name.includes("Rustic"));
-  const notIncludedBenefits = uniqueBenefits.filter((b) => !b.name.includes("Rustic"));
-
   return (
     <div className="tour-details-two__left">
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
         <p className="tour-details-two__overview-text">{description}</p>
 
-        {/* Incluído/Não incluído */}
         {selectedPackage && (
           <div className="tour-details-two__overview-bottom">
             <h3 className="tour-details-two-overview__title">Benefícios do Pacote</h3>
@@ -69,47 +55,11 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
             </div>
           </div>
         )}
-
-        {/* <div className="tour-details-two__overview-bottom">
-          <h3 className="tour-details-two-overview__title">Incluído/Não incluído</h3>
-          <div className="tour-details-two__overview-bottom-inner">
-            <div className="tour-details-two__overview-bottom-left">
-              <ul className="list-unstyled tour-details-two__overview-bottom-list">
-                {includedBenefits.map((benefit) => (
-                  <li key={benefit.id}>
-                    <div className="icon">
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="text">
-                      <p>{benefit.description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="tour-details-two__overview-bottom-right">
-              <ul className="list-unstyled tour-details-two__overview-bottom-right-list">
-                {notIncludedBenefits.map((benefit) => (
-                  <li key={benefit.id}>
-                    <div className="icon">
-                      <i className="fa fa-times"></i>
-                    </div>
-                    <div className="text">
-                      <p>{benefit.description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div> */}
-
       </div>
-
 
       {/* Itinerário */}
       <div className="tour-details-two__tour-plan">
-        <h3 className="tour-details-two__title">Itinerário do passeio</h3>
+        <h3 className="tour-details-two__title">Roteiro do passeio</h3>
         <div className="accrodion-grp faq-one-accrodion">
           {orderedItineraries.map(({ id, title, description, dayNumber }) =>
             dayNumber ? (
@@ -142,50 +92,6 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
           loading="lazy"
         ></iframe>
       </div>
-
-      {/* <div className="tour-details-two__related-tours">
-        <h3 className="tour-details-two__title">Passeios relacionados
-        </h3>
-        <Row>
-          {popularTours.slice(0, 2).map((tour) => (
-            <Col xl={6} key={tour.id}>
-              <SingleTour tour={tour} userSelect />
-            </Col>
-          ))}
-        </Row>
-      </div> */}
-
-
-      <h3 className="tour-details-two__title review-scores__title">Pontuações de revisão
-      </h3>
-      <div className="tour-details__review-score">
-        <div className="tour-details__review-score-ave">
-          <div className="my-auto">
-            <h3>{superb}</h3>
-            <p>
-              <i className="fa fa-star"></i>
-            </p>
-          </div>
-        </div>
-        {reviewScore?.length > 0 && (
-          <div className="tour-details__review-score__content">
-            {reviewScore.map((review) => (
-              <ReviewScoreBar review={review} key={review.id} />
-            ))}
-          </div>
-        )}
-
-      </div>
-      {comments?.length > 0 && (
-        <div className="tour-details__review-comment">
-          {comments.map((comment) => (
-            <SingleComment comment={comment} key={comment.id} />
-          ))}
-        </div>
-      )}
-
-      {/* @ts-ignore */}
-      <ReviewForm reviews={reviews} />
     </div>
   );
 };
