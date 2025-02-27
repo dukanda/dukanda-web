@@ -8,7 +8,7 @@ const formatCurrency = (value: number) => {
   return value.toLocaleString('pt-AO', { style: 'currency', currency: 'AOA' });
 };
 
-const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, title, basePrice, agencyLogoUrl }: ITours) => {
+const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, title, basePrice, agencyLogoUrl, id }: ITours) => {
 
   const userSelect = false;
   const formattedStartDate = startDate ? format(new Date(startDate), "dd 'de' MMM", { locale: ptBR }) : "Data inválida";
@@ -21,22 +21,20 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
         style={{ userSelect: userSelect ? "unset" : "none" }}
         className="popular-tours__single"
       >
-        <div className="popular-tours__img">
+        <Link href={`/tours/${id}/details`} className="popular-tours__img" passHref>
           <Image
             src={coverImageUrl}
-            alt=""
+            alt="Image Cover"
           />
           <div className="popular-tours__icon">
-            <Link href="/tour-details" legacyBehavior>
-              <a>
-                {`${formattedStartDate} á ${formattedEndDate}`}
-              </a>
-            </Link>
+            <a>
+              {`${formattedStartDate} á ${formattedEndDate}`}
+            </a>
           </div>
-        </div>
+        </Link>
         <div className="popular-tours__content">
 
-          <div className="w-full flex items-start gap-2 cursor-pointer mb-2">
+          <Link href={`/tours/${id}/details`} className="w-full flex items-start gap-2 cursor-pointer mb-2" passHref>
             <Image
               src={agencyLogoUrl}
               alt="Agency Logo"
@@ -45,14 +43,12 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
             <div className="flex flex-col items-start">
               <span>
                 {agencyName ? agencyName : "Ango-Tour"}
-
               </span>
-
             </div>
-          </div>
+          </Link>
 
           <h3 className="popular-tours__title">
-            <Link href="/tours/12/details" legacyBehavior><a href="">{title}</a></Link>
+            <Link href={`/tours/${id}/details`} legacyBehavior>{title}</Link>
           </h3>
           <p className="popular-tours__rate">
             <span>{formatCurrency(basePrice ?? 0)} </span> / Pessoa
@@ -63,7 +59,7 @@ const SingleTour = ({ coverImageUrl, startDate, endDate, agencyName, cityName, t
               {cityName ? cityName : "Luanda"}
             </div>
             <li>
-              <Link href="/tours/12/details" legacyBehavior><a href="">3 dias</a></Link>
+              <Link href={`/tours/${id}/details`} legacyBehavior>3 dias</Link>
             </li>
           </ul>
         </div>

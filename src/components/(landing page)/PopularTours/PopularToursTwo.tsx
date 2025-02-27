@@ -39,6 +39,7 @@ const PopularToursTwo = () => {
             tours.map((tour) => (
               <Col key={tour.id} xl={4} lg={6} md={6} className="animated fadeInUp">
                 <SingleTour
+                id={tour.id}
                   title={tour.title}
                   coverImageUrl={tour.coverImageUrl}
                   startDate={tour.startDate}
