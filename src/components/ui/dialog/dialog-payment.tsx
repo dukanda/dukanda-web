@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Image } from "react-bootstrap";
+import Image from "next/image";
 import MultiStepForm from "./multi-step";
 import {
   DialogHeader,
@@ -16,11 +16,15 @@ import Select from "react-select";
 import { Check, MoveUpRight, Users2Icon } from "lucide-react";
 import { SelectDemo } from "../select/select";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
+import { Label } from "../label";
+import { Input } from "../input";
+import { Button } from "../button";
 
 
 const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
   return (
-<form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6 px-4">
+    <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
+      {/* <h2>Reservar</h2> */}
       {/* Header */}
       <header className="w-full mt-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -64,7 +68,7 @@ const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (da
           <Card className="shadow-sm border border-gray-200">
             <CardHeader>
               <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
-                Descoberta do Maracanã 
+                Descoberta do Maracanã
                 <MoveUpRight size={18} />
               </CardTitle>
               <CardDescription className="text-gray-600">Aproveite essa experiência única</CardDescription>
@@ -96,7 +100,7 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
-        <h2 className="text-md">Método de Pagamento</h2>
+        {/* <h2 className="text-md">Método de Pagamento</h2> */}
         <div className="w-full flex flex-col items-center p-0 md:px-5 gap-3 mt-5">
           <button
             className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
@@ -107,6 +111,7 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
               width={50}
               height={50}
               className="rounded-md object-cover"
+              priority
             />
             <span>Multicaixa Express</span>
           </button>
@@ -120,6 +125,7 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
               width={50}
               height={50}
               className="rounded-md object-cover"
+              priority
             />
             <span>Visa</span>
           </button>
@@ -133,8 +139,9 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
               width={50}
               height={50}
               className="rounded-md object-cover"
+              priority
             />
-            <span>Mastercard</span>
+            <span>Pagamento por referência</span>
           </button>
         </div>
       </div>
@@ -144,9 +151,65 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 
 const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   return (
-    <div>
-      <h2>Finalizar Pagamento</h2>
-    </div>
+    <Card className="w-full shadow-none ">
+      <CardHeader>
+        <CardTitle className="text-xl">Finalizar Pagamento</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-row gap-4 justify-between w-full">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const data = Object.fromEntries(formData.entries());
+            onSubmit(data);
+          }}
+          className="space-y-4"
+        >
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="name">Nome</Label>
+            <Input id="name" name="name" type="text" placeholder="Seu nome" required />
+          </div>
+
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" name="email" type="email" placeholder="seu@email.com" required />
+          </div>
+
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="phone">Telefone</Label>
+            <Input id="phone" name="phone" type="tel" placeholder="Seu telefone" required />
+          </div>
+
+     
+        </form>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const data = Object.fromEntries(formData.entries());
+            onSubmit(data);
+          }}
+          className="space-y-4"
+        >
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="name">Nome</Label>
+            <Input id="name" name="name" type="text" placeholder="Seu nome" required />
+          </div>
+
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" name="email" type="email" placeholder="seu@email.com" required />
+          </div>
+
+          <div className="flex flex-col gap-2 items-start" >
+            <Label htmlFor="phone">Telefone</Label>
+            <Input id="phone" name="phone" type="tel" placeholder="Seu telefone" required />
+          </div>
+
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 
