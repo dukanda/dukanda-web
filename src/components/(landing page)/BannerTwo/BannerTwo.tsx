@@ -2,8 +2,8 @@
 import React from "react";
 import BackgroundSlider from "react-background-slider";
 import { Col, Container, Row } from "react-bootstrap";
-import TourSearchForm from "@/components/(landing page)/TourSearchForm/TourSearchForm";
 import setImage from "../../../utils/imageUtil"
+import TourSearchForm from "../TourSearchForm/TourSearchForm";
 
 const BannerTwo = ({ data }) => {
   // if (!data) return null; // Evitar erro ao renderizar antes de carregar os dados

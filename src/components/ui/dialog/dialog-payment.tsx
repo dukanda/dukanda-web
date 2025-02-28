@@ -129,7 +129,7 @@ export function DialogPayment({ selectedPackage, description }: { selectedPackag
       <DialogTrigger asChild>
         <button className="h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] sm:max-w-[800px] h-[70%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
+      <DialogContent className="w-[90%] sm:max-w-[800px] h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription className="h-full">

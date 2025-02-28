@@ -5,8 +5,6 @@ import React from "react";
 const NavItem = ({ navItem = {} }) => {
   const pathname = usePathname();
 
-  // console.log("pathname", pathname);
-
   const { name, href, subNavItems } = navItem;
   const subHref = subNavItems.map((item) => item.href);
   const current = pathname === href || subHref.includes(pathname);
@@ -14,7 +12,7 @@ const NavItem = ({ navItem = {} }) => {
   return (
     <li className={`dropdown${current ? " current" : ""}`}>
       <Link href={href} legacyBehavior>
-        <a href={href}>{name}</a>
+        <a href={href} className="text-md">{name}</a>
       </Link>
       <ul>
         {subNavItems.map((subItem) => (
