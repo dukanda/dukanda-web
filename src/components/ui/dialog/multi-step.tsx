@@ -5,7 +5,19 @@ import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { checkVariants, stepsVariants } from "@/lib/utils-multi-step";
-import { Check } from "lucide-react";
+import { Banknote, Check, CreditCard, TextSelect } from "lucide-react";
+
+const iconStep = [
+  {
+    icon: <TextSelect />,
+  },
+  {
+    icon: <CreditCard />,
+  },
+  {
+    icon: <Banknote />,
+  },
+];
 
 export type Step<
   TPossibleFormData,
@@ -87,7 +99,7 @@ export default function MultiStepForm<
                 <motion.span
                   key={ind}
                   className={clsx(
-                    "select-none rounded-full border-2 h-8 w-8 flex items-center justify-center",
+                    "select-none rounded-full border-2 h-10 w-10 flex items-center justify-center",
                     {
                       " border-[#F7931E]": ind <= currentStep,
                       "bg-[#F7931E]": ind < currentStep,
@@ -121,7 +133,7 @@ export default function MultiStepForm<
                             : "text-black"
                         }
                       >
-                        {ind + 1}
+                        {iconStep[ind]?.icon || <TextSelect size={16} />}
                       </motion.span>
                     )}
                   </AnimatePresence>
@@ -130,7 +142,7 @@ export default function MultiStepForm<
             </div>
 
             <div className="w-full h-full flex flex-col items-center justify-center gap-2  ">
-              <AnimatePresence mode="popLayout" >
+              <AnimatePresence mode="popLayout">
                 <motion.div
                   key={currentStep}
                   initial="hidden"
@@ -148,21 +160,26 @@ export default function MultiStepForm<
                       currentStep > 0 ? { onClick: onBackStep } : undefined
                     }
                   />
-
                 </motion.div>
               </AnimatePresence>
             </div>
           </div>
 
-
           <div className="flex   justify-end gap-3 mt-4 text-black ">
             {currentStep > 0 && (
-              <button type="button" onClick={onBackStep} className="thm-btn h-10" >
+              <button
+                type="button"
+                onClick={onBackStep}
+                className="thm-btn h-10"
+              >
                 Voltar
               </button>
             )}
-            <button onClick={() => onStepSubmit({} as TPossibleFormData)} className="thm-btn h-10">
-              {currentStep < steps.length - 1 ? "Next" : "Finish"}
+            <button
+              onClick={() => onStepSubmit({} as TPossibleFormData)}
+              className="thm-btn h-10"
+            >
+              {currentStep < steps.length - 1 ? "Próximo" : "Concluir"}
             </button>
           </div>
         </section>

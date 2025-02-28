@@ -83,32 +83,14 @@ export const TourDetailsSidebar = ({ packages, setSelectedPackage, description }
   };
 
   return (
-    <div className="tour-details-two__sidebar">
-      <div className="tour-details-two__book-tours">
-        <h3 className="tour-details-two__sidebar-title">Reservar passeios</h3>
+    <div className=" hidden lg:block">
+      <div className="tour-details-two__book-tours hidden lg:block">
+        <h3 className="tour-details-two__sidebar-title hidden lg:block">Reservar passeios</h3>
+        <p className="w-full text-justify -tracking-normal hidden lg:block">Clique em Reservar para escolher um pacote da tour</p>
         <form
           className="tour-details-two__sidebar-form"
         >
           {/* <div className="tour-details-two__sidebar-form-input">
-          <Select
-            name="ticket"
-            options={typeOptions}
-            //@ts-ignore
-            onChange={handleSelectTicket}
-            styles={customStyle}
-            isSearchable={false}
-            components={{
-              IndicatorSeparator: () => null,
-              DropdownIndicator: () => null,
-            }}
-            placeholder="Escolher ticket"
-            instanceId="tourTypeSelect15"
-          />
-          <div className="tour-details-two__sidebar-form-icon">
-            <i className="fa fa-angle-down"></i>
-          </div>
-        </div> */}
-          <div className="tour-details-two__sidebar-form-input">
             <Select
               name="ticket"
               options={packageOptions}
@@ -125,27 +107,10 @@ export const TourDetailsSidebar = ({ packages, setSelectedPackage, description }
             <div className="tour-details-two__sidebar-form-icon">
               <i className="fa fa-angle-down"></i>
             </div>
-          </div>
+          </div> */}
             <DialogPayment selectedPackage={selectedPackage} description={description} />
         </form>
       </div>
-      {/* {selectedPackage && (
-        <div className="tour-details-two__package-benefits">
-          <h3 className="tour-details-two__sidebar-title">Benefícios do Pacote</h3>
-          <ul className="list-unstyled">
-            {selectedPackage.benefits.map((benefit) => (
-              <li key={benefit.id}>
-                <div className="icon">
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="text">
-                  <p>{benefit.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} */}
     </div>
   );
 };

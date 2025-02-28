@@ -10,7 +10,7 @@ const TourDetailsTwo = ({ title, basePrice, startDate, endDate, tourTypes, cityN
     <section className="tour-details-two">
       <Container>
         <Row>
-          <Col xl={8} lg={7}>
+          <Col xl={8} lg={7} className="flex">
             <TourDetailsLeft
               description={description}
               itineraries={itineraries}

@@ -4,6 +4,7 @@ import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { formatCurrency } from "@/_utils/formatCurrency";
 import { calculateDuration, calculatePostedDate } from "@/_utils/calculateDuration";
+import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
 
 const TourDetailsOne = ({ title, basePrice, startDate, endDate, tourTypes, cityName, agencyLogoUrl, agencyName, created }: ITour) => {
 
@@ -95,6 +96,12 @@ const TourDetailsOne = ({ title, basePrice, startDate, endDate, tourTypes, cityN
                     </li>
                   </ul>
                 </div>
+
+               <div className="block lg:hidden ">
+                {/* @ts-ignore */}
+                  <DialogPayment  />
+               </div>
+        
 
                 {/* <div className="tour-details__bottom-right">
                   <ShareButton open={isOpen} setOpen={() => setIsOpen(!isOpen)}>

@@ -34,8 +34,8 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
     <div className="tour-details-two__left">
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
-        <p className="tour-details-two__overview-text">{description}</p>
-
+        <p className="tour-details-two__overview-text text-justify ">{description}</p>
+        {/* 
         {selectedPackage && (
           <div className="tour-details-two__overview-bottom">
             <h3 className="tour-details-two-overview__title">Benefícios do Pacote</h3>
@@ -54,7 +54,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
               </ul>
             </div>
           </div>
-        )}
+        )} */}
       </div>
 
       {/* Itinerário */}

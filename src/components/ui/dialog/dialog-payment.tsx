@@ -12,12 +12,13 @@ import {
   DialogFooter,
 } from "./radix-dialog";
 import { formatCurrency } from "@/_utils/formatCurrency";
+import Select from "react-select";
 
 const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="w-full">
-        <h2 className="w-full p-2">Visão Geral da Reserva</h2>
+        <h2 className="w-full p-2">Reserva</h2>
         <p className="w-full pl-4 text-start">{description}</p>
         {selectedPackage && (
           <>
@@ -58,8 +59,8 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
-        <h2>Selecionar Método de Pagamento</h2>
-        <div className="w-full flex flex-col items-center p-0 md:px-5 gap-3  ">
+        <h2 className="text-md">Método de Pagamento</h2>
+        <div className="w-full flex flex-col items-center p-0 md:px-5 gap-3 mt-5">
           <button
             className={`flex flex-row items-center px-4 py-3 gap-2 border rounded-lg thm-btn-pay`}
           >
@@ -126,16 +127,9 @@ export function DialogPayment({ selectedPackage, description }: { selectedPackag
   return (
     <Dialog>
       <DialogTrigger asChild>
-        {
-          selectedPackage ? (
-            <button className="thm-btn tour-details-two__sidebar-btn">Reservar</button>
-          ) : (
-            <button className="thm-btn tour-details-two__sidebar-btn" disabled>Reservar</button>
-          )
-        }
-        {/* <button className="thm-btn tour-details-two__sidebar-btn">Reservar</button> */}
+        <button className="h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] sm:max-w-[800px] h-[70%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden">
+      <DialogContent className="w-[90%] sm:max-w-[800px] h-[70%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription className="h-full">
