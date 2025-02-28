@@ -22,23 +22,28 @@ const mainSlideOptions = {
 };
 
 const MainSliderTwo = ({ coverImageUrl }: { coverImageUrl: string }) => {
-
   return (
-    <section className="main-slider tour-details-slider">
+    <section className="relative overflow-hidden">
       <Swiper {...mainSlideOptions}>
-        <SwiperSlide >
+        <SwiperSlide>
           <SingleSlide coverImageUrl={coverImageUrl} />
         </SwiperSlide>
       </Swiper>
 
       {/* Botões de navegação */}
-      <div className="main-slider-nav">
-        <div id="main-slider__swiper-button-prev" className="main-slider-button-prev">
-          <span className="icon-right-arrow"></span>
-        </div>
-        <div id="main-slider__swiper-button-next" className="main-slider-button-next">
-          <span className="icon-right-arrow"></span>
-        </div>
+      <div className="absolute inset-0 flex justify-between items-center px-10">
+        <button
+          id="main-slider__swiper-button-prev"
+          className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-white text-white opacity-20 hover:opacity-100 transition duration-500 rotate-180"
+        >
+          <span className="icon-right-arrow text-2xl"></span>
+        </button>
+        <button
+          id="main-slider__swiper-button-next"
+          className="w-16 h-16 flex items-center justify-center rounded-full border-2 border-white text-white opacity-20 hover:opacity-100 transition duration-500"
+        >
+          <span className="icon-right-arrow text-2xl"></span>
+        </button>
       </div>
     </section>
   );

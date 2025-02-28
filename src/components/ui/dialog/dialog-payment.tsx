@@ -13,44 +13,81 @@ import {
 } from "./radix-dialog";
 import { formatCurrency } from "@/_utils/formatCurrency";
 import Select from "react-select";
+import { Check, MoveUpRight, Users2Icon } from "lucide-react";
+import { SelectDemo } from "../select/select";
+import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
+
 
 const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div className="w-full">
-        <h2 className="w-full p-2">Reserva</h2>
-        <p className="w-full pl-4 text-start">{description}</p>
-        {selectedPackage && (
-          <>
-            <section className="w-full px-4 text-start ">
-              <h3 className="text-start text-[12px]">Detalhes da Reserva</h3>
-              <article className="flex flex-col">
-                <p><strong className="mr-1">Pacote:</strong>{selectedPackage.name}</p>
-                <p><strong className="mr-1">Preço:</strong>{formatCurrency(selectedPackage.price)}</p>
-              </article>
-            </section>
-            <div className="">
-              <div className="flex flex-col md:flex-row justify-between px-4 gap-4">
-                <div className="flex flex-col text-start">
-                  <h3 className="tour-details-two-overview__title">Benefícios</h3>
-                  <ul className="list-unstyled tour-details-two__overview-bottom-list">
-                    {selectedPackage.benefits.map((benefit) => (
-                      <li key={benefit.id}>
-                        <div className="icon">
-                          <i className="fa fa-check"></i>
-                        </div>
-                        <div className="text">
-                          <p>{benefit.description}</p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+<form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6 px-4">
+      {/* Header */}
+      <header className="w-full mt-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          {/* Data e quantidade de pessoas */}
+          <div className="flex flex-wrap gap-3">
+            <div className="flex items-center gap-2 px-3 py-2 border rounded-md bg-gray-50/80 min-w-[200px] sm:min-w-[220px]">
+              <span className="font-medium text-gray-700">12 Março 2025</span>
+              <span className="text-gray-500">• quarta-feira</span>
             </div>
-          </>
-        )}
-      </div>
+            <div className="flex items-center px-3 py-2 border rounded-md w-24">
+              <Users2Icon className="text-gray-700" size={20} />
+              <input
+                type="number"
+                defaultValue={1}
+                className="w-full text-center border-none bg-transparent focus:outline-none"
+                min={1}
+              />
+            </div>
+          </div>
+          <SelectDemo />
+        </div>
+      </header>
+
+      {/* Main */}
+      <main className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Benefícios */}
+        <div className="bg-[#f6ae5c1e] shadow-md rounded-lg p-4">
+          <h2 className="text-lg font-semibold text-gray-800 mb-3">Benefícios do Pacote</h2>
+          <ul className="space-y-2 text-gray-700">
+            {["Translado incluso", "Hospedagem 5 estrelas", "Passeios guiados", "Refeições inclusas"].map((item, index) => (
+              <li key={index} className="flex gap-2 items-center">
+                <Check size={16} className="text-green-600" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Card Principal */}
+        <div className="w-full">
+          <Card className="shadow-sm border border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
+                Descoberta do Maracanã 
+                <MoveUpRight size={18} />
+              </CardTitle>
+              <CardDescription className="text-gray-600">Aproveite essa experiência única</CardDescription>
+            </CardHeader>
+            <CardContent className="text-gray-700 space-y-4 w-full text-start ">
+              <p>
+                O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
+              </p>
+              <p className="font-semibold w-full text-start">
+                5x {formatCurrency(selectedPackage?.price || 1000)}
+                <br />
+                <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
+              </p>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <span className="text-lg font-semibold text-gray-800">Total:</span>
+              <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
+                {formatCurrency(selectedPackage?.price || 5000)}
+              </span>
+            </CardFooter>
+          </Card>
+        </div>
+      </main>
     </form>
   );
 };
@@ -127,9 +164,9 @@ export function DialogPayment({ selectedPackage, description }: { selectedPackag
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
+        <button className=" h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] sm:max-w-[800px] h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
+      <DialogContent className="h-full w-full  md:w-[90%] sm:max-w-[65%] md:h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription className="h-full">

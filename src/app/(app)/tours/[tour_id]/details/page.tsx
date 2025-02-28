@@ -18,21 +18,21 @@ export default function TourDetails() {
     },
   })
 
-  // if (getTourById.data?.data === undefined) {
-  //   return (
-  //     <Layout pageTitle="Tours Details">
-  //       <div className="flex flex-col items-center justify-center h-96">
-  //         <p>Tour não encontrada!</p>
-  //         <button className=" h-10 bg-orange-500 text-white rounded-[8px] px-2 flex gap-2 items-center justify-between" style={{ borderRadius: "8px" }}
-  //           onClick={() => window.location.href = "/"}
-  //         >
-  //           <ChevronLeft />
-  //           Voltar
-  //         </button>
-  //       </div>
-  //     </Layout>
-  //   )
-  // }
+  if (getTourById.data?.data === undefined) {
+    return (
+      <Layout pageTitle="Tours Details">
+        <div className="flex flex-col items-center justify-center h-96">
+          <p>Tour não encontrada!</p>
+          <button className=" h-10 bg-orange-500 text-white rounded-[8px] px-2 flex gap-2 items-center justify-between" style={{ borderRadius: "8px" }}
+            onClick={() => window.location.href = "/"}
+          >
+            <ChevronLeft />
+            Voltar
+          </button>
+        </div>
+      </Layout>
+    )
+  }
 
   return (
     <Layout pageTitle="Tours Details">
