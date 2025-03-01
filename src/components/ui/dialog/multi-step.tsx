@@ -150,7 +150,7 @@ export default function MultiStepForm<
                   exit="exit"
                   variants={stepsVariants}
                   transition={{ duration: 0.5 }}
-                  className="w-full px-3 py-2 "
+                  className="w-full  "
                 >
                   <CurrentComponent
                     otherData={otherData}

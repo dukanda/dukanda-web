@@ -13,12 +13,13 @@ import {
 } from "./radix-dialog";
 import { formatCurrency } from "@/_utils/formatCurrency";
 import Select from "react-select";
-import { Check, MoveUpRight, Users2Icon } from "lucide-react";
+import { Check, Copy, MoveUpRight, Users2Icon } from "lucide-react";
 import { SelectDemo } from "../select/select";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
 import { Label } from "../label";
 import { Input } from "../input";
 import { Button } from "../button";
+import UploadArea from "../upload-area";
 
 
 const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
@@ -150,12 +151,20 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 };
 
 const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
+  const iban = "AO006.0000.0590.3409.8500";
+  const [copied, setCopied] = useState(false);
+    const handleCopy = () => {
+    navigator.clipboard.writeText(iban);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1000); 
+  };
+
   return (
-    <Card className="w-full shadow-none ">
+    <Card className="w-full h-max shadow-none p-0 ">
       <CardHeader>
         <CardTitle className="text-xl">Finalizar Pagamento</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-row gap-4 justify-between w-full">
+      <CardContent className="flex flex-row gap-4 justify-between w-full h-full">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -163,50 +172,50 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
             const data = Object.fromEntries(formData.entries());
             onSubmit(data);
           }}
-          className="space-y-4"
+          className=" w-full h-full text-start flex flex-col space-y-2 lg:flex-row md:gap-4 items-start justify-between"
         >
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="name">Nome</Label>
-            <Input id="name" name="name" type="text" placeholder="Seu nome" required />
+          <div className="flex flex-col gap-3 text-start w-full">
+            <div className="flex flex-col gap-2 text-start w-full">
+              <label className="text-sm"></label>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm">Nome</label>
+                <Input type="text" className="focus-visible:ring-0 h-11 text-md w-full" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm">Email</label>
+                <Input type="email" className="focus-visible:ring-0 h-11 text-md w-full" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-sm">Telefone</label>
+              <Input type="tel" className="focus-visible:ring-0 h-11 text-md w-full" />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="seu@email.com" required />
+
+          <div className="flex flex-col gap-3 text-start w-full">
+            <div className="flex flex-col gap-2 text-start w-full">
+              <label className="text-sm">Coordenadas Bancárias</label>
+              <div className="flex items-center gap-2 w-full ">
+                <Input type="text" value={iban} className="focus-visible:ring-0 h-11 text-md w-full " disabled />
+                <div
+                  className="cursor-pointer flex items-center gap-1 text-gray-500 hover:bg-gray-100  rounded-md p-2 text-sm w-full flex-1"
+                  onClick={handleCopy}
+                >
+                  <Copy size={14} />
+                  {copied ? <span className="text-green-500">Copiado!</span> : "Copiar"}
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 w-full ">
+                <label className="text-sm">Total a pagar</label>
+                <Input type="text" value={"25.000" + " kz"} className="focus-visible:ring-0 h-11 text-md  w-full" />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 text-start w-full h-full">
+              <label className="text-sm">Comprovativo</label>
+              <UploadArea />
+            </div>
           </div>
-
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="phone">Telefone</Label>
-            <Input id="phone" name="phone" type="tel" placeholder="Seu telefone" required />
-          </div>
-
-     
-        </form>
-
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.currentTarget);
-            const data = Object.fromEntries(formData.entries());
-            onSubmit(data);
-          }}
-          className="space-y-4"
-        >
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="name">Nome</Label>
-            <Input id="name" name="name" type="text" placeholder="Seu nome" required />
-          </div>
-
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="seu@email.com" required />
-          </div>
-
-          <div className="flex flex-col gap-2 items-start" >
-            <Label htmlFor="phone">Telefone</Label>
-            <Input id="phone" name="phone" type="tel" placeholder="Seu telefone" required />
-          </div>
-
         </form>
       </CardContent>
     </Card>

@@ -49,7 +49,7 @@ const Layout = ({ children, pageTitle }) => {
       <Preloader loading={loading} />
       <main style={{ opacity: loading ? 0 : 1 }} className="page-wrapper">
         <Header pageTitle={pageTitle} />
-        <div className=" md:mt-36">
+        <div className=" md:mt-28">
           {children}
         </div>
         <SiteFooter />
