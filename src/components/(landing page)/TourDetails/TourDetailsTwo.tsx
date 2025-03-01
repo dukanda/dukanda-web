@@ -25,8 +25,9 @@ const TourDetailsTwo = ({ title, basePrice, startDate, endDate, tourTypes, cityN
               startDate={startDate}
               endDate={endDate}
               packages={packages}
-              setSelectedPackage={setSelectedPackage}
+              // setSelectedPackage={setSelectedPackage}
               description={description || ""}
+              selectedPackage={selectedPackage}
             />
           </Col>
         </Row>

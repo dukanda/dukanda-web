@@ -19,7 +19,7 @@ export function SelectDemo({ packages = [], onSelect }: SelectDemoProps) {
         <SelectGroup>
           <SelectLabel>Pacotes</SelectLabel>
           {packages.map(pack => (
-            <SelectItem key={pack.id} value={pack.id}>{pack.name}</SelectItem>
+            <SelectItem key={pack.id} value={pack.name}>{pack.name}</SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>

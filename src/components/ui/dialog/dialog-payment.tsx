@@ -24,7 +24,7 @@ import { formatDateRange } from "@/_utils/calculateDuration";
 
 
 const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void }) => {
-  console.log("startDate", startDate, "endDate", endDate);
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
       {/* <h2>Reservar</h2> */}
@@ -61,6 +61,7 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
           <ul className="space-y-2 text-gray-700">
             {selectedPackage?.benefits.map((benefit) => (
               <li key={benefit.id} className="flex gap-2 items-center">
+               
                 <Check size={16} className="text-green-600" />
                 {benefit.name}
               </li>

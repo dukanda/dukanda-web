@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import Select from "react-select";
 import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
-// import { toast } from 'react-toastify';
 
 const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
   value: it,
@@ -70,22 +69,15 @@ const customStyle = {
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
 // & { setSelectedPackage: (pack: Package | null) => void, description: string }
-export const TourDetailsSidebar = ({ packages, description,startDate, endDate }: ITour ) => {
-  // const [selectedPackage, setSelectedPackageState] = useState<Package | null>(null);
+export const TourDetailsSidebar = ({ packages, description, startDate, endDate, selectedPackage }: ITour & { selectedPackage: Package | null }) => {
 
-  // const handleSelectPackage = (selectedPackage: Package | null) => {
-  //   setSelectedPackageState(selectedPackage);
-  //   setSelectedPackage(selectedPackage);
-  // };
 
   return (
     <div className=" hidden lg:block">
       <div className="tour-details-two__book-tours hidden lg:block">
         <h3 className="tour-details-two__sidebar-title hidden lg:block">Reservar passeios</h3>
         <p className="w-full text-justify -tracking-normal hidden lg:block">Clique em Reservar para escolher um pacote da tour</p>
-        {/* <form className="tour-details-two__sidebar-form"> */}
-          <DialogPayment packages={packages} description={description} endDate={endDate} startDate={startDate} />
-        {/* </form> */}
+        <DialogPayment packages={packages??[]} description={description??""} endDate={endDate??""} startDate={startDate??""} selectedPackage={selectedPackage} />
       </div>
     </div>
   );
