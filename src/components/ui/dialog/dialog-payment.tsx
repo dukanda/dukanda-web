@@ -227,8 +227,8 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   );
 };
 
-export function DialogPayment({ selectedPackage, description, packages, startDate, endDate }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string }) {
-  const [selectedPackageState, setSelectedPackageState] = useState<Package | null>(selectedPackage);
+export function DialogPayment({ selectedPackage, description, packages = [], startDate, endDate }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string }) {
+  const [selectedPackageState, setSelectedPackageState] = useState<Package | null>(selectedPackage || (packages.length > 0 ? packages[0] : null));
 
   const handleSelectPackage = (selectedPackage: Package | null) => {
     setSelectedPackageState(selectedPackage);

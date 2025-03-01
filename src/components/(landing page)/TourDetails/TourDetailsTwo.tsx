@@ -4,7 +4,7 @@ import { TourDetailsSidebar } from "./TourDetailsSidebar";
 import TourDetailsLeft from "./TourDetailsLeft";
 
 const TourDetailsTwo = ({ title, basePrice, startDate, endDate, tourTypes, cityName, agencyLogoUrl, agencyName, created, description, itineraries, packages }: ITour) => {
-  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+  const [selectedPackage, setSelectedPackage] = useState<Package | null>(packages && packages.length > 0 ? packages[0] : null);
 
   return (
     <section className="tour-details-two">

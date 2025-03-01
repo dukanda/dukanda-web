@@ -7,11 +7,14 @@ interface SelectDemoProps {
 }
 
 export function SelectDemo({ packages = [], onSelect }: SelectDemoProps) {
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(packages.length > 0 ? packages[0].name : undefined);
+
   return (
     <Select onValueChange={(value) => {
       const selectedPackage = packages.find(pack => pack.name === value) || null;
+      setSelectedValue(value);
       onSelect(selectedPackage);
-    }}>
+    }} value={selectedValue}>
       <SelectTrigger className="w-[250px]  h-12 ">
         <SelectValue placeholder="Selecione o pacote" />
       </SelectTrigger>
