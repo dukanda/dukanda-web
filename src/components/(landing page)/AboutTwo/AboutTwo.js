@@ -74,7 +74,7 @@ const AboutTwo = () => {
                   </p>
                 ))}
                 <a href="#" className="thm-btn about-two__btn">
-                  Book with us now
+                  Reserve já
                 </a>
               </div>
             </Col>

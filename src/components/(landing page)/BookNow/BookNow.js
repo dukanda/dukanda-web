@@ -21,7 +21,7 @@ const BookNow = () => {
               </div>
               <div className="book-now__right">
                 <a href="#" className="thm-btn book-now__btn">
-                  Book tour now
+                 Reserve já
                 </a>
               </div>
             </div>

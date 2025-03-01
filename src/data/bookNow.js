@@ -3,8 +3,8 @@ import bg from "@/assets/images/shapes/book-now-shape.png";
 
 const bookNow = {
   bg,
-  subtitle: "Plan your trip with us",
-  title: "Ready for an unforgetable tour?",
+  subtitle: "Planeje sua viagem",
+  title: "Pronto para começar sua viagem?",
 };
 
 export default bookNow;

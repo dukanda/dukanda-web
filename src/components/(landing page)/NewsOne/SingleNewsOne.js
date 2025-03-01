@@ -44,7 +44,7 @@ const SingleNewsOne = ({ news = {}, newsTwo = false }) => {
             <Link href="/news-details" legacyBehavior>
               <a>
                 <i className="far fa-comments"></i>
-                {comments} Comments
+                {comments} Comentários
               </a>
             </Link>
           </li>

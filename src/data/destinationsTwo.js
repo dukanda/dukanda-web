@@ -3,35 +3,35 @@ import image from "@/assets/images/shapes/destinations-two-shape.png";
 
 const destinationsTwo = {
   image,
-  tagline: "Our destination lists",
-  title: "Checkout Beautiful Places Arround the World",
+  tagline: "Listas de Destinos",
+  title: "Visite os lugares mais populares",
   destinations: [
     {
       id: 1,
       image: "destinations-two-img-1.jpg",
-      title: "Spain",
+      title: "Malanje",
     },
     {
       id: 2,
       image: "destinations-two-img-2.jpg",
-      subtitle: "New",
-      title: "Africa",
+      subtitle: "Novo",
+      title: "Huambo",
     },
     {
       id: 3,
       image: "destinations-two-img-3.jpg",
-      title: "Europe",
+      title: "Zaire",
     },
     {
       id: 4,
       image: "destinations-two-img-4.jpg",
       subtitle: "Wildlife",
-      title: "Thailand",
+      title: "Namibe",
     },
     {
       id: 5,
       image: "destinations-two-img-5.jpg",
-      title: "Dubai",
+      title: "Bneguela",
     },
   ],
   off: "30%",
