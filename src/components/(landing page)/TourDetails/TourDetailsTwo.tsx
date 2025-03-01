@@ -22,6 +22,8 @@ const TourDetailsTwo = ({ title, basePrice, startDate, endDate, tourTypes, cityN
           </Col>
           <Col xl={4} lg={5}>
             <TourDetailsSidebar
+              startDate={startDate}
+              endDate={endDate}
               packages={packages}
               setSelectedPackage={setSelectedPackage}
               description={description || ""}

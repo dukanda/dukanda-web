@@ -68,48 +68,24 @@ const customStyle = {
 };
 
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
-export const TourDetailsSidebar = ({ packages, setSelectedPackage, description }: ITour & { setSelectedPackage: (pack: Package | null) => void, description: string }) => {
-  const [selectedPackage, setSelectedPackageState] = useState<Package | null>(null);
 
-  const packageOptions = packages?.map((pack) => ({
-    value: pack.id,
-    label: pack.name,
-  })) || [];
+// & { setSelectedPackage: (pack: Package | null) => void, description: string }
+export const TourDetailsSidebar = ({ packages, description,startDate, endDate }: ITour ) => {
+  // const [selectedPackage, setSelectedPackageState] = useState<Package | null>(null);
 
-  const handleSelectPackage = (selectedOption: any) => {
-    const selectedPack = packages?.find((pack) => pack.id === selectedOption.value) || null;
-    setSelectedPackageState(selectedPack);
-    setSelectedPackage(selectedPack);
-  };
+  // const handleSelectPackage = (selectedPackage: Package | null) => {
+  //   setSelectedPackageState(selectedPackage);
+  //   setSelectedPackage(selectedPackage);
+  // };
 
   return (
     <div className=" hidden lg:block">
       <div className="tour-details-two__book-tours hidden lg:block">
         <h3 className="tour-details-two__sidebar-title hidden lg:block">Reservar passeios</h3>
         <p className="w-full text-justify -tracking-normal hidden lg:block">Clique em Reservar para escolher um pacote da tour</p>
-        <form
-          className="tour-details-two__sidebar-form"
-        >
-          {/* <div className="tour-details-two__sidebar-form-input">
-            <Select
-              name="ticket"
-              options={packageOptions}
-              onChange={handleSelectPackage}
-              styles={customStyle}
-              isSearchable={false}
-              components={{
-                IndicatorSeparator: () => null,
-                DropdownIndicator: () => null,
-              }}
-              placeholder="Escolher pacote"
-              instanceId="tourTypeSelect15"
-            />
-            <div className="tour-details-two__sidebar-form-icon">
-              <i className="fa fa-angle-down"></i>
-            </div>
-          </div> */}
-            <DialogPayment selectedPackage={selectedPackage} description={description} />
-        </form>
+        {/* <form className="tour-details-two__sidebar-form"> */}
+          <DialogPayment packages={packages} description={description} endDate={endDate} startDate={startDate} />
+        {/* </form> */}
       </div>
     </div>
   );

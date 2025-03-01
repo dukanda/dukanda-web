@@ -20,9 +20,11 @@ import { Label } from "../label";
 import { Input } from "../input";
 import { Button } from "../button";
 import UploadArea from "../upload-area";
+import { formatDateRange } from "@/_utils/calculateDuration";
 
 
-const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string }) => {
+const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void }) => {
+  console.log("startDate", startDate, "endDate", endDate);
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
       {/* <h2>Reservar</h2> */}
@@ -32,8 +34,10 @@ const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (da
           {/* Data e quantidade de pessoas */}
           <div className="flex flex-wrap gap-3">
             <div className="flex items-center gap-2 px-3 py-2 border rounded-md bg-gray-50/80 min-w-[200px] sm:min-w-[220px]">
-              <span className="font-medium text-gray-700">12 Março 2025</span>
-              <span className="text-gray-500">• quarta-feira</span>
+              <span className="font-medium text-gray-700">
+                {formatDateRange(new Date(startDate), new Date(endDate))}
+              </span>
+              {/* <span className="font-medium text-gray-700"> - 15 de Março</span> */}
             </div>
             <div className="flex items-center px-3 py-2 border rounded-md w-24">
               <Users2Icon className="text-gray-700" size={20} />
@@ -45,7 +49,7 @@ const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (da
               />
             </div>
           </div>
-          <SelectDemo />
+          <SelectDemo packages={packages} onSelect={onSelect} />
         </div>
       </header>
 
@@ -55,10 +59,10 @@ const StepOneForm = ({ onSubmit, selectedPackage, description }: { onSubmit: (da
         <div className="bg-[#f6ae5c1e] shadow-md rounded-lg p-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Benefícios do Pacote</h2>
           <ul className="space-y-2 text-gray-700">
-            {["Translado incluso", "Hospedagem 5 estrelas", "Passeios guiados", "Refeições inclusas"].map((item, index) => (
-              <li key={index} className="flex gap-2 items-center">
+            {selectedPackage?.benefits.map((benefit) => (
+              <li key={benefit.id} className="flex gap-2 items-center">
                 <Check size={16} className="text-green-600" />
-                {item}
+                {benefit.name}
               </li>
             ))}
           </ul>
@@ -153,10 +157,10 @@ const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   const iban = "AO006.0000.0590.3409.8500";
   const [copied, setCopied] = useState(false);
-    const handleCopy = () => {
+  const handleCopy = () => {
     navigator.clipboard.writeText(iban);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1000); 
+    setTimeout(() => setCopied(false), 1000);
   };
 
   return (
@@ -222,9 +226,15 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   );
 };
 
-export function DialogPayment({ selectedPackage, description }: { selectedPackage: Package | null, description: string }) {
+export function DialogPayment({ selectedPackage, description, packages, startDate, endDate }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string }) {
+  const [selectedPackageState, setSelectedPackageState] = useState<Package | null>(selectedPackage);
+
+  const handleSelectPackage = (selectedPackage: Package | null) => {
+    setSelectedPackageState(selectedPackage);
+  };
+
   const steps = [
-    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackage} description={description} /> },
+    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackageState} description={description} packages={packages} onSelect={handleSelectPackage} startDate={startDate} endDate={endDate} /> },
     { label: "Step 2", form: StepTwoForm },
     { label: "Step 3", form: StepThreeForm },
   ];
