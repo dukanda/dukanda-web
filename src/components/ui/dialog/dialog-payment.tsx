@@ -13,117 +13,121 @@ import {
 } from "./radix-dialog";
 import { formatCurrency } from "@/_utils/formatCurrency";
 import Select from "react-select";
-import { Check, Copy, MoveUpRight, Users2Icon } from "lucide-react";
+import { Check, Copy, MapPinned, MoveUpRight, Users2Icon } from "lucide-react";
 import { SelectDemo } from "../select/select";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Label } from "../label";
 import { Input } from "../input";
 import { Button } from "../button";
 import UploadArea from "../upload-area";
 import { formatDateRange } from "@/_utils/calculateDuration";
+import { RadioGroup, RadioGroupItem } from "../radio";
 
 
 const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void }) => {
+  const [openAccordion, setOpenAccordion] = useState<string | undefined>(packages.length > 0 ? packages[0].id : undefined);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
-      {/* <h2>Reservar</h2> */}
       {/* Header */}
       <header className="w-full mt-6">
         <div className="flex flex-col gap-2 md:flex-row items-center justify-between">
           {/* Data e quantidade de pessoas */}
-          <div className="flex  gap-3 ">
+          <div className="flex gap-3">
             <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
               <span className="font-medium text-gray-700">
                 {formatDateRange(new Date(startDate), new Date(endDate))}
               </span>
-              {/* <span className="font-medium text-gray-700"> - 15 de Março</span> */}
             </div>
           </div>
-          <SelectDemo packages={packages} onSelect={onSelect} />
+
+          {/* SelectDemo para trocar pacotes */}
+          {/* <SelectDemo packages={packages} onSelect={onSelect} /> */}
+          <div className="flex gap-3">
+            <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
+              <span className="font-medium text-gray-700 flex items-center gap-2">
+                <MapPinned size={18} className="text-green-600 font-light" />
+                Descubra o Maracanã
+              </span>
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* Main   grid grid-cols-1 lg:grid-cols-2 gap-6*/}
-      <main className="">
-        {/* Benefícios */}
-        {/* <div className="bg-[#f6ae5c1e] shadow-md rounded-lg p-4">
-          <h2 className="text-lg font-semibold text-gray-800 mb-3">Benefícios do Pacote</h2>
-          <ul className="space-y-2 text-gray-700">
-            {selectedPackage?.benefits.map((benefit) => (
-              <li key={benefit.id} className="flex gap-2 items-center">
 
-                <Check size={16} className="text-green-600" />
-                {benefit.name}
-              </li>
-            ))}
-          </ul>
-        </div> */}
+      {/* Listar todos os pacotes */}
+      <RadioGroup value={selectedPackage?.id || ""} onValueChange={(value) => onSelect(packages.find((pkg) => pkg.id === value) || null)} className="w-full space-y-4">
+        {packages.map((pkg) => (
+          <Accordion type="single" collapsible key={pkg.id} value={openAccordion} onValueChange={(value) => setOpenAccordion(value || undefined)}>
+            <AccordionItem value={pkg.id}>
+              <AccordionTrigger
+                className={`w-full ${openAccordion !== pkg.id ? 'h-16' : ''}`}
+              >
+                <Card className="shadow-sm border border-gray-200 w-full">
+                  <CardHeader>
+                    <label className="flex items-center justify-between gap-2 cursor-pointer">
+                      <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
+                        {pkg.name}
+                        <MoveUpRight size={18} />
+                      </CardTitle>
+                      <RadioGroupItem value={pkg.id} className="w-4 h-4  shadow-none" />
+                    </label>
+                    {openAccordion === pkg.id && (
+                      <CardDescription className="text-gray-600 text-start">
+                        Aproveite essa experiência única
+                      </CardDescription>
+                    )}
+                  </CardHeader>
+                </Card>
+              </AccordionTrigger>
 
-        {/* Card Principal */}
-        <div className="w-full">
-          <Card className="shadow-sm border border-gray-200">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
-                Descoberta do Maracanã
-                <MoveUpRight size={18} />
-              </CardTitle>
-              <CardDescription className="text-gray-600 text-start">
-                {/* Aproveite essa experiência única */}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="text-gray-700 space-y-4 w-full text-start ">
-              <p>
-                O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
-              </p>
-              <p>Confira os Benefícios: </p>
-              <ul className=" text-gray-700 bg flex items-center justify-start space-y-1 flex-wrap">
-                {/* <li className="flex items-start gap-1 mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1   mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
-                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li> */}
-                {selectedPackage?.benefits.map((benefit) => (
-                  <li key={benefit.id} className="flex items-start gap-1 mr-2">
-                    <Check size={16} className="text-green-600" />
-                    {benefit.name}
-                  </li>
-                ))}
-              </ul>
+              <AccordionContent>
+                <CardContent className="text-gray-700 space-y-4 w-full text-start">
+                  <p>Confira os Benefícios:</p>
+                  <ul className="text-gray-700 flex items-center justify-start space-y-1 flex-wrap">
+                    {pkg.benefits.map((benefit) => (
+                      <li key={benefit.id} className="flex items-start gap-1 mr-2">
+                        <Check size={16} className="text-green-600" />
+                        {benefit.name}
+                      </li>
+                    ))}
+                  </ul>
 
-              <p className="font-semibold w-full text-start flex flex-col md:flex-row justify-between items-center">
-                <span>
-                  5x {formatCurrency(selectedPackage?.price || 1000)}
-                  <br />
-                  <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
-                </span>
-                <div className="flex items-center px-3 py-2 border rounded-md w-32">
-                  <Users2Icon className="text-gray-700" size={20} />
-                  <input
-                    type="number"
-                    defaultValue={1}
-                    className="w-full text-center border-none bg-transparent focus:outline-none"
-                    min={1}
-                  />
-                </div>
-              </p>
-            </CardContent>
-            <CardFooter className="flex justify-between items-center">
-              <span className="text-lg font-semibold text-gray-800">Total:</span>
-              <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2 min-w-[125px]">
-                {formatCurrency(selectedPackage?.price || 5000)}
-              </span>
-            </CardFooter>
-          </Card>
-        </div>
-      </main>
+                  <p className="font-semibold w-full text-start flex flex-col md:flex-row justify-between items-center">
+                    <span>
+                      5x {formatCurrency(pkg.price || 1000)}
+                      <br />
+                      <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
+                    </span>
+                    <div className="flex items-center px-3 py-2 border rounded-md w-32">
+                      <Users2Icon className="text-gray-700" size={20} />
+                      <input
+                        type="number"
+                        defaultValue={1}
+                        className="w-full text-center border-none bg-transparent focus:outline-none"
+                        min={1}
+                      />
+                    </div>
+                  </p>
+                </CardContent>
+
+                <CardFooter className="flex justify-between items-center">
+                  <span className="text-lg font-semibold text-gray-800">Total:</span>
+                  <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2 min-w-[125px]">
+                    {formatCurrency(pkg.price || 5000)}
+                  </span>
+                </CardFooter>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ))}
+      </RadioGroup>
+
     </form>
   );
 };
+
 
 const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   return (
