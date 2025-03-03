@@ -30,44 +30,35 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
       {/* <h2>Reservar</h2> */}
       {/* Header */}
       <header className="w-full mt-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-col gap-2 md:flex-row items-center justify-between">
           {/* Data e quantidade de pessoas */}
-          <div className="flex flex-wrap gap-3">
-            <div className="flex items-center gap-2 px-3 py-2 border rounded-md bg-gray-50/80 min-w-[200px] sm:min-w-[220px]">
+          <div className="flex  gap-3 ">
+            <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
               <span className="font-medium text-gray-700">
                 {formatDateRange(new Date(startDate), new Date(endDate))}
               </span>
               {/* <span className="font-medium text-gray-700"> - 15 de Março</span> */}
-            </div>
-            <div className="flex items-center px-3 py-2 border rounded-md w-24">
-              <Users2Icon className="text-gray-700" size={20} />
-              <input
-                type="number"
-                defaultValue={1}
-                className="w-full text-center border-none bg-transparent focus:outline-none"
-                min={1}
-              />
             </div>
           </div>
           <SelectDemo packages={packages} onSelect={onSelect} />
         </div>
       </header>
 
-      {/* Main */}
-      <main className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Main   grid grid-cols-1 lg:grid-cols-2 gap-6*/}
+      <main className="">
         {/* Benefícios */}
-        <div className="bg-[#f6ae5c1e] shadow-md rounded-lg p-4">
+        {/* <div className="bg-[#f6ae5c1e] shadow-md rounded-lg p-4">
           <h2 className="text-lg font-semibold text-gray-800 mb-3">Benefícios do Pacote</h2>
           <ul className="space-y-2 text-gray-700">
             {selectedPackage?.benefits.map((benefit) => (
               <li key={benefit.id} className="flex gap-2 items-center">
-               
+
                 <Check size={16} className="text-green-600" />
                 {benefit.name}
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* Card Principal */}
         <div className="w-full">
@@ -77,21 +68,53 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
                 Descoberta do Maracanã
                 <MoveUpRight size={18} />
               </CardTitle>
-              <CardDescription className="text-gray-600">Aproveite essa experiência única</CardDescription>
+              <CardDescription className="text-gray-600 text-start">
+                {/* Aproveite essa experiência única */}
+              </CardDescription>
             </CardHeader>
             <CardContent className="text-gray-700 space-y-4 w-full text-start ">
               <p>
                 O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
               </p>
-              <p className="font-semibold w-full text-start">
-                5x {formatCurrency(selectedPackage?.price || 1000)}
-                <br />
-                <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
+              <p>Confira os Benefícios: </p>
+              <ul className=" text-gray-700 bg flex items-center justify-start space-y-1 flex-wrap">
+                {/* <li className="flex items-start gap-1 mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1   mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li>
+                <li className="flex items-start gap-1  mr-2"> <Check size={16} className="text-green-600" />Comida no restaurante e refeições inclusas</li> */}
+                {selectedPackage?.benefits.map((benefit) => (
+                  <li key={benefit.id} className="flex items-start gap-1 mr-2">
+                    <Check size={16} className="text-green-600" />
+                    {benefit.name}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="font-semibold w-full text-start flex flex-col md:flex-row justify-between items-center">
+                <span>
+                  5x {formatCurrency(selectedPackage?.price || 1000)}
+                  <br />
+                  <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
+                </span>
+                <div className="flex items-center px-3 py-2 border rounded-md w-32">
+                  <Users2Icon className="text-gray-700" size={20} />
+                  <input
+                    type="number"
+                    defaultValue={1}
+                    className="w-full text-center border-none bg-transparent focus:outline-none"
+                    min={1}
+                  />
+                </div>
               </p>
             </CardContent>
             <CardFooter className="flex justify-between items-center">
               <span className="text-lg font-semibold text-gray-800">Total:</span>
-              <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
+              <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2 min-w-[125px]">
                 {formatCurrency(selectedPackage?.price || 5000)}
               </span>
             </CardFooter>
