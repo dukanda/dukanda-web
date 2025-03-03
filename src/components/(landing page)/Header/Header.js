@@ -212,7 +212,7 @@ const Header = ({ pageTitle}) => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="flex md:hidden text-[var(--thm-primary)] hover:text-[var(--thm-black)] transition text-lg"
+              className="block xl:hidden  text-[var(--thm-primary)] hover:text-[var(--thm-black)] transition text-lg"
             >
               <MenuIcon size={24}/>
               {/* <i className="fa fa-bars"></i> */}

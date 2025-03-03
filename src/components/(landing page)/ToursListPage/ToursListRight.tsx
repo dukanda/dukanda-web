@@ -25,10 +25,10 @@ const ToursListRight = () => {
       <div className="tours-list__inner">
         {getPublishedTours.isLoading ? (
           <div className="animate-pulse">
-            <div className="h-48 bg-gray-200 mb-4"></div>
-            <div className="h-48 bg-gray-200 mb-4"></div>
-            <div className="h-48 bg-gray-200 mb-4"></div>
-            <div className="h-48 bg-gray-200 mb-4"></div>
+            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
+            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
+            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
+            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
           </div>
         ) : tours.length > 0 ? (
           tours.map((tour) => (
