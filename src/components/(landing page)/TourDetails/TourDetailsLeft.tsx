@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { differenceInDays, parseISO, isValid } from "date-fns";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDate, selectedPackage }: ITour & { selectedPackage: Package | null }) => {
   const [active, setActive] = useState<string | null>(null);
@@ -35,30 +36,10 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
       <div className="tour-details-two__overview">
         <h3 className="tour-details-two__title">Visão geral</h3>
         <p className="tour-details-two__overview-text text-justify ">{description}</p>
-        {/* 
-        {selectedPackage && (
-          <div className="tour-details-two__overview-bottom">
-            <h3 className="tour-details-two-overview__title">Benefícios do Pacote</h3>
-            <div className="tour-details-two__overview-bottom-inner">
-              <ul className="list-unstyled tour-details-two__overview-bottom-list">
-                {selectedPackage.benefits.map((benefit) => (
-                  <li key={benefit.id}>
-                    <div className="icon">
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="text">
-                      <p>{benefit.description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )} */}
       </div>
 
       {/* Itinerário */}
-      <div className="tour-details-two__tour-plan">
+      {/* <div className="tour-details-two__tour-plan">
         <h3 className="tour-details-two__title">Roteiro do passeio</h3>
         <div className="accrodion-grp faq-one-accrodion">
           {orderedItineraries.map(({ id, title, description, dayNumber }) =>
@@ -80,6 +61,26 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
             ) : null
           )}
         </div>
+      </div> */}
+
+      {/* Itinerário */}
+      <div className="mt-8 ">
+        <h3 className="text-2xl font-bold mb-6">Roteiro do passeio</h3>
+        <Accordion type="single" collapsible className="w-full text-lg">
+          {orderedItineraries.map(({ id, title, description, dayNumber }) =>
+            dayNumber ? (
+              <AccordionItem key={id} value={`item-${id}`} className="border mb-1 rounded-md p-2">
+                <AccordionTrigger className="text-xl flex gap-3">
+                  <span className="font-bold text-orange-400 text-lg  ">Dia {dayNumber}</span>
+                  <span className=" w-full flex-1">{title}</span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-gray-700 text-md">{description}</p>
+                </AccordionContent>
+              </AccordionItem>
+            ) : null
+          )}
+        </Accordion>
       </div>
 
       <div className="tour-details-two__location">
