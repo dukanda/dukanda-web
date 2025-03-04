@@ -46,10 +46,11 @@ const ToursListLeft = () => {
   return (
     <div className="tours-list__left">
       <div className="tours-list__sidebar">
-        <div className="bg-[#faf5ee36] shadow-md p-10 rounded-lg">
+        <div className="bg-[#faf5ee13] shadow-sm p-10 rounded-lg border">
           <h3 className="text-xl font-bold mb-6">Pesquisar passeios</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
+              {/* @ts-ignore */}
               <Autocomplete
                 inputClassName="h-12 text-sm bg-white"
                 placeholder={"Onde?"}

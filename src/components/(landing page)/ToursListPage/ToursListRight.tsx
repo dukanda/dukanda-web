@@ -3,11 +3,13 @@
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
-import { Image } from "react-bootstrap";
+// import { Image } from "react-bootstrap";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatCurrency } from "@/_utils/formatCurrency";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ToursListRight = () => {
   const getPublishedTours = useQuery({
@@ -21,65 +23,62 @@ const ToursListRight = () => {
   const tours = getPublishedTours.data?.data?.items || []; // Garante que seja sempre um array
 
   return (
-    <div className="tours-list__right">
-      <div className="tours-list__inner">
+    <div className="mt-12">
+      <div className="space-y-6">
         {getPublishedTours.isLoading ? (
-          <div className="animate-pulse">
-            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
-            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
-            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
-            <div className="h-52 bg-gray-200/70 mb-4 rounded-md"></div>
+          <div className="animate-pulse space-y-4">
+            {[...Array(4)].map((_, index) => (
+              <Skeleton key={index} className="h-52 w-full rounded-lg" />
+            ))}
           </div>
         ) : tours.length > 0 ? (
           tours.map((tour) => (
-            <div key={tour.id} className="tours-list__single">
-              <div className="tours-list__img">
-                <Image src={tour.coverImageUrl} alt="Image Banner" />
+            <div key={tour.id} className="flex flex-col md:flex-row gap-6 border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+              {/* Imagem do Tour */}
+              <div className="relative w-56 h-40 rounded-md overflow-hidden">
+                <Image src={tour.coverImageUrl??""} alt="Imagem do Tour" layout="fill" objectFit="cover" />
               </div>
-              <div className="tours-list__content">
-                <div className="w-full flex items-start gap-2 cursor-pointer mb-2">
-                  <Image
-                    src={tour.agencyLogoUrl}
-                    alt="Agency Logo"
-                    className="size-8 rounded-full"
-                  />
-                  <div></div>
-                  <div className="flex flex-col items-start">
-                    <span>{tour.agencyName ? tour.agencyName : "Ango-Tour"}</span>
-                  </div>
+
+              {/* Conteúdo */}
+              <div className="flex-1 space-y-2">
+                {/* Agência */}
+                <div className="flex items-center gap-3">
+                  <Image src={tour.agencyLogoUrl??""} alt="Logo da Agência" width={32} height={32} className="rounded-full w-8 h-8" />
+                  <span className="text-sm text-gray-700 hover:text-orange-400">{tour.agencyName || "Ango-Tour"}</span>
                 </div>
 
-                <h3 className="tours-list__title">
-                  <Link href={`/tours/${tour.id}/details`} legacyBehavior>
+                {/* Título */}
+                <h3 className="text-lg font-semibold hover:text-orange-400">
+                  <Link href={`/tours/${tour.id}/details` } className="hover:text-orange-400">
                     {tour.title}
                   </Link>
                 </h3>
-                <p className="tours-list__rate">
-                  <span>{formatCurrency(tour.basePrice ?? 0)} kz</span> / Por pessoa
+
+                {/* Preço */}
+                <p className="text-gray-700 font-medium">
+                  <span className="text-orange-400 font-bold">{formatCurrency(tour.basePrice ?? 0)} kz</span> / Por pessoa
                 </p>
-                <p className="tours-list__text">{tour.description}</p>
-                <ul className="bg-[#faf5ee] w-full flex justify-between rounded-md px-2 py-2.5 mb-2">
-                  <li className="flex text-sm items-center gap-1">
-                    <Link href={`/tours/${tour.id}/details`} legacyBehavior>
-                      <a className="flex items-center gap-1">
-                        <i className="far fa-calendar"></i>
-                        {tour.startDate
-                          ? format(new Date(tour.startDate), "dd  MMM", { locale: ptBR })
-                          : "Data inválida"}
-                        <span> - </span>
-                        {tour.endDate
-                          ? format(new Date(tour.endDate), "dd  MMM 'de' yyyy", { locale: ptBR })
-                          : "Data inválida"}
-                      </a>
-                    </Link>
+
+                {/* Descrição */}
+                <p className="text-sm text-gray-600 line-clamp-2">{tour.description}</p>
+
+                {/* Informações */}
+                <ul className="bg-gray-100 rounded-md p-3 flex flex-col gap-1 md:flex-row justify-between text-sm text-gray-700">
+                  <li className="flex items-center gap-2">
+                    <i className="far fa-calendar text-gray-500"></i>
+                    <span>
+                      {tour.startDate
+                        ? format(new Date(tour.startDate), "dd MMM", { locale: ptBR })
+                        : "Data inválida"}
+                      <span> - </span>
+                      {tour.endDate
+                        ? format(new Date(tour.endDate), "dd MMM 'de' yyyy", { locale: ptBR })
+                        : "Data inválida"}
+                    </span>
                   </li>
-                  <li>
-                    <Link href={`/tours/${tour.id}/details`} legacyBehavior>
-                      <a className="flex text-sm items-center gap-1">
-                        <i className="far fa-map"></i>
-                        {tour.cityName}
-                      </a>
-                    </Link>
+                  <li className="flex items-center gap-2">
+                    <i className="far fa-map text-gray-500"></i>
+                    {tour.cityName}
                   </li>
                 </ul>
               </div>
