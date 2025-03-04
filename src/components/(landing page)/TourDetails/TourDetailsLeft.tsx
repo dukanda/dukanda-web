@@ -69,7 +69,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
         <Accordion type="single" collapsible className="w-full text-lg">
           {orderedItineraries.map(({ id, title, description, dayNumber }) =>
             dayNumber ? (
-              <AccordionItem key={id} value={`item-${id}`} className="border mb-1 rounded-md p-2">
+              <AccordionItem key={id} value={`item-${id}`} className="border mb-3 rounded-md p-2">
                 <AccordionTrigger className="text-xl flex gap-3">
                   <span className="font-bold text-orange-400 text-lg  ">Dia {dayNumber}</span>
                   <span className=" w-full flex-1">{title}</span>
