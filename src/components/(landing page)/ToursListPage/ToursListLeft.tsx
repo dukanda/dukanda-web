@@ -1,15 +1,24 @@
 "use client";
+import Autocomplete from "@/components/ui/autocomplete";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Input } from "@/components/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import toursListPage from "@/data/toursListPage";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
 import React, { useState } from "react";
 import Slider from "react-rangeslider";
-import Select from "react-select";
+// import Select from "react-select";
 
 const { categories, durations } = toursListPage;
 
-const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
-  value: it,
-  label: it,
-}));
+// const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
+//   value: it,
+//   label: it,
+// }));
 
 const customStyle = {
   valueContainer: (provided) => ({
@@ -62,6 +71,13 @@ const customStyle = {
   }),
 };
 
+const typeOptions = [
+  { value: "aventura", label: "Aventura" },
+  { value: "cultural", label: "Cultural" },
+  { value: "gastronomico", label: "Gastronômico" },
+];
+
+
 const ToursListLeft = () => {
   const [showReview, setShowReview] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
@@ -69,58 +85,101 @@ const ToursListLeft = () => {
   const [showPrice, setShowPrice] = useState(true);
   const [selected, setSelected] = useState("Adventure");
   const [priceRange, setPriceRange] = useState(2000);
+  const [date, setDate] = React.useState<Date>()
   let count = 6;
 
-  const handleSelect = ({ value }) => {
-    setSelected(value);
-  };
+  // const handleSelect = ({ value }) => {
+  //   setSelected(value);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      type: selected,
-      date: formData.get("when"),
-      place: formData.get("place"),
-    };
-    console.log(data);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.target);
+  //   const data = {
+  //     type: selected,
+  //     date: formData.get("when"),
+  //     place: formData.get("place"),
+  //   };
+  //   console.log(data);
+  // };
 
   const handlePriceChange = (value) => {
     setPriceRange(value);
   };
 
+
+  ///
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleSelect = (value: string) => {
+    setSelectedType(value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Formulário enviado");
+  };
+
   return (
     <div className="tours-list__left">
       <div className="tours-list__sidebar">
-        <div className="tours-list__sidebar-search">
-          <h3 className="tours-list__sidebar-search-title">Pesquisar passeios</h3>
-          <form onSubmit={handleSubmit} className="tours-list__sidebar-form">
-            <div className="tours-list__sidebar-input">
-              <input type="text" placeholder="Onde?" name="place" />
-            </div>
-            <div className="tours-list__sidebar-input">
-              <input type="text" placeholder="Quando?" name="when" />
-            </div>
-            <div className="tours-list__sidebar-input">
-              <Select
-                name="type"
-                options={typeOptions}
-                onChange={handleSelect}
-                styles={customStyle}
-                isSearchable={false}
-                components={{
-                  IndicatorSeparator: () => null,
-                }}
-                placeholder="Selecione o tipo de passeio"
-                instanceId="tourTypeSelect4"
+        <div className="bg-[#faf5ee36] shadow-md p-10 rounded-lg">
+          <h3 className="text-xl font-bold mb-6">Pesquisar passeios</h3>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <Autocomplete
+                inputClassName="h-12 text-sm bg-white"
+                placeholder={"Onde?"}
               />
+              {/* <Input type="text" placeholder="Onde?" name="place" className="h-12 text-sm" /> */}
             </div>
-            <button type="submit" className="thm-btn tours-list__sidebar-btn">
+            <div>
+              {/* <Input type="date" placeholder="Quando?" name="when" className="h-12 text-sm" /> */}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={cn(
+                      "w-full h-12 justify-start text-left font-normal",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, "PPP") : <span>Quando?</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div>
+              <Select onValueChange={handleSelect}>
+                <SelectTrigger className="h-12 text-sm bg-white">
+                  <SelectValue placeholder="Selecione o tipo de passeio" />
+                </SelectTrigger>
+                <SelectContent>
+                  {typeOptions.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <Button type="submit" className="w-full h-12 bg-green-700 hover:bg-green-800 text-base font-medium">
               Pesquisar
-            </button>
+            </Button>
           </form>
         </div>
+
+
+
         <div className="tour-sidebar__sorter-wrap">
           <div className="tour-sidebar__sorter-single">
             <div className="tour-sidebar__sorter-top">
@@ -177,9 +236,8 @@ const ToursListLeft = () => {
                           {Array.from(Array(5)).map((_, j) => (
                             <i
                               key={j}
-                              className={`fa fa-star${
-                                j + 1 <= count ? " active" : ""
-                              }`}
+                              className={`fa fa-star${j + 1 <= count ? " active" : ""
+                                }`}
                             ></i>
                           ))}
                         </label>
