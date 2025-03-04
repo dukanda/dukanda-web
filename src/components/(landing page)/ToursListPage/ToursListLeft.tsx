@@ -4,72 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import toursListPage from "@/data/toursListPage";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, ChevronDown, Star } from "lucide-react";
 import React, { useState } from "react";
-import Slider from "react-rangeslider";
-// import Select from "react-select";
 
 const { categories, durations } = toursListPage;
-
-// const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
-//   value: it,
-//   label: it,
-// }));
-
-const customStyle = {
-  valueContainer: (provided) => ({
-    ...provided,
-    color: "#787780",
-    fontSize: 13,
-    fontWeight: 500,
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    cursor: "pointer",
-  }),
-  menu: (provided) => ({
-    ...provided,
-    marginTop: 5,
-    border: "none",
-    boxShadow: "none",
-    zIndex: 10,
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    color: "white",
-    padding: "4px 20px",
-    backgroundColor: state.isSelected ? "#006837" : "#313041",
-    transition: "all 0.4s ease",
-    cursor: "pointer",
-    borderBottom:
-      state.label === typeOptions[typeOptions.length - 1].label
-        ? "none"
-        : "0.5px solid #ffffff33",
-    "&:hover": {
-      backgroundColor: "#006837",
-    },
-    borderRadius:
-      state.label === typeOptions[typeOptions.length - 1].label
-        ? "0 0 8px 8px"
-        : 0,
-    fontSize: 16,
-    fontWeight: 500,
-  }),
-  control: (base) => ({
-    ...base,
-    borderColor: "transparent",
-    boxShadow: "none",
-    borderRadius: "8px",
-    "&:hover": {
-      borderColor: "transparent",
-    },
-    padding: 14,
-  }),
-};
 
 const typeOptions = [
   { value: "aventura", label: "Aventura" },
@@ -79,36 +23,15 @@ const typeOptions = [
 
 
 const ToursListLeft = () => {
+  const [showPrice, setShowPrice] = useState(true);
   const [showReview, setShowReview] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
   const [showDuration, setShowDuration] = useState(true);
-  const [showPrice, setShowPrice] = useState(true);
+  const [priceRange, setPriceRange] = useState([500, 10000]);
   const [selected, setSelected] = useState("Adventure");
-  const [priceRange, setPriceRange] = useState(2000);
   const [date, setDate] = React.useState<Date>()
   let count = 6;
 
-  // const handleSelect = ({ value }) => {
-  //   setSelected(value);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
-  //   const data = {
-  //     type: selected,
-  //     date: formData.get("when"),
-  //     place: formData.get("place"),
-  //   };
-  //   console.log(data);
-  // };
-
-  const handlePriceChange = (value) => {
-    setPriceRange(value);
-  };
-
-
-  ///
   const [selectedType, setSelectedType] = useState("");
 
   const handleSelect = (value: string) => {
@@ -177,128 +100,146 @@ const ToursListLeft = () => {
             </Button>
           </form>
         </div>
-
-
-
-        <div className="tour-sidebar__sorter-wrap">
-          <div className="tour-sidebar__sorter-single">
-            <div className="tour-sidebar__sorter-top">
-              <h3>Preço</h3>
-              <button
-                onClick={() => setShowPrice((preShow) => !preShow)}
-                className="tour-sidebar__sorter-toggler"
-              ></button>
+        <div className="p-8 mt-6 border border-gray-300 rounded-lg space-y-6">
+          {/* Preço */}
+          <div>
+            <div className="flex items-center justify-between border-b pb-2 mb-4">
+              <h3 className="text-lg font-semibold">Preço</h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowPrice((prev) => !prev)}
+              >
+                <ChevronDown
+                  className={`transition-transform ${showPrice ? "rotate-180" : ""}`}
+                />
+              </Button>
             </div>
             {showPrice && (
-              <div className="tour-sidebar__sorter-content">
-                <div className="tour-sidebar__price-range">
-                  <div className="form-group">
-                    <p>
-                      <span id="min-value-rangeslider">{priceRange} kz</span>
-                    </p>
-                    <p>
-                      <span id="max-value-rangeslider">{priceRange} kz</span>
-                    </p>
-                  </div>
-                  <Slider
-                    min={500}
-                    max={10000}
-                    value={priceRange}
-                    onChange={handlePriceChange}
-                    className="range-slider-price"
-                  />
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm font-semibold text-gray-700">
+                  <span>{priceRange[0]} KZ</span>
+                  <span>{priceRange[1]} KZ</span>
                 </div>
+                <Slider
+                  defaultValue={priceRange}
+                  min={500}
+                  max={10000}
+                  step={100}
+                  onValueChange={(value) => setPriceRange(value)}
+                  className=""
+                />
               </div>
             )}
           </div>
 
-          <div className="tour-sidebar__sorter-single">
-            <div className="tour-sidebar__sorter-top">
-              <h3>Estrelas da tour</h3>
-              <button
-                onClick={() => setShowReview((preShow) => !preShow)}
-                className="tour-sidebar__sorter-toggler"
-              ></button>
+          {/* Estrelas da Tour */}
+          <div>
+            <div className="flex items-center justify-between border-b pb-2 mb-4">
+              <h3 className="text-lg font-semibold">Estrelas da tour</h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowReview((prev) => !prev)}
+              >
+                <ChevronDown
+                  className={`transition-transform ${showReview ? "rotate-180" : ""}`}
+                />
+              </Button>
             </div>
             {showReview && (
-              <div className="tour-sidebar__sorter-content">
-                <div className="tour-sidebar__sorter-inputs">
-                  {Array.from(Array(5)).map((_, i) => {
-                    count--;
-                    return (
-                      <p key={i}>
-                        <input
-                          type="checkbox"
-                          id={`review-${count}`}
-                          name="radio-group"
-                        />
-                        <label htmlFor={`review-${count}`}>
-                          {Array.from(Array(5)).map((_, j) => (
-                            <i
+              <div className="space-y-3">
+                {Array.from({ length: 5 }).map((_, i) => {
+                  const rating = 5 - i;
+                  return (
+                    <div key={rating} className="flex items-center space-x-2">
+                      <RadioGroup className="flex items-center space-x-2">
+                        <RadioGroupItem value="" id={`review-${rating}`} className="rounded-md shadow-sm" />
+                        <label
+                          htmlFor={`review-${rating}`}
+                          className="flex items-center space-x-1 cursor-pointer text-gray-700"
+                        >
+                          {Array.from({ length: 5 }).map((_, j) => (
+                            <span
                               key={j}
-                              className={`fa fa-star${j + 1 <= count ? " active" : ""
-                                }`}
-                            ></i>
+                            // className={`text-lg ${j < rating ? "text-yellow-500 fill-orange-700" : "text-gray-300"
+                            //   }`}
+                            >
+                              <Star className={`text-lg ${j < rating ? "text-orange-400 fill-orange-400" : "text-gray-300"
+                                }`} />
+                            </span>
                           ))}
                         </label>
-                      </p>
-                    );
-                  })}
-                </div>
+                      </RadioGroup>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
 
-          <div className="tour-sidebar__sorter-single">
-            <div className="tour-sidebar__sorter-top">
-              <h3>Categoria</h3>
-              <button
-                onClick={() => setShowCategory((preShow) => !preShow)}
-                className="tour-sidebar__sorter-toggler"
-              ></button>
+          {/* Categoria */}
+          <div>
+            <div className="flex items-center justify-between border-b pb-2 mb-4">
+              <h3 className="text-lg font-semibold">Categoria</h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowCategory((prev) => !prev)}
+              >
+                <ChevronDown
+                  className={`transition-transform ${showCategory ? "rotate-180" : ""}`}
+                />
+              </Button>
             </div>
             {showCategory && (
-              <div className="tour-sidebar__sorter-content">
-                <div className="tour-sidebar__sorter-inputs">
-                  {categories.map((category, index) => (
-                    <p key={index}>
-                      <input
-                        type="checkbox"
-                        id={`cat-${index + 1}`}
-                        name="radio-group"
-                      />
-                      <label htmlFor={`cat-${index + 1}`}>{category}</label>
-                    </p>
-                  ))}
-                </div>
+              <div className="space-y-3">
+                {categories.map((category, index) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <RadioGroup defaultValue="comfortable" className="flex items-center space-x-2">
+                      <RadioGroupItem value="" id={`cat-${index}`} className="rounded-md shadow-sm" />
+                      <label
+                        htmlFor={`cat-${index}`}
+                        className="cursor-pointer text-gray-700"
+                      >
+                        {category}
+                      </label>
+                    </RadioGroup>
+                  </div>
+                ))}
               </div>
             )}
           </div>
 
-          <div className="tour-sidebar__sorter-single">
-            <div className="tour-sidebar__sorter-top">
-              <h3>Duração</h3>
-              <button
-                onClick={() => setShowDuration((preShow) => !preShow)}
-                className="tour-sidebar__sorter-toggler"
-              ></button>
+          {/* Duração */}
+          <div>
+            <div className="flex items-center justify-between border-b pb-2 mb-4">
+              <h3 className="text-lg font-semibold">Duração</h3>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setShowDuration((prev) => !prev)}
+              >
+                <ChevronDown
+                  className={`transition-transform ${showDuration ? "rotate-180" : ""}`}
+                />
+              </Button>
             </div>
             {showDuration && (
-              <div className="tour-sidebar__sorter-content">
-                <div className="tour-sidebar__sorter-inputs">
-                  {durations.map((duration, index) => (
-                    <p key={index}>
-                      <input
-                        type="checkbox"
-                        id={`duration-${index + 1}`}
-                        name="radio-group"
-                      />
-                      <label htmlFor={`duration-${index + 1}`}>
+              <div className="space-y-3">
+                {durations.map((duration, index) => (
+                  <div key={index} className="flex items-center space-x-2">
+                    <RadioGroup defaultValue="comfortable" className="flex items-center space-x-2 rounded-none shadow-none">
+                      <RadioGroupItem value={`duration-${index}`} id={`duration-${index}`} className="rounded-md shadow-sm" />
+                      <label
+                        htmlFor={`duration-${index}`}
+                        className="cursor-pointer text-gray-700"
+                      >
                         {duration}
                       </label>
-                    </p>
-                  ))}
-                </div>
+                    </RadioGroup>
+                  </div>
+                ))}
               </div>
             )}
           </div>
