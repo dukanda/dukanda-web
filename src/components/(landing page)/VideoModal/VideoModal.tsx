@@ -3,6 +3,7 @@ import React from "react";
 // import YouTube from 'react-youtube';
 import "react-modal-video/css/modal-video.min.css";
 
+//@ts-ignore
 const VideoModal = ({ isOpen, setOpen, id }) => {
   return (
     <>
