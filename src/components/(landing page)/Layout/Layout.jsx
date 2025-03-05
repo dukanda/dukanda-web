@@ -12,7 +12,6 @@ import "@/assets/vendors/fontawesome/css/all.min.css";
 import "@/assets/vendors/tevily-icons/style.css";
 import "@/assets/vendors/reey-font/stylesheet.css";
 import "react-datepicker/dist/react-datepicker.css";
-import "react-rangeslider/lib/index.css";
 
 // extra css
 import "@/styles/globals.css";
