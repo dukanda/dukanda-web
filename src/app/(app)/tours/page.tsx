@@ -7,7 +7,7 @@ export default function Tours() {
   return (
     <Layout pageTitle="Tours">
       <PageHeader title="Popular Tours" page="Tours" />
-      <PopularToursTwo toursPage />
+      <PopularToursTwo/>
     </Layout>
   )
 }
