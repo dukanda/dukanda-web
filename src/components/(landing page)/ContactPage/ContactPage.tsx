@@ -12,6 +12,7 @@ const ContactPage = () => {
     e.preventDefault();
     const fromData = new FormData(e.target);
     const data = {};
+    //@ts-ignore
     inputs.forEach((input) => (data[input] = fromData.get(input)));
     console.log(data);
   };
