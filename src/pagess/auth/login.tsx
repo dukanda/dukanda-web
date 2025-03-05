@@ -9,6 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //@ts-ignore
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login com:", { email, password });
