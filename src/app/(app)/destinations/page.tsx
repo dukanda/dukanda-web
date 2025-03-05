@@ -2,7 +2,6 @@ import DestinationsPage from "@/components/(landing page)/DestinationsPage/Desti
 import Layout from "@/components/(landing page)/Layout/Layout";
 import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 
-
 export default function Destinations() {
   return (
     <Layout pageTitle="Destinations">
