@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import setImage from "../../../utils/imageUtil"
 import TourSearchForm from "../TourSearchForm/TourSearchForm";
 
+//@ts-ignore
 const BannerTwo = ({ data }) => {
   // if (!data) return null; // Evitar erro ao renderizar antes de carregar os dados
 
@@ -12,7 +13,9 @@ const BannerTwo = ({ data }) => {
   return (
     <section className="banner-two">
       <BackgroundSlider
+      //@ts-ignore
         className="banner-bg-slide"
+        //@ts-ignore
         images={ data? slides?.map(item => setImage(item)) : []}
         duration={10}
         transition={2}

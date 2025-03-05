@@ -2,26 +2,33 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
 
-const typeOptions = ["Selecione","Aventura", "Vida Selvagem", "Passeios Turísticos"].map((it) => ({
+const typeOptions = ["Selecione", "Aventura", "Vida Selvagem", "Passeios Turísticos"].map((it) => ({
   value: it,
   label: it,
 }));
 
-
 const customStyle = {
+  //@ts-ignore
+
   container: (provided) => ({
     ...provided,
     zIndex: 100000,
     color: "#006837"
   }),
+  //@ts-ignore
+
   valueContainer: (provided) => ({
     ...provided,
     padding: 0,
   }),
+  //@ts-ignore
+
   singleValue: (provided) => ({
     ...provided,
     cursor: "pointer",
   }),
+  //@ts-ignore
+
   menu: (provided) => ({
     ...provided,
     marginTop: 5,
@@ -29,6 +36,8 @@ const customStyle = {
     boxShadow: "none",
     height: 0,
   }),
+  //@ts-ignore
+
   option: (provided, state) => ({
     ...provided,
     color: "white",
@@ -50,6 +59,8 @@ const customStyle = {
     fontSize: 16,
     fontWeight: 500,
   }),
+  //@ts-ignore
+
   control: (base) => ({
     ...base,
     height: 0,
@@ -66,9 +77,13 @@ const TourSearchForm = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [selected, setSelected] = useState("Selecione");
 
+  //@ts-ignore
+
   const handleSelect = ({ value }) => {
     setSelected(value);
   };
+
+  //@ts-ignore
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -98,6 +113,8 @@ const TourSearchForm = () => {
             <label>Quando Ir</label>
             <DatePicker
               selected={startDate}
+              //@ts-ignore
+
               onChange={(date) => setStartDate(date)}
               className="hasDatepicker"
               placeholderText="Selecione"
@@ -109,6 +126,8 @@ const TourSearchForm = () => {
               defaultValue={typeOptions[0]}
               name="type"
               options={typeOptions}
+              //@ts-ignore
+
               onChange={handleSelect}
               styles={customStyle}
               isSearchable={false}
