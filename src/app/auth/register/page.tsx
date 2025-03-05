@@ -11,6 +11,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  //@ts-ignore
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Cadastro com:", { name, email, password });
