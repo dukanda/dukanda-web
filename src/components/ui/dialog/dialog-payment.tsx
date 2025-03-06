@@ -19,11 +19,29 @@ import UploadArea from "../upload-area";
 import { formatDateRange } from "@/_utils/calculateDuration";
 
 
-const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void }) => {
-  const [total, setTotal] = useState(0);
+const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate, setTotal }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void, setTotal: (total: number) => void }) => {
+  const [total, setTotalLocal] = useState(0);
+  const [quantities, setQuantities] = useState({});
+
+  const handleInputChange = (id, price, qty) => {
+    const quantity = Number(qty);
+  
+    setQuantities(prevQuantities => {
+      const updatedQuantities = { ...prevQuantities, [id]: quantity };
+  
+      const totalValue = Object.keys(updatedQuantities).reduce((acc, key) => {
+        return acc + (packages.find(p => p.id === key)?.price || 0) * (updatedQuantities[key] || 0);
+      }, 0);
+  
+      setTotalLocal(totalValue);
+      setTotal(totalValue);
+  
+      return updatedQuantities;
+    });
+  };
+  
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
-      {/* Header */}
       <header className="w-full mt-6">
         <div className="flex flex-col gap-2 md:flex-row items-center justify-between">
           <div className="flex gap-3">
@@ -35,7 +53,6 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
             </div>
           </div>
 
-          {/* Data e quantidade de pessoas */}
           <div className="flex gap-3">
             <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-max">
               <span className="font-medium text-gray-700">
@@ -46,59 +63,52 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
         </div>
       </header>
 
-      {
-        packages.length > 0 && packages.map((pkg) => (
-          <div key={pkg.id} className="w-full">
-            <Card className="shadow-sm border border-gray-200">
-              <CardHeader>
-                <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
-                  {pkg.name}
-                </CardTitle>
-                <CardDescription className="text-gray-600"></CardDescription>
-              </CardHeader>
-              <CardContent className="text-gray-700 space-y-4 w-full text-start ">
+      {packages.map((pkg) => (
+        <div key={pkg.id} className="w-full">
+          <Card className="shadow-sm border border-gray-200">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
+                {pkg.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-700 space-y-4 w-full text-start">
+              <p>
+                O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
+              </p>
+              <p>Confira os Benefícios:</p>
+              <ul className="text-gray-700 flex flex-wrap gap-2">
+                {pkg.benefits.map((benefit) => (
+                  <li key={benefit.id} className="flex items-start gap-1">
+                    <Check size={16} className="text-green-600" />
+                    {benefit.name}
+                  </li>
+                ))}
+              </ul>
+              <div className="w-full flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <p>
-                  O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
+                  Preço por pessoa: <span className="text-green-500">{formatCurrency(pkg.price || 5000)}</span>
                 </p>
-                <p>Confira os Benefícios:</p>
-
-                <div key={pkg.id} className="">
-                  <ul key={pkg.id} className="text-gray-700 flex items-center justify-start space-y-1 flex-wrap">
-                    {pkg.benefits.map((benefit) => (
-                      <li key={benefit.id} className="flex items-start gap-1 mr-2">
-                        <Check size={16} className="text-green-600" />
-                        {benefit.name}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex items-center px-3 py-2 border rounded-md w-32">
+                  <Users2Icon className="text-gray-700" size={20} />
+                  <input
+                    type="number"
+                    onChange={(e) => handleInputChange(pkg.id, pkg.price, e.target.value)}
+                    value={quantities[pkg.id] || 0}
+                    className="w-full text-center border-none bg-transparent focus:outline-none"
+                    min={0}
+                  />
                 </div>
-
-                <div className="w-full flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                  <p>
-                    Preço por pessoa: <span className="text-green-500">{formatCurrency(pkg.price || 5000)}</span>
-                  </p>
-                  <div className="flex items-center px-3 py-2 border rounded-md w-32">
-                    <Users2Icon className="text-gray-700" size={20} />
-                    <input
-                      type="number"
-                      onChange={(e) => setTotal(pkg.price * Number(e.target.value))}
-                      defaultValue={0}
-                      className="w-full text-center border-none bg-transparent focus:outline-none"
-                      min={0}
-                    />
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter className="flex justify-between items-center">
-                <span className="text-lg font-semibold text-gray-800">Total:</span>
-                <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
-                  {formatCurrency(total)}
-                </span>
-              </CardFooter>
-            </Card>
-          </div>
-        ))
-      }
+              </div>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <span className="text-lg font-semibold text-gray-800">Total:</span>
+              <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
+                {formatCurrency((quantities[pkg.id] || 0) * pkg.price)}
+              </span>
+            </CardFooter>
+          </Card>
+        </div>
+      ))}
     </form>
   );
 };
@@ -231,13 +241,14 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
 
 export function DialogPayment({ selectedPackage, description, packages = [], startDate, endDate }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string }) {
   const [selectedPackageState, setSelectedPackageState] = useState<Package | null>(selectedPackage || (packages.length > 0 ? packages[0] : null));
+  const [total, setTotal] = useState(0);
 
   const handleSelectPackage = (selectedPackage: Package | null) => {
     setSelectedPackageState(selectedPackage);
   };
 
   const steps = [
-    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackageState} description={description} packages={packages} onSelect={handleSelectPackage} startDate={startDate} endDate={endDate} /> },
+    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackageState} description={description} packages={packages} onSelect={handleSelectPackage} startDate={startDate} endDate={endDate} setTotal={setTotal} /> },
     { label: "Step 2", form: StepTwoForm },
     { label: "Step 3", form: StepThreeForm },
   ];
@@ -255,7 +266,7 @@ export function DialogPayment({ selectedPackage, description, packages = [], sta
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription className="h-full">
-            <MultiStepForm steps={steps} onFinished={handleFinished} />
+            <MultiStepForm steps={steps} onFinished={handleFinished} total={total} />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

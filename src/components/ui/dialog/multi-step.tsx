@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { checkVariants, stepsVariants } from "@/lib/utils-multi-step";
 import { Banknote, Check, CreditCard, TextSelect } from "lucide-react";
+import { formatCurrency } from "@/_utils/formatCurrency";
 
 const iconStep = [
   {
@@ -43,10 +44,12 @@ export default function MultiStepForm<
   onFinished,
   steps,
   otherData,
+  total,
 }: {
   onFinished: (formData: TMultiStepFormData) => void;
   steps: Step<TPossibleFormData, TMultiStepFormData, TOtherData>[];
   otherData?: TOtherData;
+  total: number;
 }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setformData] = useState<TMultiStepFormData>(
@@ -165,22 +168,25 @@ export default function MultiStepForm<
             </div>
           </div>
 
-          <div className="flex   justify-end gap-3 mt-4 text-black ">
-            {currentStep > 0 && (
+          <div className="flex justify-between items-center gap-3 mt-4 text-black">
+            <span className="text-lg font-semibold">Total: {formatCurrency(total)}</span>
+            <div className="flex gap-3">
+              {currentStep > 0 && (
+                <button
+                  type="button"
+                  onClick={onBackStep}
+                  className="thm-btn h-10"
+                >
+                  Voltar
+                </button>
+              )}
               <button
-                type="button"
-                onClick={onBackStep}
+                onClick={() => onStepSubmit({} as TPossibleFormData)}
                 className="thm-btn h-10"
               >
-                Voltar
+                {currentStep < steps.length - 1 ? "Próximo" : "Concluir"}
               </button>
-            )}
-            <button
-              onClick={() => onStepSubmit({} as TPossibleFormData)}
-              className="thm-btn h-10"
-            >
-              {currentStep < steps.length - 1 ? "Próximo" : "Concluir"}
-            </button>
+            </div>
           </div>
         </div>
       </div>
