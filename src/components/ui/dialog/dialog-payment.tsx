@@ -12,38 +12,20 @@ import {
   DialogFooter,
 } from "./radix-dialog";
 import { formatCurrency } from "@/_utils/formatCurrency";
-import Select from "react-select";
-import { Check, Copy, MapPinned, MoveUpRight, Users2Icon } from "lucide-react";
-import { SelectDemo } from "../select/select";
+import { Check, Copy, MapPinned, Users2Icon } from "lucide-react";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Label } from "../label";
 import { Input } from "../input";
-import { Button } from "../button";
 import UploadArea from "../upload-area";
 import { formatDateRange } from "@/_utils/calculateDuration";
-import { RadioGroup, RadioGroupItem } from "../radio";
 
 
 const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void }) => {
-  const [openAccordion, setOpenAccordion] = useState<string | undefined>(packages.length > 0 ? packages[0].id : undefined);
-
+  const [total, setTotal] = useState(0);
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
       {/* Header */}
       <header className="w-full mt-6">
         <div className="flex flex-col gap-2 md:flex-row items-center justify-between">
-          {/* Data e quantidade de pessoas */}
-          <div className="flex gap-3">
-            <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
-              <span className="font-medium text-gray-700">
-                {formatDateRange(new Date(startDate), new Date(endDate))}
-              </span>
-            </div>
-          </div>
-
-          {/* SelectDemo para trocar pacotes */}
-          {/* <SelectDemo packages={packages} onSelect={onSelect} /> */}
           <div className="flex gap-3">
             <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
               <span className="font-medium text-gray-700 flex items-center gap-2">
@@ -52,40 +34,36 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
               </span>
             </div>
           </div>
+
+          {/* Data e quantidade de pessoas */}
+          <div className="flex gap-3">
+            <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-max">
+              <span className="font-medium text-gray-700">
+                {formatDateRange(new Date(startDate), new Date(endDate))}
+              </span>
+            </div>
+          </div>
         </div>
       </header>
 
+      {
+        packages.length > 0 && packages.map((pkg) => (
+          <div key={pkg.id} className="w-full">
+            <Card className="shadow-sm border border-gray-200">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
+                  {pkg.name}
+                </CardTitle>
+                <CardDescription className="text-gray-600"></CardDescription>
+              </CardHeader>
+              <CardContent className="text-gray-700 space-y-4 w-full text-start ">
+                <p>
+                  O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
+                </p>
+                <p>Confira os Benefícios:</p>
 
-      {/* Listar todos os pacotes */}
-      <RadioGroup value={selectedPackage?.id || ""} onValueChange={(value) => onSelect(packages.find((pkg) => pkg.id === value) || null)} className="w-full space-y-4">
-        {packages.map((pkg) => (
-          <Accordion type="single" collapsible key={pkg.id} value={openAccordion} onValueChange={(value) => setOpenAccordion(value || undefined)}>
-            <AccordionItem value={pkg.id}>
-              <AccordionTrigger
-                className={`w-full ${openAccordion !== pkg.id ? 'h-16' : ''}`}
-              >
-                <Card className="shadow-sm border border-gray-200 w-full">
-                  <CardHeader>
-                    <label className="flex items-center justify-between gap-2 cursor-pointer">
-                      <CardTitle className="text-xl font-semibold flex items-center gap-2 hover:underline">
-                        {pkg.name}
-                        <MoveUpRight size={18} />
-                      </CardTitle>
-                      <RadioGroupItem value={pkg.id} className="w-4 h-4  shadow-none" />
-                    </label>
-                    {openAccordion === pkg.id && (
-                      <CardDescription className="text-gray-600 text-start">
-                        Aproveite essa experiência única
-                      </CardDescription>
-                    )}
-                  </CardHeader>
-                </Card>
-              </AccordionTrigger>
-
-              <AccordionContent>
-                <CardContent className="text-gray-700 space-y-4 w-full text-start">
-                  <p>Confira os Benefícios:</p>
-                  <ul className="text-gray-700 flex items-center justify-start space-y-1 flex-wrap">
+                <div key={pkg.id} className="">
+                  <ul key={pkg.id} className="text-gray-700 flex items-center justify-start space-y-1 flex-wrap">
                     {pkg.benefits.map((benefit) => (
                       <li key={benefit.id} className="flex items-start gap-1 mr-2">
                         <Check size={16} className="text-green-600" />
@@ -93,37 +71,34 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
                       </li>
                     ))}
                   </ul>
+                </div>
 
-                  <p className="font-semibold w-full text-start flex flex-col md:flex-row justify-between items-center">
-                    <span>
-                      5x {formatCurrency(pkg.price || 1000)}
-                      <br />
-                      <span className="text-sm font-light text-gray-800">(Incluindo impostos)</span>
-                    </span>
-                    <div className="flex items-center px-3 py-2 border rounded-md w-32">
-                      <Users2Icon className="text-gray-700" size={20} />
-                      <input
-                        type="number"
-                        defaultValue={1}
-                        className="w-full text-center border-none bg-transparent focus:outline-none"
-                        min={1}
-                      />
-                    </div>
+                <div className="w-full flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                  <p>
+                    Preço por pessoa: <span className="text-green-500">{formatCurrency(pkg.price || 5000)}</span>
                   </p>
-                </CardContent>
-
-                <CardFooter className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-gray-800">Total:</span>
-                  <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2 min-w-[125px]">
-                    {formatCurrency(pkg.price || 5000)}
-                  </span>
-                </CardFooter>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ))}
-      </RadioGroup>
-
+                  <div className="flex items-center px-3 py-2 border rounded-md w-32">
+                    <Users2Icon className="text-gray-700" size={20} />
+                    <input
+                      type="number"
+                      onChange={(e) => setTotal(pkg.price * Number(e.target.value))}
+                      defaultValue={0}
+                      className="w-full text-center border-none bg-transparent focus:outline-none"
+                      min={0}
+                    />
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-800">Total:</span>
+                <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
+                  {formatCurrency(total)}
+                </span>
+              </CardFooter>
+            </Card>
+          </div>
+        ))
+      }
     </form>
   );
 };

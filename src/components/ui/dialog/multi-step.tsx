@@ -91,8 +91,8 @@ export default function MultiStepForm<
 
   return (
     <div className=" h-full">
-      <section className="w-full h-full">
-        <section className=" h-full flex flex-col justify-between">
+      <div className="w-full h-full">
+        <div className=" h-full flex flex-col justify-between">
           <div className="p-2 w-full flex flex-col items-center justify-center gap-2  ">
             <div className="flex gap-2">
               {steps.map((_, ind) => (
@@ -182,8 +182,8 @@ export default function MultiStepForm<
               {currentStep < steps.length - 1 ? "Próximo" : "Concluir"}
             </button>
           </div>
-        </section>
-      </section>
+        </div>
+      </div>
     </div>
   );
 }
