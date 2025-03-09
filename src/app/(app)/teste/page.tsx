@@ -1,4 +1,5 @@
 "use client";
+import { citiesRoutes } from "@/api/routes/Cities/index.routes";
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
 import { MultiStepPaymentForm } from "@/components/app/payment-form/page";
 import { TourManagementTable } from "@/components/app/tour-management-table/page";
@@ -10,7 +11,7 @@ export default function Teste() {
   const getTourById = useQuery({
     queryKey: ['getFeaturedTours'],
     queryFn: async () => {
-      const response = await toursRoutes.getTourById("d4f3c46d-818d-410f-8fb9-b150d5298f64");
+      const response = await citiesRoutes.getAllCities();
       return response;
     },
   })
@@ -23,8 +24,7 @@ export default function Teste() {
   //   },
   // })
 
-
-  console.log("api", getTourById.data?.data);
+  console.log("api", getTourById.data?.data.items);
   return (
     <div>
       {/* <MultiStepPaymentForm />

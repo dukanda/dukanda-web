@@ -1,4 +1,5 @@
 "use client";
+import { citiesRoutes } from "@/api/routes/Cities/index.routes";
 import Autocomplete from "@/components/ui/autocomplete";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -9,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import toursListPage from "@/data/toursListPage";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { CalendarIcon, ChevronDown, Star } from "lucide-react";
 import React, { useState } from "react";
@@ -29,13 +31,33 @@ const ToursListLeft = () => {
   const [showDuration, setShowDuration] = useState(true);
   const [priceRange, setPriceRange] = useState([500, 10000]);
   const [selected, setSelected] = useState("Adventure");
-  const [date, setDate] = React.useState<Date>()
+  const [date, setDate] = React.useState<Date>();
+  const [citySelected, setCitySelected] = useState("");
+  const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
   let count = 6;
 
   const [selectedType, setSelectedType] = useState("");
 
+
+  const getAllCities = useQuery({
+    queryKey: ['getAllCities'],
+    queryFn: async () => {
+      const response = await citiesRoutes.getAllCities();
+      setCitiesAutoComplete(response.data.items.map((city) => ({ value: city.name, id: city.id })));
+      return response;
+    },
+  })
+
+  console.log("gey all", citiesAutoComplete)
   const handleSelect = (value: string) => {
     setSelectedType(value);
+  };
+
+  const handleSelectCity = (value: string) => {
+    const selectedCity = citiesAutoComplete.find(city => city.value === value);
+    if (selectedCity) {
+      setCitySelected(selectedCity.id);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -52,6 +74,8 @@ const ToursListLeft = () => {
             <div>
               {/* @ts-ignore */}
               <Autocomplete
+                suggestions={citiesAutoComplete}
+                onSelect={handleSelectCity}
                 inputClassName="h-12 text-sm bg-white"
                 placeholder={"Onde?"}
               />
