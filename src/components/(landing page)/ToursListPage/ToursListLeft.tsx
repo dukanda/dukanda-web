@@ -4,7 +4,6 @@ import { tourTypesRoutes } from "@/api/routes/Tour-Types/index.routes";
 import Autocomplete from "@/components/ui/autocomplete";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -18,20 +17,12 @@ import React, { useState } from "react";
 
 const { categories, durations } = toursListPage;
 
-const typeOptions = [
-  { value: "aventura", label: "Aventura" },
-  { value: "cultural", label: "Cultural" },
-  { value: "gastronomico", label: "Gastronômico" },
-];
-
-
 const ToursListLeft = () => {
   const [showPrice, setShowPrice] = useState(true);
   const [showReview, setShowReview] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
   const [showDuration, setShowDuration] = useState(true);
   const [priceRange, setPriceRange] = useState([500, 10000]);
-  const [selected, setSelected] = useState("Adventure");
   const [date, setDate] = React.useState<Date>();
   const [citySelected, setCitySelected] = useState("");
   const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
