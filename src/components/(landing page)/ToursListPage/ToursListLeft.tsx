@@ -1,5 +1,6 @@
 "use client";
 import { citiesRoutes } from "@/api/routes/Cities/index.routes";
+import { tourTypesRoutes } from "@/api/routes/Tour-Types/index.routes";
 import Autocomplete from "@/components/ui/autocomplete";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -34,21 +35,27 @@ const ToursListLeft = () => {
   const [date, setDate] = React.useState<Date>();
   const [citySelected, setCitySelected] = useState("");
   const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
-  let count = 6;
-
   const [selectedType, setSelectedType] = useState("");
-
+  let count = 6;
 
   const getAllCities = useQuery({
     queryKey: ['getAllCities'],
     queryFn: async () => {
       const response = await citiesRoutes.getAllCities();
+       {/* @ts-ignore */}
       setCitiesAutoComplete(response.data.items.map((city) => ({ value: city.name, id: city.id })));
       return response;
     },
   })
 
-  console.log("gey all", citiesAutoComplete)
+  const getTourTypes = useQuery({
+    queryKey: ['getTourTypes'],
+    queryFn: async () => {
+      const response = await tourTypesRoutes.getToursTypes();
+      return response;
+    }
+  })
+
   const handleSelect = (value: string) => {
     setSelectedType(value);
   };
@@ -112,9 +119,10 @@ const ToursListLeft = () => {
                   <SelectValue placeholder="Selecione o tipo de passeio" />
                 </SelectTrigger>
                 <SelectContent>
-                  {typeOptions.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
+                  {/* @ts-ignore */}
+                  {getTourTypes.data.items.map((option) => (
+                    <SelectItem key={option.id} value={option.name}>
+                      {option.name}
                     </SelectItem>
                   ))}
                 </SelectContent>
