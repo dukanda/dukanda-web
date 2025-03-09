@@ -134,7 +134,7 @@ import { MenuIcon } from "lucide-react";
 
 const { icons, navItems, social, logo, logo2 } = headerData;
 
-const Header = ({ pageTitle}) => {
+const Header = ({ pageTitle }) => {
   const scrollTop = useScroll(130);
   const { toggleMenu, toggleSearch } = useRootContext();
 
@@ -142,9 +142,8 @@ const Header = ({ pageTitle}) => {
 
     //main-header
     <header
-      className={` w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-        scrollTop ? "bg-[var(--thm-base)] shadow-md" : "bg-transparent"
-      }`}
+      className={` w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrollTop ? "bg-[var(--thm-base)] shadow-md" : "bg-transparent"
+        }`}
     >
       {/* Top Bar */}
       {/* <div className="main-header__top hidden md:block bg-[var(--thm-black)] text-white py-2">
@@ -177,11 +176,10 @@ const Header = ({ pageTitle}) => {
 
       {/* Navigation */}
       <nav
-        className={`main-menu w-full bg-white  transition-all duration-300 ${
-          scrollTop ? "stricky-header stricky-fixed" : ""
-        }`}
+        className={`main-menu w-full bg-white  transition-all duration-300 ${scrollTop ? "stricky-header stricky-fixed" : ""
+          }`}
       >
-         {/* main-menu-wrapper container */}
+        {/* main-menu-wrapper container */}
         <div className=" mx-auto flex justify-between items-center px-12">
           {/* Logo */}
           <Link href="/" className="main-menu-wrapper__logo flex items-center" passHref>
@@ -206,15 +204,16 @@ const Header = ({ pageTitle}) => {
             <button onClick={toggleSearch} className="main-menu__search text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg">
               <i className="icon-magnifying-glass"></i>
             </button>
-            <a href="#" className="main-menu__user text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg">
+            <Link href="/auth/register" className="main-menu__user text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg" passHref
+            >
               <i className="icon-avatar"></i>
-            </a>
+            </Link>
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
               className="block xl:hidden  text-[var(--thm-primary)] hover:text-[var(--thm-black)] transition text-lg"
             >
-              <MenuIcon size={24}/>
+              <MenuIcon size={24} />
               {/* <i className="fa fa-bars"></i> */}
             </button>
           </div>

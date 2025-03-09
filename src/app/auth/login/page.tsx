@@ -1,23 +1,36 @@
 "use client";
 import { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Image from "next/image";
-// import headerData from "@/data/headerData";
 import logo from "@/assets/images/resources/logo-1.png";
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";
 import React from "react";
-
-// import logo from "@/images/resources/logo-1.png";
-// import logo2 from "@/images/resources/logo-2.png";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { authRoutes } from "@/api/routes/Auth/index.routes";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const login = useMutation({
+    mutationKey: ["login"],
+    mutationFn: async ({ email, password }: { email: string, password: string }) => {
+      return await authRoutes.loginUser(email, password);
+    },
+    onSuccess: (data) => {
+      console.log("Sucesso", data);
+    },
+    onError: (error) => {
+      console.log("Erro", error);
+    },
+  })
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Login com:", { email, password });
+    await login.mutate({ email, password });
   };
 
   const handleGoogleLogin = () => {
@@ -55,42 +68,44 @@ export default function Login() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1">
                 <label htmlFor="email" className="text-sm font-medium text-gray-700">Email</label>
-                <input
+                <Input
                   type="email"
                   id="email"
                   placeholder="Digite seu e-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  autoComplete="off"
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
 
               <div className="space-y-1">
                 <label htmlFor="password" className="text-sm font-medium text-gray-700">Senha</label>
-                <input
+                <Input
                   type="password"
                   id="password"
                   placeholder="Digite sua senha"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  autoComplete="off"
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
 
-              <button type="submit" className="w-full bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition duration-300">
+              <Button type="submit" className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300">
                 Entrar
-              </button>
+              </Button>
 
-              <button
+              <Button
                 type="button"
                 onClick={handleGoogleLogin}
-                className="w-full flex items-center justify-center border border-red-500 text-red-500 py-3 rounded-md hover:bg-red-100 transition duration-300"
+                className="w-full bg-white flex items-center justify-center border border-red-500 text-red-500 py-1.5 rounded-md hover:bg-red-100 transition duration-300"
               >
                 <FaGoogle className="mr-2" />
                 Entrar com Google
-              </button>
+              </Button>
             </form>
 
             <p className="mt-4 text-center text-gray-500">

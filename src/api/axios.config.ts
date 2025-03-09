@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const api = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`, // URL base da API
-  timeout: 10000, // Timeout de requisição
+  // timeout: 10000, // Timeout de requisição
   headers: {
     "Content-Type": "application/json",
   },
