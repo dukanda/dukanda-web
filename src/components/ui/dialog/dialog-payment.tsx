@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import MultiStepForm from "./multi-step";
 import {
@@ -17,29 +17,34 @@ import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription }
 import { Input } from "../input";
 import UploadArea from "../upload-area";
 import { formatDateRange } from "@/_utils/calculateDuration";
+import usePackagesStore from "@/_module/store/usePackagesStore";
 
 
-const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelect, startDate, endDate, setTotal }: { onSubmit: (data: any) => void, selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, onSelect: (selectedPackage: Package | null) => void, setTotal: (total: number) => void }) => {
-  const [total, setTotalLocal] = useState(0);
-  const [quantities, setQuantities] = useState({});
+const StepOneForm = ({
+  onSubmit,
+  selectedPackage,
+  description,
+  packages,
+  onSelect,
+  startDate,
+  endDate,
+  setTotal,
+}: {
+  onSubmit: (data: any) => void;
+  selectedPackage: Package | null;
+  description: string;
+  packages: Package[];
+  startDate: string;
+  endDate: string;
+  onSelect: (selectedPackage: Package | null) => void;
+  setTotal: (total: number) => void;
+}) => {
+  const { counts, totals, overallTotal, setCount, increment, decrement } = usePackagesStore();
 
-  const handleInputChange = (id, price, qty) => {
-    const quantity = Number(qty);
-  
-    setQuantities(prevQuantities => {
-      const updatedQuantities = { ...prevQuantities, [id]: quantity };
-  
-      const totalValue = Object.keys(updatedQuantities).reduce((acc, key) => {
-        return acc + (packages.find(p => p.id === key)?.price || 0) * (updatedQuantities[key] || 0);
-      }, 0);
-  
-      setTotalLocal(totalValue);
-      setTotal(totalValue);
-  
-      return updatedQuantities;
-    });
-  };
-  
+  useEffect(() => {
+    setTotal(overallTotal);
+  }, [overallTotal, setTotal]);
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className="w-full h-full space-y-6">
       <header className="w-full mt-6">
@@ -52,7 +57,6 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
               </span>
             </div>
           </div>
-
           <div className="flex gap-3">
             <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-max">
               <span className="font-medium text-gray-700">
@@ -72,6 +76,7 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
               </CardTitle>
             </CardHeader>
             <CardContent className="text-gray-700 space-y-4 w-full text-start">
+              <CardDescription></CardDescription>
               <p>
                 O pacote grupo, desfrute de uma viagem inesquecível ao Maracanã, com direito a visita guiada e refeições inclusas.
               </p>
@@ -88,22 +93,32 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
                 <p>
                   Preço por pessoa: <span className="text-green-500">{formatCurrency(pkg.price || 5000)}</span>
                 </p>
-                <div className="flex items-center px-3 py-2 border rounded-md w-32">
-                  <Users2Icon className="text-gray-700" size={20} />
-                  <input
-                    type="number"
-                    onChange={(e) => handleInputChange(pkg.id, pkg.price, e.target.value)}
-                    value={quantities[pkg.id] || 0}
-                    className="w-full text-center border-none bg-transparent focus:outline-none"
-                    min={0}
-                  />
+
+                <div className="flex gap-2">
+                  {/*  @ts-ignore */}
+                  <button onClick={() => decrement(pkg.id, pkg.price)} className="bg-orange-400 size-9 rounded-md text-white">-</button>
+                  <div className="flex items-center px-3 py-2 border rounded-md w-24">
+                    <Users2Icon className="text-gray-700" size={20} />
+                    <input
+                      type="number"
+                      //  @ts-ignore
+                      value={counts[pkg.id] || 0}
+                      // @ts-ignore
+                      onChange={(e) => setCount(pkg.id, Number(e.target.value), pkg.price)}
+                      min="0"
+                      className="w-full text-center border-none bg-transparent focus:outline-none"
+                    />
+                  </div>
+                  {/*  @ts-ignore */}
+                  <button onClick={() => increment(pkg.id, pkg.price)} className="bg-orange-400 size-9 rounded-md text-white">+</button>
                 </div>
               </div>
             </CardContent>
             <CardFooter className="flex justify-between items-center">
               <span className="text-lg font-semibold text-gray-800">Total:</span>
               <span className="text-lg font-medium text-gray-800 border border-green-500 rounded-md p-2">
-                {formatCurrency((quantities[pkg.id] || 0) * pkg.price)}
+                {/*  @ts-ignore */}
+                {formatCurrency(totals[pkg.id] || 0)}
               </span>
             </CardFooter>
           </Card>
@@ -112,7 +127,6 @@ const StepOneForm = ({ onSubmit, selectedPackage, description, packages, onSelec
     </form>
   );
 };
-
 
 const StepTwoForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   return (
