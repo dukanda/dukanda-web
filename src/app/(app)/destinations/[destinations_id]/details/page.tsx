@@ -1,11 +1,11 @@
+import DestinationsDetailsPage from "@/components/(landing page)/DestinationsDetails/DestinationsDetailsPage";
 import Layout from "@/components/(landing page)/Layout/Layout";
 import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
-import DestinationsDetailsPage from "@/components/(landing page)/DestinationsDetails/DestinationsDetailsPage";
 
 export default function DestinationsDetails() {
   return (
-    <Layout pageTitle="Destinations Details">
-      <PageHeader title="Destinations Details" page="Destinations" />
+    <Layout pageTitle="Detalhe do destino">
+      <PageHeader title="Detalhe do destino" page="Destino" />
       <DestinationsDetailsPage />
     </Layout>
   )

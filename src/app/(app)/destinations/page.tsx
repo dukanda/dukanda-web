@@ -4,8 +4,8 @@ import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 
 export default function Destinations() {
   return (
-    <Layout pageTitle="Destinations">
-      <PageHeader title="Destinations" />
+    <Layout pageTitle="Destinos">
+      <PageHeader title="Destinos" />
       <DestinationsPage />
     </Layout>
   )

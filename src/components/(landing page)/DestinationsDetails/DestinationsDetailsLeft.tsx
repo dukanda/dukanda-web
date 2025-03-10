@@ -1,7 +1,7 @@
 import { destinationsDetailsLeft } from "@/data/destinationsDetails";
 import React from "react";
 import { Image } from "react-bootstrap";
-import DestinationsDetailsFaq from "./DestinationsDetailsFaq";
+// import DestinationsDetailsFaq from "./DestinationsDetailsFaq";
 
 const { image, discoverTitle, texts, overviewTitle, overviews, faqs } =
   destinationsDetailsLeft;
@@ -38,7 +38,7 @@ const DestinationsDetailsLeft = () => {
           ))}
         </ul>
       </div>
-      <DestinationsDetailsFaq faqs={faqs} />
+      {/* <DestinationsDetailsFaq faqs={faqs} /> */}
     </div>
   );
 };
