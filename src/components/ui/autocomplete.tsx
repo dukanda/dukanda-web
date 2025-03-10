@@ -10,7 +10,7 @@ interface AutocompleteProps {
   listClassName?: string;
   itemClassName?: string;
   hoverClassName?: string;
-  reset?: boolean; // Nova prop para resetar o estado
+  reset?: boolean; 
 }
 
 const Autocomplete: React.FC<AutocompleteProps> = ({

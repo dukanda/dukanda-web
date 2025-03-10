@@ -17,7 +17,7 @@ import React, { useState } from "react";
 
 const { categories, durations } = toursListPage;
 
-const ToursListLeft = () => {
+const ToursListLeft = ({ onFilter }) => {
   const [showPrice, setShowPrice] = useState(true);
   const [showReview, setShowReview] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
@@ -27,13 +27,14 @@ const ToursListLeft = () => {
   const [citySelected, setCitySelected] = useState("");
   const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
   const [selectedType, setSelectedType] = useState("");
+  const [reset, setReset] = useState(false);
   let count = 6;
 
   const getAllCities = useQuery({
     queryKey: ['getAllCities'],
     queryFn: async () => {
       const response = await citiesRoutes.getAllCities();
-       {/* @ts-ignore */}
+      {/* @ts-ignore */ }
       setCitiesAutoComplete(response.data.items.map((city) => ({ value: city.name, id: city.id })));
       return response;
     },
@@ -60,8 +61,29 @@ const ToursListLeft = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulário enviado");
+    const filters = {
+      city: citySelected,
+      date,
+      type: selectedType,
+      priceRange,
+    };
+    onFilter(filters);
   };
+
+  const handleClearFilters = () => {
+    setCitySelected("");
+    setDate(undefined);
+    setSelectedType("");
+    setPriceRange([500, 10000]);
+    setReset(true);
+    onFilter({});
+  };
+
+  React.useEffect(() => {
+    if (reset) {
+      setReset(false);
+    }
+  }, [reset]);
 
   return (
     <div className="tours-list__left">
@@ -76,6 +98,7 @@ const ToursListLeft = () => {
                 onSelect={handleSelectCity}
                 inputClassName="h-12 text-sm bg-white"
                 placeholder={"Onde?"}
+                reset={reset}
               />
               {/* <Input type="text" placeholder="Onde?" name="place" className="h-12 text-sm" /> */}
             </div>
@@ -105,13 +128,13 @@ const ToursListLeft = () => {
               </Popover>
             </div>
             <div>
-              <Select onValueChange={handleSelect}>
+              <Select onValueChange={handleSelect} value={reset ? "" : selectedType}>
                 <SelectTrigger className="h-12 text-sm bg-white">
                   <SelectValue placeholder="Selecione o tipo de passeio" />
                 </SelectTrigger>
                 <SelectContent>
                   {/* @ts-ignore */}
-                  {getTourTypes.data.items.map((option) => (
+                  {getTourTypes.data?.items?.map((option) => (
                     <SelectItem key={option.id} value={option.name}>
                       {option.name}
                     </SelectItem>
@@ -121,6 +144,9 @@ const ToursListLeft = () => {
             </div>
             <Button type="submit" className="w-full h-12 bg-green-700 hover:bg-green-800 text-base font-medium">
               Pesquisar
+            </Button>
+            <Button type="button" onClick={handleClearFilters} className="w-full h-12 bg-gray-500 hover:bg-gray-600 text-base font-medium mt-2">
+              Limpar
             </Button>
           </form>
         </div>
