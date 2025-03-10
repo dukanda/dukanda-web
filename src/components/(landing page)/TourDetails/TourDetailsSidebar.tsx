@@ -1,8 +1,6 @@
 "use client";
 import { tourDetailsLeft, tourDetailsSidebar } from "@/data/tourDetailsPage";
 import React, { useState } from "react";
-import { Image } from "react-bootstrap";
-import Select from "react-select";
 import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
 
 const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { checkVariants, stepsVariants } from "@/lib/utils-multi-step";
