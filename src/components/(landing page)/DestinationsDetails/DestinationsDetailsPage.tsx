@@ -20,13 +20,21 @@ const DestinationsDetailsPage = () => {
     }
   })
 
+  if (destinationDetails.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   console.log(destinationDetails.data);
+  if (!destinationDetails.data) {
+    return <div>Error: Destination details not found</div>;
+  }
+
   return (
     <section className="destinations-details">
       <Container>
         <Row>
           <Col xl={8} lg={7}>
-            <DestinationsDetailsLeft />
+            <DestinationsDetailsLeft details={destinationDetails.data} />
           </Col>
           <Col xl={4} lg={5}>
             <DestinationsDetailsRight />
