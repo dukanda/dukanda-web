@@ -23,6 +23,7 @@ const ToursListRight = ({ filters }) => {
     },
   });
 
+  //@ts-ignore
   const tours = useMemo(() => getPublishedTours.data?.data?.items || [], [getPublishedTours.data]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,10 +32,15 @@ const ToursListRight = ({ filters }) => {
 
   const filteredTours = useMemo(() => {
     return tours.filter((tour) => {
+      //@ts-ignore
       const matchesCity = filters.city ? tour.cityId === filters.city : true;
+      //@ts-ignore
       const matchesDate = filters.date ? new Date(tour.startDate) <= filters.date && new Date(tour.endDate) >= filters.date : true;
+      //@ts-ignore
       const matchesType = filters.type ? tour.type === filters.type : true;
+      //@ts-ignore
       const matchesPrice = filters.priceRange ? tour.basePrice >= filters.priceRange[0] && tour.basePrice <= filters.priceRange[1] : true;
+      //@ts-ignore
       return matchesCity && matchesDate && matchesType && matchesPrice;
     });
   }, [tours, filters]);
