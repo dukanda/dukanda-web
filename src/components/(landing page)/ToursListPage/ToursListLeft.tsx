@@ -17,6 +17,7 @@ import React, { useState } from "react";
 
 const { categories, durations } = toursListPage;
 
+//@ts-ignore
 const ToursListLeft = ({ onFilter }) => {
   const [showPrice, setShowPrice] = useState(true);
   const [showReview, setShowReview] = useState(true);
