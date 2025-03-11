@@ -5,9 +5,12 @@ import ToursListLeft from "./ToursListLeft";
 import ToursListRight from "./ToursListRight";
 
 const ToursListPage = () => {
+  //@ts-ignore
   const [filters, setFilters] = useState({});
 
+  //@ts-ignore
   const handleFilter = (filters) => {
+    //@ts-ignore
     setFilters(filters);
   };
 

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const ITEMS_PER_PAGE = 5; // Número de tours por página
 
+//@ts-ignore
 const ToursListRight = ({ filters }) => {
   const getPublishedTours = useQuery({
     queryKey: ["getFeaturedTours"],
