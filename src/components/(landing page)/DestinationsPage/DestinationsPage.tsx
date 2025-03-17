@@ -1,11 +1,10 @@
 "use client";
-import destinationsOne from "@/data/destinationsOne";
 import React from "react";
 import { Container } from "react-bootstrap";
-import Masonry from "react-masonry-css";
 import { useQuery } from "@tanstack/react-query";
 import { touristAttractions } from "@/api/routes/TouristAttractions/index.routes";
 import SingleDestination from "../DestinationsOne/SingleDestination";
+import {Skeleton} from "@/components/ui/skeleton";
 
 const DestinationsPage = () => {
 
@@ -18,7 +17,19 @@ const DestinationsPage = () => {
   })
 
   if (getTouristAttractions.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <section className="destinations-one destinations-page">
+        <Container>
+          <div className="flex flex-row flex-wrap justify-center gap-4">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="w-[250px] h-[300px]">
+                <Skeleton className="w-full h-full" />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+    );
   }
 
   if (getTouristAttractions.isError) {
