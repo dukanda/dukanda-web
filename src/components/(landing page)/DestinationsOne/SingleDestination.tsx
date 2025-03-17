@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { Col, Image } from "react-bootstrap";
-
+import Image from "next/image";
 const SingleDestination = ({ destination }: { destination: ITouristAttraction }) => {
   const { imageUrl, name,id,cityName } = destination;
 
@@ -13,6 +12,8 @@ const SingleDestination = ({ destination }: { destination: ITouristAttraction })
         <div className="relative block rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-500">
           <Image
             src={imageUrl}
+            width={250}
+            height={250}
             alt={name}
             className="w-full rounded-lg transition-transform duration-500 group-hover:scale-105"
           />

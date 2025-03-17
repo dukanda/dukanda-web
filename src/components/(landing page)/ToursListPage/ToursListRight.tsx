@@ -98,7 +98,7 @@ const ToursListRight = ({ filters }) => {
                 {/* Preço */}
                 <p className="text-gray-700 font-medium">
                   <span className="text-orange-400 font-bold">
-                    {formatCurrency(tour.basePrice ?? 0)} kz
+                    {formatCurrency(tour.basePrice ?? 0)}
                   </span>{" "}
                   / Por pessoa
                 </p>

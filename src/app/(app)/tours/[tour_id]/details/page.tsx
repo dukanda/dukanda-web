@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
 import { ChevronLeft } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function TourDetails() {
   const { tour_id } = useParams();
@@ -17,6 +18,18 @@ export default function TourDetails() {
       return response;
     },
   })
+
+  if (getTourById.isLoading) {
+    return (
+      <Layout pageTitle="Tours Details">
+        <div className="flex flex-col items-center justify-center h-96">
+          <Skeleton className="h-10 w-72 mb-4" />
+          <Skeleton className="h-48 w-full mb-4" />
+          <Skeleton className="h-10 w-24" />
+        </div>
+      </Layout>
+    )
+  }
 
   if (getTourById.data?.data === undefined) {
     return (
