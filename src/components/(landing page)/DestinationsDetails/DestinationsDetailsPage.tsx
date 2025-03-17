@@ -6,9 +6,11 @@ import DestinationsDetailsLeft from "./DestinationsDetailsLeft";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { touristAttractions } from "@/api/routes/TouristAttractions/index.routes";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const DestinationsDetailsPage = () => {
   const { destinations_id } = useParams();
+
   const destinationDetails = useQuery({
     queryKey: ["destinationDetails"],
     queryFn: async () => {
@@ -21,10 +23,25 @@ const DestinationsDetailsPage = () => {
   })
 
   if (destinationDetails.isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <section className="destinations-details">
+        <Container>
+          <Row>
+            <Col xl={8} lg={7}>
+              <Skeleton className="h-96" />
+              <Skeleton className="h-6 mt-4" />
+              <Skeleton className="h-6 mt-2" />
+              <Skeleton className="h-6 mt-2" />
+            </Col>
+            <Col xl={4} lg={5}>
+              <Skeleton className="h-96" />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    );
   }
 
-  console.log(destinationDetails.data);
   if (!destinationDetails.data) {
     return <div>Error: Destination details not found</div>;
   }

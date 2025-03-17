@@ -64,33 +64,33 @@ export const destinationsDetailsLeft = {
 };
 
 export const destinationsDetailsRight = {
-  title: "Last Minute",
+  title: "Atualizações recentes",
   lists: [
     {
       id: 1,
       image: "td-img-1.jpg",
       price: "380",
-      title: "Africa 2 Days Tour",
-      subtitle: "Los Angeles",
+      title: "Visita ao deserto ",
+      subtitle: "Namibe",
     },
     {
       id: 2,
       image: "td-img-2.jpg",
       price: "380",
-      title: "Africa 2 Days Tour",
-      subtitle: "Los Angeles",
+      title: "Tour na floresta (Maiombe)",
+      subtitle: "Cabinda",
     },
     {
       id: 3,
       image: "td-img-3.jpg",
       price: "380",
-      title: "Africa 2 Days Tour",
-      subtitle: "Los Angeles",
+      title: "Visita a praia Morena",
+      subtitle: "Benguela",
     },
   ],
   discount: {
     image: image2,
     percent: "30%",
-    title: "Discount on Spain \n Tours",
+    title: "Desconto de verão",
   },
 };

@@ -1,6 +1,6 @@
 import { destinationsDetailsLeft } from "@/data/destinationsDetails";
 import React from "react";
-import { Image } from "react-bootstrap";
+import Image from "next/image";
 // import DestinationsDetailsFaq from "./DestinationsDetailsFaq";
 
 const { image, discoverTitle, texts, overviewTitle, overviews, faqs } =
@@ -8,12 +8,16 @@ const { image, discoverTitle, texts, overviewTitle, overviews, faqs } =
 
 const DestinationsDetailsLeft = ({ details }: { details: ITouristAttraction }) => {
 
-  console.log("details", details);
   return (
     <div className="relative block">
       {/* Imagem */}
       <div className="relative block mb-8">
-        <Image src={details.imageUrl} alt="" className="w-full rounded-lg" />
+        <Image src={details.imageUrl}
+          alt={`Imagem da Província do ${details.cityName}`}
+          className="w-full rounded-lg"
+          width={800}
+          height={500}
+        />
       </div>
 
       {/* Seção Descoberta */}
