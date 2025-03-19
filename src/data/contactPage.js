@@ -1,6 +1,6 @@
 const contactPage = {
-  tagline: "Talk with our team",
-  title: "Any Question? Feel Free to Contact",
+  tagline: "Fale com o nosso support",
+  title: "Alguma dúvida? Entre em contato conosco.",
   socials: [
     {
       id: 1,

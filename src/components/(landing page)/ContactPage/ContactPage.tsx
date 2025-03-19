@@ -1,4 +1,6 @@
 "use client";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import contactPage from "@/data/contactPage";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
@@ -8,7 +10,7 @@ const { tagline, title, socials } = contactPage;
 const inputs = ["name", "email", "message"];
 
 const ContactPage = () => {
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     const fromData = new FormData(e.target);
     const data = {};
@@ -36,56 +38,37 @@ const ContactPage = () => {
               </div>
             </div>
           </Col>
-          <Col xl={8} lg={7}>
-            <div className="contact-page__right">
-              <div className="comment-form">
-                <form
-                  onSubmit={handleSubmit}
-                  className="comment-one__form contact-form-validated"
-                >
-                  <Row>
-                    <Col xl={6}>
-                      <div className="comment-form__input-box">
-                        <input
-                          type="text"
-                          placeholder="Your name"
-                          name="name"
-                          required
-                        />
-                      </div>
-                    </Col>
-                    <Col xl={6}>
-                      <div className="comment-form__input-box">
-                        <input
-                          type="email"
-                          placeholder="Email address"
-                          name="email"
-                          required
-                        />
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xl={12}>
-                      <div className="comment-form__input-box">
-                        <textarea
-                          name="message"
-                          placeholder="Write Comment"
-                          required
-                        ></textarea>
-                      </div>
-                      <button
-                        type="submit"
-                        className="thm-btn comment-form__btn"
-                      >
-                        Send a message
-                      </button>
-                    </Col>
-                  </Row>
-                </form>
-                <div className="result"></div>
+          <Col >
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Seu nome"
+                  required
+                  className="w-full h-[67px]  px-4 text-gray-700 text-sm font-medium rounded-md outline-none border-none"
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Endereço de email"
+                  required
+                  className="w-full h-[67px] px-4 text-gray-700 text-sm font-medium rounded-md outline-none border-none"
+                />
               </div>
-            </div>
+              <Textarea
+                name="message"
+                placeholder="Escrava o seu comentário"
+                required
+                className="w-full h-[190px] px-6 py-4 text-gray-700 text-sm font-medium rounded-md outline-none border-none"
+              />
+              <button
+                type="submit"
+                className="relative inline-block px-8 py-3 text-xs font-bold uppercase tracking-wider text-white bg-orange-500 rounded-lg transition-all duration-300 hover:bg-green-800"
+              >
+               Contacte-nos
+              </button>
+            </form>
           </Col>
         </Row>
       </Container>

@@ -31,7 +31,7 @@ const SiteFooter = () => {
                   <p className="text-[15px] text-gray-400 leading-[32px] pt-[29px] pb-[24px] mb-[18px] border-b border-gray-700">
                     {about}
                   </p>
-                  <ul className="list-none bg-red-500">
+                  <ul className="list-none">
                     {icons.map(({ id, icon, content, subHref }) => (
                       <li key={id} className="flex items-center space-x-[20px] mt-2">
                         <div className="flex items-center">
