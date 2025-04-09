@@ -8,10 +8,10 @@ import DestinationsTwo from "@/components/(landing page)/DestinationsTwo/Destina
 import AboutTwo from "@/components/(landing page)/AboutTwo/AboutTwo"
 import TourTypes from "@/components/(landing page)/TourTypes/TourTypes"
 import BrandTwo from "@/components/(landing page)/BrandTwo/BrandTwo"
-import NewsTwo from "@/components/(landing page)/NewsTwo/NewsTwo"
 import BookNow from "@/components/(landing page)/BookNow/BookNow"
 import PopularToursTwo from "@/components/(landing page)/PopularTours/PopularToursTwo"
 import Layout from "@/components/(landing page)/Layout/Layout"
+import NewsTwo from "@/components/(landing page)/NewsTwo/NewsTwo"
 
 export default function App() {
   const bannerData = ""

@@ -1,5 +1,5 @@
   const newsTwo = {
-  tagline: "Do blog",
+  tagline: "Da Dukanda",
   title: "Últimas Notícias & Artigos",
   description:
     "Existem muitas variações recentes de passagens que não estão disponíveis, mas a maioria sofreu alguma alteração, por humor injetado ou aleatório.",
