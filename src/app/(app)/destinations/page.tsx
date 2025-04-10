@@ -5,7 +5,7 @@ import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 export default function Destinations() {
   return (
     <Layout pageTitle="Destinos">
-      <PageHeader title="Destinos" />
+      <PageHeader title="Destinos" srcImage={"/dukanda_2.jpg"} />
       <DestinationsPage />
     </Layout>
   )

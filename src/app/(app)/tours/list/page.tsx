@@ -6,7 +6,7 @@ import ToursListPage from "@/components/(landing page)/ToursListPage/ToursListPa
 export default function ToursList() {
   return (
     <Layout pageTitle="Lista de passeios">
-        <PageHeader title="Lista de passeios" page="Passeios" />
+        <PageHeader title="Lista de passeios" page="Passeios" srcImage={"/dukanda_2.jpg"} />
         <ToursListPage />
     </Layout>
   )

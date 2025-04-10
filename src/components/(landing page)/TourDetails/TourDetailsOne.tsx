@@ -55,9 +55,12 @@ const TourDetailsOne = ({
 
                 <div>
                   <p className="text-sm">Tipo de Passeio</p>
-                  <div className="flex  gap-1">
-                    {tourTypes?.map((tourType: TourType) => (
-                      <h6 key={tourType.id} className="text-lg flex">{tourType.name},</h6>
+                  <div className="flex gap-1">
+                    {tourTypes?.map((tourType: TourType, index) => (
+                      <h6 key={tourType.id} className="text-lg flex">
+                        {tourType.name}
+                        {index < tourTypes.length - 1 && ","}
+                      </h6>
                     ))}
                   </div>
                 </div>

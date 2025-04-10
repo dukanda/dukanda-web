@@ -6,7 +6,7 @@ import PopularToursTwo from "@/components/(landing page)/PopularTours/PopularTou
 export default function Tours() {
   return (
     <Layout pageTitle="Tours">
-      <PageHeader title="Popular Tours" page="Tours" />
+      <PageHeader title="Popular Tours" page="Tours" srcImage={"/dukanda_2.jpg"}  />
       <PopularToursTwo/>
     </Layout>
   )
