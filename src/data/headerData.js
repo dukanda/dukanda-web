@@ -29,7 +29,7 @@ const navItems = [
   {
     id: 3,
     name: "Passeios",
-    href: "/tours",
+    href: "/tours/list",
     subNavItems: [
       // { id: 1, name: "Passeios", href: "/tours" },
       { id: 1, name: "Ver Passeios", href: "/tours/list" },

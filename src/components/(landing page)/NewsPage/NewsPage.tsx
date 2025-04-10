@@ -1,14 +1,21 @@
+"use client";
 import newsPage from "@/data/newsPage";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SingleNewsOne from "../NewsOne/SingleNewsOne";
+import { useQuery } from "@tanstack/react-query";
+import { newsRoutes } from "@/api/routes/News/index.routes";
 
 const NewsPage = () => {
+  const { data: newsData, isLoading, isError } = useQuery({
+    queryKey: ["newsData"],
+    queryFn: async () => await newsRoutes.getNews(),
+  });
   return (
     <section className="news-one">
       <Container>
         <Row>
-          {newsPage.map((news) => (
+          {newsData?.map((news) => (  
             <Col
               xl={4}
               lg={6}

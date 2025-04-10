@@ -1,7 +1,7 @@
 "use client";
 import videoTwo from "@/data/videoTwo";
 import dynamic from "next/dynamic";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import JarallaxImage from "@/components/(landing page)/Jarallax/JarallaxImage";
 import VideoModal from "../VideoModal/VideoModal";
@@ -10,7 +10,7 @@ const Jarallax = dynamic(() => import("@/components/(landing page)/Jarallax/Jara
   ssr: false,
 });
 
-const { bg, videoId, tagline, title } = videoTwo;
+const { videoId, tagline, title } = videoTwo;
 
 const VideoTwo = () => {
   const [isOpen, setOpen] = useState(false);
@@ -19,7 +19,7 @@ const VideoTwo = () => {
     <>
       <div className="video-two">
         <Jarallax className="video-two-bg" speed={0.2} imgPosition="50% 0%">
-          <JarallaxImage src={bg.src} />
+          <JarallaxImage src={"/dukanda_2.jpg"} />
         </Jarallax>
         <Container>
           <Row>
@@ -40,7 +40,7 @@ const VideoTwo = () => {
                 <p className="video-one__tagline">{tagline}</p>
                 <h2 className="video-one__title">
                   {title.split("\n").map((t, i) => (
-                    <div key={i+1}>
+                    <div key={i + 1}>
                       <span >{t}</span>
                       <br />
                     </div>

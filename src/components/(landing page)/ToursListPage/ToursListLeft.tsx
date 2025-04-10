@@ -185,7 +185,7 @@ const ToursListLeft = ({ onFilter }) => {
           </div>
 
           {/* Estrelas da Tour */}
-          <div>
+          {/* <div>
             <div className="flex items-center justify-between border-b pb-2 mb-4">
               <h3 className="text-lg font-semibold">Estrelas da tour</h3>
               <Button
@@ -227,7 +227,7 @@ const ToursListLeft = ({ onFilter }) => {
                 })}
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Categoria */}
           <div>

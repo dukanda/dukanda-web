@@ -12,7 +12,7 @@ const aboutTwo = {
   image2,
   videoId: "Get7rqXYrbQ",
   tagline: "Borá conhecer-nos",
-  title: "Nós a melhor plataforma de viagens",
+  title: "Nós somos a melhor plataforma de viagens",
   rightTexts: ["Mude de lugar para refrescar", text],
   lists: [
     "Confiança e segurança",
