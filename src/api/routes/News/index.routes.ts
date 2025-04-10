@@ -9,6 +9,11 @@ class NewsRoutes {
     return response.data;
   }
 
+  async getNewsById(id: string) {
+    const response = await api.get<NewsDetails>(`/News/${id}`);
+    return response.data;
+  }
+
 }
 
 export const newsRoutes = new NewsRoutes();

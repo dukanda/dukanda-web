@@ -6,7 +6,7 @@ import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 export default function News() {
   return (
     <Layout pageTitle="News">
-      <PageHeader title="Latest News" page="News" />
+      <PageHeader title="Ultimas Notícias" page="News" srcImage={"/dukanda_2.jpg"} />
       <NewsPage />
     </Layout>
   )

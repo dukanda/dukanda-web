@@ -30,7 +30,7 @@ const NewsOne = () => {
             </Col>
             <Col xl={3} lg={3}>
               <div className="news-one__top-right">
-                <Link href="/news-details" legacyBehavior>
+                <Link href="/news" legacyBehavior>
                   <a className="news-one__btn thm-btn">Ver todas</a>
                 </Link>
               </div>
@@ -39,7 +39,7 @@ const NewsOne = () => {
         </div>
         <div className="news-one__bottom">
           <Row>
-            {newsData?.map((news) => (
+            {newsData?.slice(0, 3).map((news) => (
               <Col xl={4} lg={4} key={news.id} className="animated fadeInUp">
                 <SingleNewsOne news={news} />
               </Col>
