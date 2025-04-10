@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaGoogle, FaArrowLeft } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/resources/logo-1.png";
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { authRoutes } from "@/api/routes/Auth/index.routes";
+import { ChevronLeft } from "lucide-react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,7 +38,8 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex bg-gray-100 ">
+
       {/* Coluna Esquerda Fixa com Imagem */}
       <div className="hidden md:block md:w-1/2 h-screen sticky top-0 left-0">
         <Image
@@ -51,7 +53,17 @@ export default function Login() {
       </div>
 
       {/* Coluna Direita com Scroll */}
-      <div className="w-full md:w-1/2 h-screen overflow-y-auto flex items-center justify-center bg-white">
+      <div className="w-full md:w-1/2 h-screen overflow-y-auto flex items-center justify-center bg-white relative">
+        <Button variant={"outline"} className="mt-5 w-max text-center absolute top-0 left-5 z-10">
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 transition"
+            passHref
+          >
+            <ChevronLeft   className="mr-2" />
+            Voltar
+          </Link>
+        </Button>
         <div className="w-full max-w-md p-6">
           <div className="text-center mb-6">
             <Image src={logo} alt="Logo" className="mb-4 mx-auto w-24 h-auto" priority />
@@ -104,15 +116,16 @@ export default function Login() {
           </p>
 
           {/* Botão Voltar para Home */}
-          <Button variant={"outline"} className="mt-6 text-center w-full">
+          {/* <Button variant={"outline"} className="mt-6 text-center w-full">
             <Link
               href="/"
               className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 transition"
+              passHref
             >
-              {/* <FaArrowLeft className="mr-2" /> */}
-              Voltar para inicio
+              <FaArrowLeft className="mr-2" />
+              Voltar ao inicio
             </Link>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

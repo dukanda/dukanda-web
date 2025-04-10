@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { authRoutes } from "@/api/routes/Auth/index.routes";
+import { ChevronLeft } from "lucide-react";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -58,7 +59,17 @@ export default function Register() {
       </div>
 
       {/* Coluna Direita com Scroll */}
-      <div className="w-full md:w-1/2 h-screen overflow-y-auto flex items-center justify-center bg-white">
+      <div className="w-full md:w-1/2 h-screen overflow-y-auto flex items-center justify-center bg-white relative">
+      <Button variant={"outline"} className="mt-5 w-max text-center absolute top-0 left-5 z-10">
+          <Link
+            href="/"
+            className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 transition"
+            passHref
+          >
+            <ChevronLeft className="mr-2" />
+            Voltar
+          </Link>
+        </Button>
         <div className="w-full max-w-md p-6">
           <div className="text-center mb-6">
             <Image src={logo} alt="Logo" className="mb-4 mx-auto" priority />
