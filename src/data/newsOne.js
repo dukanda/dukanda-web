@@ -1,6 +1,6 @@
 const newsOne = {
-  tagline: "From the blog post",
-  title: "News & Articles",
+  tagline: "Dukanda",
+  title: "Notícias e Artigos",
   newsData: [
     {
       id: 1,

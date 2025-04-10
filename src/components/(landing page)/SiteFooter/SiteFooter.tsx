@@ -35,11 +35,11 @@ const SiteFooter = () => {
                     {icons.map(({ id, icon, content, subHref }) => (
                       <li key={id} className="flex items-center space-x-[20px] mt-2">
                         <div className="flex items-center">
-                          <i className={`${icon} text-[15px] text-primary`} />
+                          <i className={`${icon} text-[15px] text-orange-500`} />
                         </div>
                         <div>
                           {subHref ? (
-                            <a href={`${subHref}:${content}`} className="text-[15px] font-medium text-gray-400 hover:text-primary transition">
+                            <a href={`${subHref}:${content}`} className="text-[15px] font-medium text-gray-400 hover:text-orange-500 transition">
                               {content}
                             </a>
                           ) : (
@@ -53,7 +53,7 @@ const SiteFooter = () => {
               </Col>
               <Col xl={2} lg={6} md={6} className="animate-fadeInUp">
                 <div className="relative">
-                  <h3 className="text-[18px] font-bold text-white mb-[25px]">Company</h3>
+                  <h3 className="text-[18px] font-bold text-white mb-[25px]">Companhias</h3>
                   <ul className=" ">
                     {companies.map(({ id, link, title }) => (
                       <li key={id} className="mt-[5px] w-full">
@@ -120,14 +120,14 @@ const SiteFooter = () => {
             <a
               key={index}
               href={link}
-              className="flex items-center justify-center text-center text-black bg-gray-200 rounded-full text-[15px] h-[50px] w-[50px] transition hover:text-white hover:bg-primary"
+              className="flex items-center justify-center text-center text-black bg-gray-200 rounded-full text-[15px] h-[50px] w-[50px] transition hover:text-white hover:bg-orange-text-orange-500"
             >
               <i className={`fab ${icon}`} />
             </a>
           ))}
         </div>
         <p className="text-[15px] text-gray-500 font-medium">
-          &copy; {year} - <a href="#" className="hover:text-primary transition">{author}</a>
+          &copy; {year} - <a href="#" className="hover:text-orange-500 transition">{author}</a>
         </p>
         <div className="absolute top-0 bottom-0 left-0">
           <a href="#" className="absolute top-0 bottom-0 left-0 w-[122px] flex items-center justify-center bg-orange-500 rounded-tl-[8px] transition hover:bg-orange-700 hover:text-white">

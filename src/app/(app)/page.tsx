@@ -12,6 +12,7 @@ import BookNow from "@/components/(landing page)/BookNow/BookNow"
 import PopularToursTwo from "@/components/(landing page)/PopularTours/PopularToursTwo"
 import Layout from "@/components/(landing page)/Layout/Layout"
 import NewsTwo from "@/components/(landing page)/NewsTwo/NewsTwo"
+import NewsOne from "@/components/(landing page)/NewsOne/NewsOne"
 
 export default function App() {
   const bannerData = ""
@@ -27,6 +28,7 @@ export default function App() {
       <AboutTwo />
       <TourTypes />
       <BrandTwo />
+      <NewsOne   />
       <NewsTwo />
       <BookNow />
     </Layout>

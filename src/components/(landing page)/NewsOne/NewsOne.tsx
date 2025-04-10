@@ -1,12 +1,20 @@
+"use client";
 import newsOne from "@/data/newsOne";
 import Link from "next/link";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SingleNewsOne from "./SingleNewsOne";
+import { useQuery } from "@tanstack/react-query";
+import { newsRoutes } from "@/api/routes/News/index.routes";
 
-const { tagline, title, newsData } = newsOne;
+const { tagline, title } = newsOne;
 
 const NewsOne = () => {
+  const { data: newsData, isLoading, isError } = useQuery({
+    queryKey: ["newsData"],
+    queryFn: async () => await newsRoutes.getNews(),
+  });
+
   return (
     <section className="news-one">
       <Container>
@@ -23,7 +31,7 @@ const NewsOne = () => {
             <Col xl={3} lg={3}>
               <div className="news-one__top-right">
                 <Link href="/news-details" legacyBehavior>
-                  <a className="news-one__btn thm-btn">View All posts</a>
+                  <a className="news-one__btn thm-btn">Ver todas</a>
                 </Link>
               </div>
             </Col>
@@ -31,7 +39,7 @@ const NewsOne = () => {
         </div>
         <div className="news-one__bottom">
           <Row>
-            {newsData.map((news) => (
+            {newsData?.map((news) => (
               <Col xl={4} lg={4} key={news.id} className="animated fadeInUp">
                 <SingleNewsOne news={news} />
               </Col>
