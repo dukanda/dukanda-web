@@ -33,21 +33,39 @@ const ToursListRight = ({ filters }) => {
   };
 
   const getPublishedTours = useQuery({
-    queryKey: ["getPublishedTours", filters, currentPage],
+    queryKey: ["getPublishedTours", filters],
     queryFn: async () => {
       const response = await toursRoutes.getPublishedTours({
+        PageSize: 1000, // Busca todas as tours publicadas
         ...filters,
-        PageNumber: currentPage,
-        PageSize: ITEMS_PER_PAGE,
       });
-      return response;
+      return response.data;
     },
+    //@ts-ignore
+    keepPreviousData: true, // Mantém os dados da página anterior enquanto carrega a nova
   });
-
   //@ts-ignore
-  const tours = useMemo(() => getPublishedTours.data?.data?.items || [], [getPublishedTours.data]);
+  const allTours = useMemo(() => getPublishedTours.data?.items || [], [getPublishedTours.data]);
 
-  const totalPages = useMemo(() => getPublishedTours.data?.data?.totalPages || 1, [getPublishedTours.data]);
+  // Filtrar tours por categoria, se aplicável
+  const filteredTours = useMemo(() => {
+    if (filters.type) {
+      //@ts-ignore
+      return allTours.filter((tour) =>
+        //@ts-ignore
+        tour.tourTypes?.some((type) => type.id.toString() === filters.type)
+      );
+    }
+    return allTours;
+  }, [allTours, filters]);
+
+  // Aplicar paginação sobre as tours filtradas
+  const paginatedTours = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredTours.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  }, [filteredTours, currentPage]);
+
+  const totalPages = useMemo(() => Math.ceil(filteredTours.length / ITEMS_PER_PAGE), [filteredTours]);
 
   return (
     <div className="mt-12">
@@ -58,8 +76,9 @@ const ToursListRight = ({ filters }) => {
               <Skeleton key={index} className="h-52 w-full rounded-lg" />
             ))}
           </div>
-        ) : tours.length > 0 ? (
-          tours.map((tour) => (
+        ) : paginatedTours.length > 0 ? (
+          //@ts-ignore
+          paginatedTours.map((tour) => (
             <Link href={`/tours/${tour.id}/details`} key={tour.id} passHref className="flex flex-col md:flex-row gap-6 border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
               {/* Imagem do Tour */}
               <div className="relative w-56 h-40 rounded-md overflow-hidden">
@@ -128,7 +147,11 @@ const ToursListRight = ({ filters }) => {
             </Link>
           ))
         ) : (
-          <p className="text-center text-gray-500">Nenhum tour disponível no momento.</p>
+          <p className="text-center text-gray-500">
+            {filters.type
+              ? "Nenhuma tour encontrada para a categoria selecionada."
+              : "Nenhum tour disponível no momento."}
+          </p>
         )}
       </div>
 

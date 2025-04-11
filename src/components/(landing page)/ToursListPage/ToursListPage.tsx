@@ -26,12 +26,19 @@ const ToursListPage = () => {
     router.push(`?${queryString}`);
   };
 
+  const handleClearFilters = (): void => {
+    setFilters({});
+    router.push(`?`);
+  };
+
   return (
     <section className="tours-list">
       <Container>
         <Row>
           <Col xl={4} lg={5}>
-            <ToursListLeft onFilter={handleFilter} />
+            <ToursListLeft onFilter={handleFilter} 
+            //@ts-ignore
+            onClearFilters={handleClearFilters} />
           </Col>
           <Col xl={8} lg={7}>
             <ToursListRight filters={filters} />

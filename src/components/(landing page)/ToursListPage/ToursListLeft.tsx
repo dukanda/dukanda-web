@@ -88,6 +88,9 @@ const ToursListLeft = ({ onFilter }) => {
     setSelectedCategory("");
     setPriceRange([500, 10000]);
     setReset(true);
+
+    // Limpar filtros da URL
+    router.push("?");
     onFilter({});
   };
 
@@ -221,6 +224,10 @@ const ToursListLeft = ({ onFilter }) => {
                 )}
               </div>
             )}
+
+            <Button type="button" variant={"outline"} onClick={handleClearFilters} className="w-full h-12 text-base font-medium my-3">
+              Limpar
+            </Button>
           </div>
 
           {/* Duração */}
