@@ -21,8 +21,8 @@ const ToursListPage = () => {
   }
 
   const handleFilter = (newFilters: Filters): void => {
-    setFilters(newFilters);
-    const queryString = new URLSearchParams(newFilters).toString();
+    setFilters((prevFilters) => ({ ...prevFilters, ...newFilters }));
+    const queryString = new URLSearchParams({ ...filters, ...newFilters }).toString();
     router.push(`?${queryString}`);
   };
 
@@ -36,9 +36,9 @@ const ToursListPage = () => {
       <Container>
         <Row>
           <Col xl={4} lg={5}>
-            <ToursListLeft onFilter={handleFilter} 
-            //@ts-ignore
-            onClearFilters={handleClearFilters} />
+            <ToursListLeft onFilter={handleFilter}
+              //@ts-ignore
+              onClearFilters={handleClearFilters} />
           </Col>
           <Col xl={8} lg={7}>
             <ToursListRight filters={filters} />

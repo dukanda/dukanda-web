@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import toursListPage from "@/data/toursListPage";
 import { cn } from "@/lib/utils";
@@ -25,7 +24,7 @@ const ToursListLeft = ({ onFilter }) => {
   const [showPrice, setShowPrice] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
   const [showDuration, setShowDuration] = useState(true);
-  const [priceRange, setPriceRange] = useState([500, 10000]);
+  const [priceRange, setPriceRange] = useState([0, 10000]);
   const [date, setDate] = React.useState<Date>();
   const [citySelected, setCitySelected] = useState("");
   const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
@@ -63,12 +62,32 @@ const ToursListLeft = ({ onFilter }) => {
     setSelectedCategory(category);
   }, [searchParams]);
 
+  // Sincronizar faixa de preço com a URL
+  useEffect(() => {
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    if (minPrice && maxPrice) {
+      setPriceRange([parseInt(minPrice, 10), parseInt(maxPrice, 10)]);
+    }
+  }, [searchParams]);
+
   const handleCategorySelect = (categoryId: string) => {
     setSelectedCategory(categoryId);
     const queryParams = new URLSearchParams(searchParams.toString());
     queryParams.set("type", categoryId);
     router.push(`?${queryParams.toString()}`);
     onFilter({ type: categoryId });
+  };
+
+  const handlePriceChange = (value: number[]) => {
+    // O valor mínimo é fixado em 0, e o máximo é controlado pelo cursor
+    const maxPrice = Math.min(value[0], 10000); // Limita o máximo a 10000
+    setPriceRange([0, maxPrice]);
+    const queryParams = new URLSearchParams(searchParams.toString());
+    queryParams.set("minPrice", "0");
+    queryParams.set("maxPrice", maxPrice.toString());
+    router.push(`?${queryParams.toString()}`);
+    onFilter({ minPrice: 0, maxPrice });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -86,7 +105,7 @@ const ToursListLeft = ({ onFilter }) => {
     setCitySelected("");
     setDate(undefined);
     setSelectedCategory("");
-    setPriceRange([500, 10000]);
+    setPriceRange([0, 10000]);
     setReset(true);
 
     // Limpar filtros da URL
@@ -166,17 +185,23 @@ const ToursListLeft = ({ onFilter }) => {
             {showPrice && (
               <div className="space-y-4">
                 <div className="flex justify-between text-sm font-semibold text-gray-700">
-                  <span>{priceRange[0]} KZ</span>
+                  <span>
+                    {/* {priceRange[0]} KZ */}
+                  </span>
                   <span>{priceRange[1]} KZ</span>
                 </div>
                 <Slider
                   defaultValue={priceRange}
-                  min={500}
+                  min={0}
                   max={10000}
                   step={100}
-                  onValueChange={(value) => setPriceRange(value)}
+                  onValueChange={handlePriceChange}
                   className=""
                 />
+
+                <Button type="button" variant={"outline"} onClick={handleClearFilters} className="w-full h-12 text-base font-medium my-3">
+                  Limpar
+                </Button>
               </div>
             )}
           </div>
@@ -222,12 +247,12 @@ const ToursListLeft = ({ onFilter }) => {
                     </div>
                   ))
                 )}
+                <Button type="button" variant={"outline"} onClick={handleClearFilters} className="w-full h-12 text-base font-medium my-3">
+                  Limpar
+                </Button>
               </div>
             )}
 
-            <Button type="button" variant={"outline"} onClick={handleClearFilters} className="w-full h-12 text-base font-medium my-3">
-              Limpar
-            </Button>
           </div>
 
           {/* Duração */}

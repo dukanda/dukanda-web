@@ -12,7 +12,7 @@ import { formatCurrency } from "@/_utils/formatCurrency";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
-const ITEMS_PER_PAGE = 10; // Número de tours por página
+const ITEMS_PER_PAGE = 10; 
 
 //@ts-ignore
 const ToursListRight = ({ filters }) => {
@@ -47,16 +47,22 @@ const ToursListRight = ({ filters }) => {
   //@ts-ignore
   const allTours = useMemo(() => getPublishedTours.data?.items || [], [getPublishedTours.data]);
 
-  // Filtrar tours por categoria, se aplicável
+  // Filtrar tours por preço, se aplicável
   const filteredTours = useMemo(() => {
+    let tours = allTours;
     if (filters.type) {
-      //@ts-ignore
-      return allTours.filter((tour) =>
+      //  @ts-ignore
+      tours = tours.filter((tour) =>
         //@ts-ignore
         tour.tourTypes?.some((type) => type.id.toString() === filters.type)
       );
     }
-    return allTours;
+    if (filters.maxPrice) {
+      const maxPrice = parseInt(filters.maxPrice, 10);
+      //@ts-ignore
+      tours = tours.filter((tour) => tour.basePrice >= 0 && tour.basePrice <= maxPrice);
+    }
+    return tours;
   }, [allTours, filters]);
 
   // Aplicar paginação sobre as tours filtradas
