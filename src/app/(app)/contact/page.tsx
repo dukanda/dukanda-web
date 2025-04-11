@@ -9,7 +9,7 @@ import PageHeader from "@/components/(landing page)/PageHeader/PageHeader";
 export default function Contact() {
   return (
     <Layout pageTitle="Contact">
-      <PageHeader title="Contacto" />
+      <PageHeader title="Contacto" srcImage="/dukanda_2.jpg" />
       <ContactPage />
       <Information />
       <GoogleMap />
