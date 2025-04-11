@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import React from "react";
 
 const Search = () => {
+  //@ts-ignore
   const { openSearch, toggleSearch } = useRootContext();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
