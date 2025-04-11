@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Col, Container, Row } from "react-bootstrap";
 import ToursListLeft from "./ToursListLeft";
 import ToursListRight from "./ToursListRight";
 
-const ToursListPage = () => {
+const ToursListPageContent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState({});
@@ -55,5 +55,11 @@ const ToursListPage = () => {
     </section>
   );
 };
+
+const ToursListPage = () => (
+  <Suspense fallback={<div>Carregando...</div>}>
+    <ToursListPageContent />
+  </Suspense>
+);
 
 export default ToursListPage;
