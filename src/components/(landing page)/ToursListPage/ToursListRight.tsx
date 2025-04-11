@@ -2,23 +2,44 @@
 
 import { toursRoutes } from "@/api/routes/Tours/index.routes";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatCurrency } from "@/_utils/formatCurrency";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
-const ITEMS_PER_PAGE = 5; // Número de tours por página
+const ITEMS_PER_PAGE = 10; // Número de tours por página
 
 //@ts-ignore
 const ToursListRight = ({ filters }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Sincronizar página atual com a URL
+  useEffect(() => {
+    const page = parseInt(searchParams.get("PageNumber") || "1", 10);
+    setCurrentPage(page);
+  }, [searchParams]);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    const queryParams = new URLSearchParams({ ...filters, PageNumber: newPage.toString() });
+    router.push(`?${queryParams.toString()}`);
+  };
+
   const getPublishedTours = useQuery({
-    queryKey: ["getFeaturedTours"],
+    queryKey: ["getPublishedTours", filters, currentPage],
     queryFn: async () => {
-      const response = await toursRoutes.getPublishedTours();
+      const response = await toursRoutes.getPublishedTours({
+        ...filters,
+        PageNumber: currentPage,
+        PageSize: ITEMS_PER_PAGE,
+      });
       return response;
     },
   });
@@ -26,29 +47,7 @@ const ToursListRight = ({ filters }) => {
   //@ts-ignore
   const tours = useMemo(() => getPublishedTours.data?.data?.items || [], [getPublishedTours.data]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(tours.length / ITEMS_PER_PAGE);
-
-  const filteredTours = useMemo(() => {
-    return tours.filter((tour) => {
-      //@ts-ignore
-      const matchesCity = filters.city ? tour.cityId === filters.city : true;
-      //@ts-ignore
-      const matchesDate = filters.date ? new Date(tour.startDate) <= filters.date && new Date(tour.endDate) >= filters.date : true;
-      //@ts-ignore
-      const matchesType = filters.type ? tour.type === filters.type : true;
-      //@ts-ignore
-      const matchesPrice = filters.priceRange ? tour.basePrice >= filters.priceRange[0] && tour.basePrice <= filters.priceRange[1] : true;
-      //@ts-ignore
-      return matchesCity && matchesDate && matchesType && matchesPrice;
-    });
-  }, [tours, filters]);
-
-  const currentTours = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredTours.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [currentPage, filteredTours]);
+  const totalPages = useMemo(() => getPublishedTours.data?.data?.totalPages || 1, [getPublishedTours.data]);
 
   return (
     <div className="mt-12">
@@ -59,8 +58,8 @@ const ToursListRight = ({ filters }) => {
               <Skeleton key={index} className="h-52 w-full rounded-lg" />
             ))}
           </div>
-        ) : currentTours.length > 0 ? (
-          currentTours.map((tour) => (
+        ) : tours.length > 0 ? (
+          tours.map((tour) => (
             <Link href={`/tours/${tour.id}/details`} key={tour.id} passHref className="flex flex-col md:flex-row gap-6 border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
               {/* Imagem do Tour */}
               <div className="relative w-56 h-40 rounded-md overflow-hidden">
@@ -138,7 +137,7 @@ const ToursListRight = ({ filters }) => {
         <div className="mt-6 flex justify-center items-center gap-4">
           <Button
             variant="outline"
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
             disabled={currentPage === 1}
           >
             Anterior
@@ -148,7 +147,7 @@ const ToursListRight = ({ filters }) => {
           </span>
           <Button
             variant="outline"
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
             Próximo

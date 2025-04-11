@@ -8,10 +8,12 @@ const toursListPage = {
   ],
   durations: [
     "0 - 24 horas",
-    "1 -  5 jun á 30 jun",
-    "2 -  3 abr 20 abr",
-    "4 - 5 dias",
-    "5 - 10 dias",
+    "1 - 3 dias",
+    "4 - 7 dias",
+    "8 - 14 dias",
+    "15 - 21 dias",
+    "22 - 30 dias",
+    "Mais de 30 dias",
   ],
   toursList: [
     {

@@ -12,24 +12,25 @@ import toursListPage from "@/data/toursListPage";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { CalendarIcon, ChevronDown, Star } from "lucide-react";
-import React, { useState } from "react";
+import { CalendarIcon, ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-const { categories, durations } = toursListPage;
+const { durations } = toursListPage;
 
 //@ts-ignore
 const ToursListLeft = ({ onFilter }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPrice, setShowPrice] = useState(true);
-  const [showReview, setShowReview] = useState(true);
   const [showCategory, setShowCategory] = useState(true);
   const [showDuration, setShowDuration] = useState(true);
   const [priceRange, setPriceRange] = useState([500, 10000]);
   const [date, setDate] = React.useState<Date>();
   const [citySelected, setCitySelected] = useState("");
   const [citiesAutoComplete, setCitiesAutoComplete] = useState<{ value: string; id: string }[]>([]);
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [reset, setReset] = useState(false);
-  let count = 6;
 
   const getAllCities = useQuery({
     queryKey: ['getAllCities'],
@@ -42,16 +43,12 @@ const ToursListLeft = ({ onFilter }) => {
   })
 
   const getTourTypes = useQuery({
-    queryKey: ['getTourTypes'],
+    queryKey: ["getTourTypes"],
     queryFn: async () => {
       const response = await tourTypesRoutes.getToursTypes();
-      return response;
-    }
-  })
-
-  const handleSelect = (value: string) => {
-    setSelectedType(value);
-  };
+      return response.items;
+    },
+  });
 
   const handleSelectCity = (value: string) => {
     const selectedCity = citiesAutoComplete.find(city => city.value === value);
@@ -60,12 +57,26 @@ const ToursListLeft = ({ onFilter }) => {
     }
   };
 
+  // Sincronizar categoria com a URL
+  useEffect(() => {
+    const category = searchParams.get("type") || "";
+    setSelectedCategory(category);
+  }, [searchParams]);
+
+  const handleCategorySelect = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    const queryParams = new URLSearchParams(searchParams.toString());
+    queryParams.set("type", categoryId);
+    router.push(`?${queryParams.toString()}`);
+    onFilter({ type: categoryId });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const filters = {
       city: citySelected,
       date,
-      type: selectedType,
+      type: selectedCategory,
       priceRange,
     };
     onFilter(filters);
@@ -74,7 +85,7 @@ const ToursListLeft = ({ onFilter }) => {
   const handleClearFilters = () => {
     setCitySelected("");
     setDate(undefined);
-    setSelectedType("");
+    setSelectedCategory("");
     setPriceRange([500, 10000]);
     setReset(true);
     onFilter({});
@@ -101,10 +112,8 @@ const ToursListLeft = ({ onFilter }) => {
                 placeholder={"Onde?"}
                 reset={reset}
               />
-              {/* <Input type="text" placeholder="Onde?" name="place" className="h-12 text-sm" /> */}
             </div>
             <div>
-              {/* <Input type="date" placeholder="Quando?" name="when" className="h-12 text-sm" /> */}
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -127,21 +136,6 @@ const ToursListLeft = ({ onFilter }) => {
                   />
                 </PopoverContent>
               </Popover>
-            </div>
-            <div>
-              <Select onValueChange={handleSelect} value={reset ? "" : selectedType}>
-                <SelectTrigger className="h-12 text-sm bg-white">
-                  <SelectValue placeholder="Selecione o tipo de passeio" />
-                </SelectTrigger>
-                <SelectContent>
-                  {/* @ts-ignore */}
-                  {getTourTypes.data?.items?.map((option) => (
-                    <SelectItem key={option.id} value={option.name}>
-                      {option.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
             <Button type="submit" className="w-full h-12 bg-green-700 hover:bg-green-800 text-base font-medium">
               Pesquisar
@@ -184,51 +178,6 @@ const ToursListLeft = ({ onFilter }) => {
             )}
           </div>
 
-          {/* Estrelas da Tour */}
-          {/* <div>
-            <div className="flex items-center justify-between border-b pb-2 mb-4">
-              <h3 className="text-lg font-semibold">Estrelas da tour</h3>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setShowReview((prev) => !prev)}
-              >
-                <ChevronDown
-                  className={`transition-transform ${showReview ? "rotate-180" : ""}`}
-                />
-              </Button>
-            </div>
-            {showReview && (
-              <div className="space-y-3">
-                {Array.from({ length: 5 }).map((_, i) => {
-                  const rating = 5 - i;
-                  return (
-                    <div key={rating} className="flex items-center space-x-2">
-                      <RadioGroup className="flex items-center space-x-2">
-                        <RadioGroupItem value="" id={`review-${rating}`} className="rounded-md shadow-sm" />
-                        <label
-                          htmlFor={`review-${rating}`}
-                          className="flex items-center space-x-1 cursor-pointer text-gray-700"
-                        >
-                          {Array.from({ length: 5 }).map((_, j) => (
-                            <span
-                              key={j}
-                            // className={`text-lg ${j < rating ? "text-yellow-500 fill-orange-700" : "text-gray-300"
-                            //   }`}
-                            >
-                              <Star className={`text-lg ${j < rating ? "text-orange-400 fill-orange-400" : "text-gray-300"
-                                }`} />
-                            </span>
-                          ))}
-                        </label>
-                      </RadioGroup>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div> */}
-
           {/* Categoria */}
           <div>
             <div className="flex items-center justify-between border-b pb-2 mb-4">
@@ -245,19 +194,31 @@ const ToursListLeft = ({ onFilter }) => {
             </div>
             {showCategory && (
               <div className="space-y-3">
-                {categories.map((category, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <RadioGroup defaultValue="comfortable" className="flex items-center space-x-2">
-                      <RadioGroupItem value="" id={`cat-${index}`} className="rounded-md shadow-sm" />
-                      <label
-                        htmlFor={`cat-${index}`}
-                        className="cursor-pointer text-gray-700"
+                {getTourTypes.isLoading ? (
+                  <p>Carregando categorias...</p>
+                ) : (
+                  getTourTypes.data?.map((category) => (
+                    <div key={category.id} className="flex items-center space-x-2">
+                      <RadioGroup
+                        value={selectedCategory}
+                        onValueChange={handleCategorySelect}
+                        className="flex items-center space-x-2"
                       >
-                        {category}
-                      </label>
-                    </RadioGroup>
-                  </div>
-                ))}
+                        <RadioGroupItem
+                          value={category.id.toString()}
+                          id={`cat-${category.id}`}
+                          className="rounded-md shadow-sm"
+                        />
+                        <label
+                          htmlFor={`cat-${category.id}`}
+                          className="cursor-pointer text-gray-700"
+                        >
+                          {category.name}
+                        </label>
+                      </RadioGroup>
+                    </div>
+                  ))
+                )}
               </div>
             )}
           </div>

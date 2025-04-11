@@ -1,17 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Col, Container, Row } from "react-bootstrap";
 import ToursListLeft from "./ToursListLeft";
 import ToursListRight from "./ToursListRight";
 
 const ToursListPage = () => {
-  //@ts-ignore
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [filters, setFilters] = useState({});
 
-  //@ts-ignore
-  const handleFilter = (filters) => {
-    //@ts-ignore
-    setFilters(filters);
+  // Sincronizar filtros com a URL
+  useEffect(() => {
+    const params = Object.fromEntries(searchParams.entries());
+    setFilters(params);
+  }, [searchParams]);
+
+  interface Filters {
+    [key: string]: string;
+  }
+
+  const handleFilter = (newFilters: Filters): void => {
+    setFilters(newFilters);
+    const queryString = new URLSearchParams(newFilters).toString();
+    router.push(`?${queryString}`);
   };
 
   return (

@@ -1,14 +1,15 @@
 import { api } from "@/api/axios.config";
 
-
 class ToursRoutes {
   public static TOURS = "/Tours";
   async getFeaturedTours() {
     const response = await api.get<ITours[]>(`${ToursRoutes.TOURS}/featured`);
     return response;
   }
-  async getPublishedTours() {
-    const response = await api.get<IPublishedTours>(`${ToursRoutes.TOURS}/published`);
+  async getPublishedTours(filters: Record<string, any>) {
+    const response = await api.get<IPublishedTours>(`${ToursRoutes.TOURS}/published`, {
+      params: filters,
+    });
     return response;
   }
 
