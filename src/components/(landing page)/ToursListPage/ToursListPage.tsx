@@ -16,6 +16,13 @@ const ToursListPage = () => {
     setFilters(params);
   }, [searchParams]);
 
+  useEffect(() => {
+    const category = searchParams.get("category");
+    if (category) {
+      setFilters((prevFilters) => ({ ...prevFilters, category }));
+    }
+  }, [searchParams]);
+
   interface Filters {
     [key: string]: string;
   }

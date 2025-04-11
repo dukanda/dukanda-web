@@ -5,7 +5,8 @@ import tourTypes from "@/data/tourTypes";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Mountain, Utensils, Trees, SquareLibrary, Waves } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton"; 
+import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
 
 const { bg } = tourTypes;
 
@@ -31,10 +32,15 @@ const SkeletonItem = () => (
 );
 
 const TourTypes = () => {
+  const router = useRouter();
   const { data: tourTypesData, isLoading, isError } = useQuery({
     queryKey: ["tourTypesData"],
     queryFn: async () => await tourTypesRoutes.getToursTypes(),
   });
+
+  const handleTourTypeClick = (category: number) => {
+    router.push(`/tours/list?type=${category}`);
+  };
 
   if (isError) return <p>Erro ao carregar os tipos de viagem.</p>;
 
@@ -53,20 +59,25 @@ const TourTypes = () => {
           {isLoading
             ? Array.from({ length: 5 }).map((_, index) => <SkeletonItem key={index} />)
             : tourTypesData?.items.map(({ id, icon, name }) => {
-                const IconComponent = iconMap[icon] || null;
-                return (
-                  <li key={id} className="tour-types__single animated fadeInUp">
-                    <div className="tour-types__content">
-                      <div className="tour-types__icon text-center">
-                        <span className="flex items-center justify-center">
-                          {IconComponent && <IconComponent size={48} className="icon" />}
-                        </span>
-                      </div>
-                      <h4 className="tour-types__title">{name}</h4>
+              const IconComponent = iconMap[icon] || null;
+              return (
+                <li
+                  key={id}
+                  className="tour-types__single animated fadeInUp"
+                  onClick={() => handleTourTypeClick(id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="tour-types__content">
+                    <div className="tour-types__icon text-center">
+                      <span className="flex items-center justify-center">
+                        {IconComponent && <IconComponent size={48} className="icon" />}
+                      </span>
                     </div>
-                  </li>
-                );
-              })}
+                    <h4 className="tour-types__title">{name}</h4>
+                  </div>
+                </li>
+              );
+            })}
         </ul>
       </Container>
     </section>
