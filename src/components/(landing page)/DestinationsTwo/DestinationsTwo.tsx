@@ -5,6 +5,7 @@ import { Container, Image } from "react-bootstrap";
 import DestinationsTwoSingle from "./DestinationsTwoSingle";
 import { useQuery } from "@tanstack/react-query";
 import { touristAttractions } from "@/api/routes/TouristAttractions/index.routes";
+import Link from "next/link";
 
 const { image, title, tagline, off } = destinationsTwo;
 
@@ -34,7 +35,7 @@ const DestinationsTwo = () => {
       <Container>
         {/* Top */}
         <div className="relative block">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row items-center justify-between">
             {/* Left */}
             <div className="w-[60%]">
               <div className="text-left mt-[8px]">
@@ -44,12 +45,12 @@ const DestinationsTwo = () => {
             </div>
 
             {/* Right - 2 destinos */}
-            <div className="w-[500px] flex gap-3">
+            <div className="w-[80%] flex gap-3">
               {attractions.slice(3, 5).map((attraction) => (
                 <DestinationsTwoSingle
                   key={attraction.id}
                   destination={attraction}
-                  col={4} // Ajuste para garantir o mesmo tamanho
+                  col={4} 
                 />
               ))}
             </div>
@@ -58,9 +59,9 @@ const DestinationsTwo = () => {
 
         {/* Bottom */}
         <div className="">
-          <div className="w-full flex gap-3  ">
+          <div className="w-full flex flex-col xl:flex-row gap-3  ">
             {/* Outros destinos */}
-            <div className="flex h-full gap-3">
+            <div className="flex flex-col  md:flex-row h-full gap-3">
               {attractions.slice(5, 8).map((attraction) => (
                 <DestinationsTwoSingle
                   key={attraction.id}
@@ -74,13 +75,13 @@ const DestinationsTwo = () => {
             <div className="w-full  ">
               <div className=" w-[280px]   animated fadeInUp">
                 <div className="h-max py-3 destinations-two__top-banner">
-                  <p>Up to {off} off</p>
+                  <p>Dê uma olhada</p>
                   <h2>
-                    Summer <span>hot deals</span>
+                    Destinos <span> mais populares</span>
                   </h2>
-                  <a href="#" className="thm-btn destinations-two__btn">
-                    View Deals
-                  </a>
+                  <Link href="/destinations" className="thm-btn destinations-two__btn">
+                    Ver todos
+                  </Link>
                 </div>
               </div>
             </div>

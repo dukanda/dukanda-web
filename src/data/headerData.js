@@ -48,7 +48,7 @@ const navItems = [
     href: "/news",
     subNavItems: [
       { id: 1, name: "Notícias", href: "/news" },
-      { id: 2, name: "Detalhes da Notícia", href: "/news/details" },
+      // { id: 2, name: "Detalhes da Notícia", href: "/news/details" },
     ],
   },
   {
