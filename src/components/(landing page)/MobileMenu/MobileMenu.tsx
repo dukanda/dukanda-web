@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { Image } from "react-bootstrap";
 import NavItem from "./NavItem";
 import { useRootContext } from "../context/context";
+import { Button } from "@/components/ui/button";
 
 const { social, logo, navItems } = headerData;
 
@@ -51,9 +52,15 @@ const MobileMenu = () => {
             <NavItem key={id} item={item} onClick={toggleMenu} />
           ))}
         </ul>
-
         {/* Contato */}
         <ul className="mobile-nav__contact list-unstyled">
+          <li>
+            <Link href="https://dukanda-app.vercel.app" target="_blank" passHref className="">
+              <Button variant="outline" className=" items-center justify-center bg-[var(--thm-primary)] text-[var(--thm-base)] hover:bg-[var(--thm-black)] hover:text-[var(--thm-base)] transition px-4 py-2 rounded-md">
+                Anunciar aqui
+              </Button>
+            </Link>
+          </li>
           <li>
             <i className="fa fa-envelope"></i>
             <a href="mailto:dukanda@gmail.com" className="text-gray-800">

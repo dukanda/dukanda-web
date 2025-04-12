@@ -31,7 +31,6 @@ const DestinationsTwo = () => {
       <div className="absolute top-[50px] left-[160px] animate-[animation1_5s_ease-in_infinite]">
         <Image src={image.src} alt="" />
       </div>
-
       <Container>
         {/* Top */}
         <div className="relative block">
@@ -45,7 +44,7 @@ const DestinationsTwo = () => {
             </div>
 
             {/* Right - 2 destinos */}
-            <div className="w-[80%] flex gap-3">
+            <div className="w-[400px] md:w-[80%]  flex flex-col md:flex-row justify-center items-center gap-3">
               {attractions.slice(3, 5).map((attraction) => (
                 <DestinationsTwoSingle
                   key={attraction.id}
@@ -59,9 +58,9 @@ const DestinationsTwo = () => {
 
         {/* Bottom */}
         <div className="">
-          <div className="w-full flex flex-col xl:flex-row gap-3  ">
+          <div className="w-full flex flex-col md:flex-row xl:flex-row gap-3  ">
             {/* Outros destinos */}
-            <div className="flex flex-col  md:flex-row h-full gap-3">
+            <div className="flex flex-col items-center  xl:flex-row h-full gap-3">
               {attractions.slice(5, 8).map((attraction) => (
                 <DestinationsTwoSingle
                   key={attraction.id}
@@ -72,7 +71,7 @@ const DestinationsTwo = () => {
             </div>
 
             {/* Banner final */}
-            <div className="w-full  ">
+            <div className="w-full flex items-center justify-center md:items-start">
               <div className=" w-[280px]   animated fadeInUp">
                 <div className="h-max py-3 destinations-two__top-banner">
                   <p>Dê uma olhada</p>

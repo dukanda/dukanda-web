@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Select from "react-select";
@@ -97,7 +98,7 @@ const TourSearchForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="tour-search-one">
+    <form onSubmit={handleSubmit} className="tour-search-one mb-[100px] ">
       <div className="tour-search-one__inner">
         <div className="tour-search-one__inputs ">
           <div className="tour-search-one__input-box">
@@ -140,11 +141,11 @@ const TourSearchForm = () => {
             />
           </div>
         </div>
-        <div className="tour-search-one__btn-wrap">
+        <Link href={"/tours/list"} className="tour-search-one__btn-wrap" passHref>
           <button type="submit" className="thm-btn tour-search-one__btn">
             Encontrar
           </button>
-        </div>
+        </Link>
       </div>
     </form>
   );

@@ -41,7 +41,7 @@ const DestinationsTwoSingle: React.FC<DestinationsTwoSingleProps> = ({ destinati
           )}
           <h2 className="text-[30px] font-bold leading-[40px] tracking-[var(--thm-letter-spacing)]">
             <Link
-              href="/destinations-details"
+               href={`/destinations/${destination.id}/details`}
               legacyBehavior
             >
               <a className="text-[var(--thm-base)] transition-colors duration-500 group-hover:text-[var(--thm-primary)]">

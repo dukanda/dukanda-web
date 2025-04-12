@@ -36,14 +36,14 @@ const navItems = [
       // { id: 3, name: "Detalhes do Passeio", href: "/tour-details" },
     ],
   },
+  // {
+  //   id: 4,
+  //   name: "Páginas",
+  //   href: "",
+  //   subNavItems: [{ id: 1, name: "Sobre", href: "/about" }],
+  // },
   {
     id: 4,
-    name: "Páginas",
-    href: "",
-    subNavItems: [{ id: 1, name: "Sobre", href: "/about" }],
-  },
-  {
-    id: 5,
     name: "Notícias",
     href: "/news",
     subNavItems: [
@@ -52,11 +52,17 @@ const navItems = [
     ],
   },
   {
-    id: 6,
+    id: 5,
     name: "Contato",
     href: "/contact",
     subNavItems: [],
   },
+  // {
+  //   id: 6,
+  //   name: "Anunciar aqui",
+  //   href: "https://dukanda-app.vercel.app",
+  //   subNavItems: [],
+  // }
 ];
 
 const social = [
@@ -77,7 +83,7 @@ const headerData = {
     {
       id: 2,
       icon: "icon-at",
-      content: "hello@dukanda.tours",
+      content: "dukanda@gmail.com",
       subHref: "mailto",
     },
   ],

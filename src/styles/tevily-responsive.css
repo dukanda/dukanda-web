@@ -185,11 +185,22 @@
 }
 
 /* Tablet Layout: 768px. */
+@media screen and (max-width: 450px) {
+  .tour-search-one {
+  margin-left: 8px;
+  margin-right: 8px;
+    /* background-color: rgb(255, 255, 255);
+    box-shadow: 0px 10px 30px 0px rgb(0, 0, 0, 0.05);
+    border-radius: var(--thm-border-radius); */
+  }
+}
+
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tour-search-one__inputs {
     -webkit-box-flex: 1;
     flex: 1 1 100%;
-    max-width: 100%;
+    max-width: 90%;
     border: 1px solid #ebe6de;
     border-bottom: 0;
     border-top-right-radius: 8px;
@@ -201,6 +212,7 @@
     flex: 1 1 100%;
     max-width: 100%;
   }
+
   .tour-search-one__input-box {
     border-bottom: 1px solid #ebe6de;
   }
@@ -290,7 +302,7 @@
     border-top-left-radius: 0;
   }
   .banner-two__title {
-    font-size: 55px;
+    font-size: 10px;
   }
   .three-icon-box__single {
     margin-bottom: 32px;

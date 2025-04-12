@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import QueryProvider from "@/_module/tanstack-query-config/queryClientProvider";
 import ContextProvider from "@/components/(landing page)/context/ContextProvider";
 import Head from "next/head";
+import favico from "@/app/favicon.ico";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,7 +13,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Dukanda",
-  description: "Is a app to help found a good tour in any City!",
+  description: "Dukanda - A sua plataforma de turismo",
 };
 
 export default function RootLayout({
@@ -23,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <Head>
-        <link rel="shortcut icon" href="Logomark.svg" type="image/x-icon" />
+        <link rel="shortcut icon" href={"/favicon.ico"} type="image/x-icon" />
       </Head>
       <body className={`antialiased ${inter.className}`}>
         <QueryProvider>

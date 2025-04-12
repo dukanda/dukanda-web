@@ -26,8 +26,8 @@ export default function App() {
       <DestinationsTwo />
       <AboutTwo />
       <TourTypes />
-      <div className="my-1 w-full">
-        <BrandTwo />
+      <div className="my-20 w-full">
+        
       </div>
       <NewsOne />
       <NewsTwo />

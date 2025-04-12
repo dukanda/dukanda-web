@@ -131,6 +131,7 @@ import Image from "next/image";
 import React from "react";
 import NavItem from "./NavItem";
 import { MenuIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const { icons, navItems, social, logo, logo2 } = headerData;
 
@@ -146,30 +147,37 @@ const Header = ({ pageTitle }) => {
         }`}
     >
       {/* Top Bar */}
-      {/* <div className="main-header__top hidden md:block bg-[var(--thm-black)] text-white py-2">
-        <div className="container mx-auto flex justify-between items-center px-6">
-          <ul className="main-header__top-address flex space-x-6 text-sm">
+      {/* <div className=" bg-[var(--thm-black)] text-white py-2">
+        {/* className="container mx-auto flex justify-between items-center px-6" 
+        <div className="flex justify-between items-center" >
+          <ul className="hidden sm:flex space-x-6 text-sm ml-5 flex-col md:flex-row items-center gap-2">
             {icons.map(({ id, icon, content, subHref }) => (
               <li key={id} className="flex items-center space-x-2">
                 <span className={`${icon} text-lg text-[var(--thm-primary)]`}></span>
-                <a href={`${subHref}:${content}`} className="hover:text-[var(--thm-base)] transition">
+                <a href={`${subHref}:${content}`} className="text-[var(--thm-base)] hover:text-orange-500 transition">
                   {content}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="main-header__top-right flex space-x-4 items-center">
-            {social.map(({ icon, link }, index) => (
+          <div className=" flex space-x-4 items-center mx-5">
+            {/* {social.map(({ icon, link }, index) => (
               <a key={index} href={link} className="text-lg text-[var(--thm-base)] hover:text-[var(--thm-primary)] transition">
                 <i className={`fab ${icon}`}></i>
               </a>
-            ))}
-            <a
+            ))} */}
+            {/* <a
               href="#"
               className="main-header__top-right-btn bg-[var(--thm-primary)] text-[var(--thm-black)] px-6 py-2 rounded-md text-sm font-semibold hover:bg-[var(--thm-base)] transition"
             >
               Seja um guia turístico
-            </a>
+            </a> 
+
+            <Link href="https://dukanda-app.vercel.app" target="_blank" passHref >
+              <Button variant="outline" className=" items-center justify-center bg-[var(--thm-primary)] text-[var(--thm-base)] hover:text-[var(--thm-black)] hover:bg-[var(--thm-base)] transition px-4 py-2 rounded-md">
+                Seja um guia turístico
+              </Button>
+            </Link>
           </div>
         </div>
       </div> */}
@@ -201,6 +209,13 @@ const Header = ({ pageTitle }) => {
 
           {/* Right Icons */}
           <div className="flex items-center space-x-4">
+            <Link href="https://dukanda-app.vercel.app" target="_blank" passHref className="hidden sm:flex">
+              <Button variant="outline" className=" items-center justify-center bg-[var(--thm-primary)] text-[var(--thm-base)] hover:bg-[var(--thm-black)] hover:text-[var(--thm-base)] transition px-4 py-2 rounded-md">
+                Anunciar aqui
+              </Button>
+            </Link>
+
+
             <button onClick={toggleSearch} className="main-menu__search text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg">
               <i className="icon-magnifying-glass"></i>
             </button>

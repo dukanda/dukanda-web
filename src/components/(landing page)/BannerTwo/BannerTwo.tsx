@@ -35,7 +35,7 @@ export default function BannerTwo() {
   }, []);
 
   return (
-    <section className="relative h-[90vh] overflow-hidden">
+    <section className="relative h-[100vh] overflow-hidden mt-[90px] md:mt-0 pt-[150px] md:pt-0">
       {bannerItems.map((item, i) => (
         <div
           key={i}
@@ -55,12 +55,13 @@ export default function BannerTwo() {
         <p className="banner-two__sub-title">
           {bannerItems[index].title}
         </p>
-        <h2 className="banner-two__title">
+
+        <h2 className=" text-[30px] text-white  sm:text-[40px] md:text-[60px] font-semibold leading-[50px] tracking-[-1px] text-center mb-10">
           {bannerItems[index].subTitle}
         </h2>
-        <div className="tour-search-box">
+        <div className="tour-search-box mx-2">
           <TourSearchForm />
-          <p className="banner-two__bottom-text">
+          <p className="banner-two__bottom-text hidden md:block">
             {bannerItems[index].bottomText}
           </p>
         </div>

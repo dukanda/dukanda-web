@@ -74,7 +74,7 @@ const ToursListRight = ({ filters }) => {
   const totalPages = useMemo(() => Math.ceil(filteredTours.length / ITEMS_PER_PAGE), [filteredTours]);
 
   return (
-    <div className="mt-12">
+    <div className="">
       <div className="space-y-6">
         {getPublishedTours.isLoading ? (
           <div className="animate-pulse space-y-4">

@@ -11,7 +11,8 @@ const ThreeIconBox = () => {
           {threeIconBox.map(({ id, icon, title, text }) => (
             <Col key={id} xl={4} lg={4} className="animated fadeInUp">
               <div className="three-icon-box__single">
-                <div className="three-icon-box__icon">
+                {/* className="text-[#F7931E] text-[30px] md:text-[50px] " */}
+                <div className="text-[#F7931E] text-[30px] md:text-[50px]">
                   <span className={icon}></span>
                 </div>
                 <div className="three-icon-box__content">

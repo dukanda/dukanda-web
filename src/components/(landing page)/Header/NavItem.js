@@ -9,10 +9,12 @@ const NavItem = ({ navItem = {} }) => {
   const subHref = subNavItems.map((item) => item.href);
   const current = pathname === href || subHref.includes(pathname);
 
+  const isHighlighted = name === "Anunciar aqui"; // Verifica se é o item destacado
+
   return (
-    <li className={`dropdown${current ? " current" : ""}`}>
-      <Link href={href} legacyBehavior>
-        <a href={href} className="text-md">{name}</a>
+    <li className={`dropdown${current ? " current" : ""}${isHighlighted ? " highlight " : ""}`}>
+      <Link href={href} legacyBehavior className="text-orange-500">
+        <a href={href} className={`text-md ${isHighlighted ? "text-red-500 " : ""}`}>{name}</a>
       </Link>
       <ul>
         {subNavItems.map((subItem) => (
