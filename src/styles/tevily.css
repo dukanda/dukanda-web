@@ -1537,18 +1537,19 @@ ul {
 }
 
 .banner-two__sub-title {
-  font-size: 60px;
+  font-size: 50px;
   color: var(--thm-primary);
   font-family: var(--thm-reey-font);
   line-height: 60px;
   margin: 0;
-  padding-left: 231px;
+  text-align: start;
+  /* padding-left:; */
 }
 
 .banner-two__title {
-  font-size: 70px;
+  font-size: 40px;
   color: var(--thm-base);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 60px;
   letter-spacing: var(--thm-letter-spacing);
   margin-top: -6px;
@@ -1559,7 +1560,7 @@ ul {
 .banner-two__bottom-text {
   font-size: 18px;
   color: var(--thm-base);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 28px;
   letter-spacing: 0.1em;
   text-transform: uppercase;

@@ -1,42 +1,70 @@
-"use client";
-import React from "react";
-import BackgroundSlider from "react-background-slider";
-import { Col, Container, Row } from "react-bootstrap";
-import setImage from "../../../utils/imageUtil"
-import TourSearchForm from "../TourSearchForm/TourSearchForm";
+/* eslint-disable @next/next/no-img-element */
+'use client';
+import { useEffect, useState } from 'react';
+import TourSearchForm from '../TourSearchForm/TourSearchForm';
 
-//@ts-ignore
-const BannerTwo = ({ data }) => {
-  // if (!data) return null; // Evitar erro ao renderizar antes de carregar os dados
+const bannerItems = [
+  {
+    image: '/banner3.jpg',
+    title: 'Descubra',
+    subTitle: 'Explore sua próxima aventura',
+    bottomText: 'Reserve agora!',
+  },
+  {
+    image: '/banner5.jpg',
+    title: 'Explore Angola',
+    subTitle: ' Descubra o desconhecido!',
+    bottomText: 'Aventure-se em novas experiências',
+  },
+  {
+    image: '/banner2.jpg',
+    title: 'Viva a experiência',
+    subTitle: 'Crie memórias inesquecíveis',
+    bottomText: 'Comece a sua jornada hoje!',
+  },
+];
 
-  const { subTitle, title, bottomText, slides } = data;
+export default function BannerTwo() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % bannerItems.length);
+    }, 4500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="banner-two">
-      <BackgroundSlider
-      //@ts-ignore
-        className="banner-bg-slide"
-        //@ts-ignore
-        images={ data? slides?.map(item => setImage(item)) : []}
-        duration={10}
-        transition={2}
-      />
-      <div className="banner-bg-slide-overly"></div>
-      <Container>
-        <Row>
-          <Col xl={12}>
-            <div className="banner-two__content">
-              <p className="banner-two__sub-title">{title? title : "Erro ao carregar"}</p>
-              <h2 className="banner-two__title">{subTitle? subTitle : "Erro ao carregar"}</h2>
-              <div className="tour-search-box">
-                <TourSearchForm />
-                <p className="banner-two__bottom-text">{bottomText? bottomText : "Erro ao carregar"}</p>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+    <section className="relative h-[90vh] overflow-hidden">
+      {bannerItems.map((item, i) => (
+        <div
+          key={i}
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="banner-bg-slide-overly"></div>
+        </div>
+      ))}
+
+      <div className="relative z-20 flex flex-col justify-center items-center text-white h-full ">
+        <p className="banner-two__sub-title">
+          {bannerItems[index].title}
+        </p>
+        <h2 className="banner-two__title">
+          {bannerItems[index].subTitle}
+        </h2>
+        <div className="tour-search-box">
+          <TourSearchForm />
+          <p className="banner-two__bottom-text">
+            {bannerItems[index].bottomText}
+          </p>
+        </div>
+      </div>
     </section>
   );
-};
-
-export default BannerTwo;
+}

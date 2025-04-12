@@ -18,7 +18,7 @@ export default function App() {
   const bannerData = ""
   return (
     <Layout pageTitle="Ínicio">
-      <BannerTwo data={bannerData} />
+      <BannerTwo />
       <ThreeIconBox />
       <PopularToursTwo />
       <SingaporeTour />
@@ -28,7 +28,7 @@ export default function App() {
       <AboutTwo />
       <TourTypes />
       <BrandTwo />
-      <NewsOne   />
+      <NewsOne />
       <NewsTwo />
       <BookNow />
     </Layout>

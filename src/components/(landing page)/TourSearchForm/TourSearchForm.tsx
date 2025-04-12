@@ -99,29 +99,30 @@ const TourSearchForm = () => {
   return (
     <form onSubmit={handleSubmit} className="tour-search-one">
       <div className="tour-search-one__inner">
-        <div className="tour-search-one__inputs">
+        <div className="tour-search-one__inputs ">
           <div className="tour-search-one__input-box">
-            <label htmlFor="place">Onde Ir</label>
+            <label htmlFor="place" className="text-gray-400">Onde Ir</label>
             <input
               type="text"
               placeholder="Pesquisa"
               name="place"
               id="place"
+              className="text-gray-700"
             />
           </div>
           <div className="tour-search-one__input-box">
-            <label>Quando Ir</label>
+            <label className="text-gray-400">Quando Ir</label>
             <DatePicker
               selected={startDate}
               //@ts-ignore
 
               onChange={(date) => setStartDate(date)}
-              className="hasDatepicker"
+              className="hasDatepicker text-gray-700"
               placeholderText="Selecione"
             />
           </div>
           <div className="tour-search-one__input-box tour-search-one__input-box-last">
-            <label htmlFor="type">O que fazer</label>
+            <label htmlFor="type" className="text-gray-400">O que fazer</label>
             <Select
               defaultValue={typeOptions[0]}
               name="type"
