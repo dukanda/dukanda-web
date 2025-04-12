@@ -25,7 +25,7 @@ const SiteFooter = () => {
                 <div className="relative mr-[70px] -mt-[8px]">
                   <div>
                     <Link href="/" passHref>
-                      <Image src={logo.src} alt="Logo" />
+                      <Image src={"/duk.png"} alt="Logo" />
                     </Link>
                   </div>
                   <p className="text-[15px] text-gray-400 leading-[32px] pt-[29px] pb-[24px] mb-[18px] border-b border-gray-700">

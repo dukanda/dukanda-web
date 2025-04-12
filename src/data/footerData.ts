@@ -4,7 +4,6 @@ import logo from "@/assets/images/resources/footer-logo.png";
 const social = [
   { icon: "fa-twitter", link: "" },
   { icon: "fa-facebook-square", link: "" },
-  { icon: "fa-pinterest-p", link: "" },
   { icon: "fa-instagram", link: "" },
 ];
 
