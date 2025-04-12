@@ -15,7 +15,6 @@ import NewsTwo from "@/components/(landing page)/NewsTwo/NewsTwo"
 import NewsOne from "@/components/(landing page)/NewsOne/NewsOne"
 
 export default function App() {
-  const bannerData = ""
   return (
     <Layout pageTitle="Ínicio">
       <BannerTwo />
@@ -27,7 +26,9 @@ export default function App() {
       <DestinationsTwo />
       <AboutTwo />
       <TourTypes />
-      <BrandTwo />
+      <div className="my-1 w-full">
+        <BrandTwo />
+      </div>
       <NewsOne />
       <NewsTwo />
       <BookNow />

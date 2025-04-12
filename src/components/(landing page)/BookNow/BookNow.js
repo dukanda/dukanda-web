@@ -1,5 +1,5 @@
 import bookNow from "@/data/bookNow";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
@@ -22,7 +22,7 @@ const BookNow = () => {
               </div>
               <div className="book-now__right">
                 <Link href="/tours/list" className="thm-btn book-now__btn">
-                 Reserve já
+                  Reserve já
                 </Link>
               </div>
             </div>
