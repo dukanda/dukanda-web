@@ -22,7 +22,7 @@ export default function App() {
       <PopularToursTwo />
       <SingaporeTour />
       <VideoTwo />
-      <CounterOne />
+      {/* <CounterOne /> */}
       <DestinationsTwo />
       <AboutTwo />
       <TourTypes />

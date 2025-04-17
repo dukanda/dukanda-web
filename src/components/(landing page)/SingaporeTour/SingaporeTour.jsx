@@ -1,6 +1,7 @@
 import singaporeTour from "@/data/singaporeTour";
 import React, { Fragment } from "react";
 import VisibilityCountUp from "../VisibilityCountUp/VisibilityCountUp";
+import Link from "next/link";
 
 const { bg1, bg2, title, text, trustedBy } = singaporeTour;
 
@@ -28,11 +29,11 @@ const SingaporeTour = () => {
                 </Fragment>
               ))}
             </p>
-            <a href="#" className="thm-btn singapore-tour__btn">
-             Explorar
-            </a>
+            <Link href="https://dukanda-app.vercel.app/auth/login" target="_blank" className="thm-btn singapore-tour__btn">
+              Anuncie a sua Agência
+            </Link>
           </div>
-          <div className="singapore-tour__trusted">
+          {/* <div className="singapore-tour__trusted">
             <p>Visitada Por</p>
             <h2 className="odometer">
               <VisibilityCountUp count={trustedBy} />
@@ -40,7 +41,7 @@ const SingaporeTour = () => {
             <div className="singapore-tour__trusted-icon">
               <i className="fas fa-sort-up"></i>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

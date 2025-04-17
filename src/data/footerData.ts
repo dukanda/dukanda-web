@@ -35,14 +35,14 @@ const footerData = {
   ],
   companies: [
     { id: 1, link: "/about", title: "Sobre nós" },
-    { id: 2, link: "#", title: " Blog da comunidade" },
-    { id: 3, link: "#", title: " Rewards" },
+    // { id: 2, link: "#", title: " Blog da comunidade" },
+    // { id: 3, link: "#", title: " Rewards" }, 
     { id: 4, link: "#", title: "Trabalhe connosco" },
     // { id: 5, link: "#", title: "Meet the Team" },
   ],
   explore: [
     { id: 1, link: "#", title: "Conta" },
-    { id: 2, link: "#", title: "Legal" },
+    // { id: 2, link: "#", title: "Legal" },
     { id: 3, link: "#", title: "Contacto" },
     // { id: 4, link: "#", title: "Affilitate Program" },
     { id: 5, link: "#", title: "Políticas de Privacidades" },
