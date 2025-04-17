@@ -43,7 +43,7 @@ const DestinationsDetailsPage = () => {
   }
 
   if (!destinationDetails.data) {
-    return <div>Error: Destination details not found</div>;
+    return <div>Destino não encontrado.</div>;
   }
 
   return (
