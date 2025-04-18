@@ -3,7 +3,7 @@ import { sidebar } from "@/data/newsDetailsPage";
 import React from "react";
 import { Image } from "react-bootstrap";
 
-const { categories, tags } = sidebar;
+const { categories } = sidebar;
 
 export const newsFicticios = {
   title: "Atualizações recentes",
@@ -108,7 +108,7 @@ const Sidebar = () => {
       </div>
 
       {/* Tags */}
-      <div className="rounded-[var(--thm-border-radius)] bg-[var(--thm-base)] border border-[#ebe6de] px-[45px] pt-[45px] pb-[50px]">
+      {/* <div className="rounded-[var(--thm-border-radius)] bg-[var(--thm-base)] border border-[#ebe6de] px-[45px] pt-[45px] pb-[50px]">
         <h3 className="text-[20px] font-bold text-[var(--thm-black)] tracking-[var(--thm-letter-spacing)] mb-[15px] ml-[5px]">
           Tags
         </h3>
@@ -123,7 +123,7 @@ const Sidebar = () => {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

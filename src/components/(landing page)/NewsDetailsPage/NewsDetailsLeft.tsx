@@ -48,14 +48,14 @@ const NewsDetailsLeft = ({ title, description, coverImageUrl, publishedAt, publi
         </div>
         <div>
           <ul className="list-none flex flex-col sm:flex-row gap-4 sm:gap-6">
-            <li>
+            {/* <li>
               <Link href="/news-details" legacyBehavior>
                 <a className="flex items-center gap-1 text-orange-500 text-[13px] font-bold leading-[30px] transition-all duration-500 hover:text-[var(--thm-primary)]">
                   <i className="far fa-comments"></i>
                   {totalComments} Comentários
                 </a>
               </Link>
-            </li>
+            </li> */}
 
             <li className="flex items-center gap-1 text-[13px] font-bold leading-[30px] text-[var(--thm-black)]">
               Publicado: {" "}
@@ -63,7 +63,6 @@ const NewsDetailsLeft = ({ title, description, coverImageUrl, publishedAt, publi
                 publishedAt && (
                   <span className="text-[13px] flex items-center justify-center gap-2 font-bold leading-[30px] text-[var(--thm-black)]">
                     <i className="far fa-calendar-alt"></i>
-                    
                     {new Date(publishedAt).toLocaleDateString()}
                   </span>
                 )
@@ -72,10 +71,10 @@ const NewsDetailsLeft = ({ title, description, coverImageUrl, publishedAt, publi
           </ul>
           <h3 className="text-[24px] sm:text-[30px] font-bold leading-[32px] mt-6 sm:mt-10 mb-[23px]">{title}</h3>
           <div className="space-y-4 text-[14px] sm:text-[16px]">
-            {description && <p>{description}</p>}
+            {description && <p className=" text-justify"> {description}</p>}
             {content &&
               content.split("\n").map((paragraph, index) => (
-                <p key={index} className="mt-4">
+                <p key={index} className="mt-4 text-justify">
                   {paragraph}
                 </p>
               ))}
