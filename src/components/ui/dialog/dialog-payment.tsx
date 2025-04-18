@@ -2,15 +2,19 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import MultiStepForm from "./multi-step";
+
 import {
-  DialogHeader,
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "./radix-dialog";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 import { formatCurrency } from "@/_utils/formatCurrency";
 import { Check, Copy, MapPinned, Users2Icon } from "lucide-react";
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "../card/radix-card";
@@ -29,6 +33,7 @@ const StepOneForm = ({
   startDate,
   endDate,
   setTotal,
+  title,
 }: {
   onSubmit: (data: any) => void;
   selectedPackage: Package | null;
@@ -36,6 +41,7 @@ const StepOneForm = ({
   packages: Package[];
   startDate: string;
   endDate: string;
+  title: string;
   onSelect: (selectedPackage: Package | null) => void;
   setTotal: (total: number) => void;
 }) => {
@@ -53,7 +59,7 @@ const StepOneForm = ({
             <div className="flex items-center gap-2 px-3 py-2.5 border rounded-md bg-gray-50/80 w-full min-w-[250px] sm:max-w-[250px]">
               <span className="font-medium text-gray-700 flex items-center gap-2">
                 <MapPinned size={18} className="text-green-600 font-light" />
-                Descubra o Maracanã
+                {title}
               </span>
             </div>
           </div>
@@ -253,7 +259,7 @@ const StepThreeForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
   );
 };
 
-export function DialogPayment({ selectedPackage, description, packages = [], startDate, endDate }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string }) {
+export function DialogPayment({ selectedPackage, description, packages = [], startDate, endDate,title }: { selectedPackage: Package | null, description: string, packages: Package[], startDate: string, endDate: string, title: string }) {
   const [selectedPackageState, setSelectedPackageState] = useState<Package | null>(selectedPackage || (packages.length > 0 ? packages[0] : null));
   const [total, setTotal] = useState(0);
 
@@ -262,7 +268,7 @@ export function DialogPayment({ selectedPackage, description, packages = [], sta
   };
 
   const steps = [
-    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackageState} description={description} packages={packages} onSelect={handleSelectPackage} startDate={startDate} endDate={endDate} setTotal={setTotal} /> },
+    { label: "Step 1", form: (props: any) => <StepOneForm {...props} selectedPackage={selectedPackageState} description={description} packages={packages} onSelect={handleSelectPackage} startDate={startDate} endDate={endDate} setTotal={setTotal} title={title} /> },
     { label: "Step 2", form: StepTwoForm },
     { label: "Step 3", form: StepThreeForm },
   ];
@@ -272,18 +278,18 @@ export function DialogPayment({ selectedPackage, description, packages = [], sta
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
         <button className=" h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
-      </DialogTrigger>
-      <DialogContent className="h-full w-full  md:w-[90%] sm:max-w-[65%] md:h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
-        <DialogHeader>
-          <DialogTitle></DialogTitle>
-          <DialogDescription className="h-full">
+      </AlertDialogTrigger>
+      <AlertDialogContent className="h-full w-full  md:w-[90%] sm:max-w-[65%] md:h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
+        <AlertDialogHeader>
+          <AlertDialogTitle></AlertDialogTitle>
+          <AlertDialogDescription className="h-full">
             <MultiStepForm steps={steps} onFinished={handleFinished} total={total} />
-          </DialogDescription>
-        </DialogHeader>
-      </DialogContent>
-    </Dialog>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

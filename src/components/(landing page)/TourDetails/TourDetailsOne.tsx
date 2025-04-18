@@ -44,7 +44,7 @@ const TourDetailsOne = ({
                 </span>
                 <div>
                   <p className="text-sm">Duração</p>
-                  <h6 className="text-lg">{duration}</h6>
+                  <h6 className="text-md">{duration}</h6>
                 </div>
               </div>
 

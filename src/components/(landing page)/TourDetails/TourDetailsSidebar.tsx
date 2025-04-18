@@ -67,7 +67,7 @@ const customStyle = {
 const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
 
 // & { setSelectedPackage: (pack: Package | null) => void, description: string }
-export const TourDetailsSidebar = ({ packages, description, startDate, endDate, selectedPackage }: ITour & { selectedPackage: Package | null }) => {
+export const TourDetailsSidebar = ({ packages, description, startDate, endDate, selectedPackage,title }: ITour & { selectedPackage: Package | null }) => {
 
 
   return (
@@ -82,7 +82,7 @@ export const TourDetailsSidebar = ({ packages, description, startDate, endDate, 
       <div className="border border-orange-400 rounded-md px-4 py-3.5 shadow-sm hidden lg:block">
         <h3 className="tour-details-two__sidebar-title hidden lg:block">Reservar passeios</h3>
         <p className="w-full text-justify -tracking-normal hidden lg:block">Clique em Reservar para escolher um pacote da tour</p>
-        <DialogPayment packages={packages ?? []} description={description ?? ""} endDate={endDate ?? ""} startDate={startDate ?? ""} selectedPackage={selectedPackage} />
+        <DialogPayment packages={packages ?? []} description={description ?? ""} endDate={endDate ?? ""} startDate={startDate ?? ""} selectedPackage={selectedPackage} title={title ?? ""}  />
       </div>
     </div>
 

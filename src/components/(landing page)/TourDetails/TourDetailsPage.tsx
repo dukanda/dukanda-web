@@ -22,6 +22,7 @@ const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, city
         packages={packages}
         startDate={startDate}
         endDate={endDate}
+        title={title}
       />
     </>
   );
