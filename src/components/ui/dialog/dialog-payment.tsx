@@ -22,6 +22,7 @@ import { Input } from "../input";
 import UploadArea from "../upload-area";
 import { formatDateRange } from "@/_utils/calculateDuration";
 import usePackagesStore from "@/_module/store/usePackagesStore";
+import { Button } from "../button";
 
 
 const StepOneForm = ({
@@ -280,7 +281,7 @@ export function DialogPayment({ selectedPackage, description, packages = [], sta
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className=" h-[50px] w-full bg-[#F7931E] rounded-lg text-white mt-3 ">Reservar</button>
+        <Button className=" h-[50px] w-full bg-[#F7931E] hover:bg-orange-500 rounded-lg text-white mt-3 ">Reservar</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="h-full w-full  md:w-[90%] sm:max-w-[65%] md:h-[90%] bg-white overflow-y-auto [&::-webkit-scrollbar]:hidden rounded-[18px]">
         <AlertDialogHeader>

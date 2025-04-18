@@ -50,13 +50,13 @@ const AlertDialogContent = React.forwardRef<
       {...props}
     >
       {/* Botão de fechar (X) */}
-      <AlertDialogCancel asChild>
-        <button
+      <AlertDialogCancel asChild className="size-10 shadow-none border-0 rounded-none">
+        <div
           aria-label="Fechar"
-          className="absolute top-4 right-4 rounded-full p-2 hover:bg-secondary/20 transition"
+          className="absolute top-3 right-2 p-2 hover:bg-secondary/20 transition"
         >
           <X className="h-4 w-4" />
-        </button>
+        </div>
       </AlertDialogCancel>
 
       {children}

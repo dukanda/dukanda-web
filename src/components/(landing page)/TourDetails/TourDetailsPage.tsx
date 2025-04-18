@@ -15,6 +15,10 @@ const TourDetailsPage = ({ title, basePrice, startDate, endDate, tourTypes, city
         agencyLogoUrl={agencyLogoUrl}
         agencyName={agencyName}
         created={created}
+        selectedPackage={packages && packages.length > 0 ? packages[0] : null}
+        description={description}
+        packages={packages}
+        itineraries={itineraries}
       />
       <TourDetailsTwo
         description={description}

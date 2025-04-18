@@ -167,7 +167,7 @@ export default function MultiStepForm<
             </div>
           </div>
 
-          <div className="flex justify-between items-center gap-3 mt-4 text-black">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 mt-4 text-black">
             <span className="text-lg font-semibold">Total: {formatCurrency(total)}</span>
             <div className="flex gap-3">
               {currentStep > 0 && (

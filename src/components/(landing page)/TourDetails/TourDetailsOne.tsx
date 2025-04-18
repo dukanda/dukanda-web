@@ -8,6 +8,8 @@ import { calculateDuration, calculatePostedDate } from "@/_utils/calculateDurati
 import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
 import { Clock } from "lucide-react";
 
+
+
 const TourDetailsOne = ({
   title,
   basePrice,
@@ -18,7 +20,10 @@ const TourDetailsOne = ({
   agencyLogoUrl,
   agencyName,
   created,
-}: ITour) => {
+  description,
+  packages,
+  selectedPackage
+}: ITour & { selectedPackage: Package | null }) => {
   const duration = startDate && endDate ? calculateDuration(startDate, endDate) : "N/A";
   const postedDate = created ? calculatePostedDate(created) : "N/A";
 
@@ -112,8 +117,14 @@ const TourDetailsOne = ({
 
             {/* Mobile Payment Dialog */}
             <div className="block lg:hidden">
-              {/* @ts-ignore */}
-              <DialogPayment />
+              <DialogPayment
+                packages={packages ?? []}
+                description={description ?? ""}
+                endDate={endDate ?? ""}
+                startDate={startDate ?? ""}
+                selectedPackage={selectedPackage}
+                title={title ?? ""}
+              />
             </div>
 
             {/* Share Button */}

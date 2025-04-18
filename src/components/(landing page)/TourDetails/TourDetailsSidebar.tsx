@@ -1,73 +1,29 @@
 "use client";
 import { tourDetailsLeft, tourDetailsSidebar } from "@/data/tourDetailsPage";
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { DialogPayment } from "@/components/ui/dialog/dialog-payment";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button";
+
 
 const typeOptions = ["Adventure", "Wildlife", "Sightseeing"].map((it) => ({
   value: it,
   label: it,
 }));
 
-const customStyle = {
-  //@ts-ignore
-  valueContainer: (provided) => ({
-    ...provided,
-    color: "#787780",
-    fontSize: 13,
-    fontWeight: 500,
-  }),
-  //@ts-ignore
-  singleValue: (provided) => ({
-    ...provided,
-    cursor: "pointer",
-  }),
-  //@ts-ignore
-  menu: (provided) => ({
-    ...provided,
-    marginTop: 5,
-    border: "none",
-    boxShadow: "none",
-    zIndex: 10,
-  }),
-  //@ts-ignore
-  option: (provided, state) => ({
-    ...provided,
-    color: "white",
-    padding: "4px 20px",
-    backgroundColor: state.isSelected ? "#006837" : "#313041",
-    transition: "all 0.4s ease",
-    cursor: "pointer",
-    borderBottom:
-      state.label === typeOptions[typeOptions.length - 1].label
-        ? "none"
-        : "0.5px solid #ffffff33",
-    "&:hover": {
-      backgroundColor: "#006837",
-    },
-    borderRadius:
-      state.label === typeOptions[typeOptions.length - 1].label
-        ? "0 0 8px 8px"
-        : 0,
-    fontSize: 16,
-    fontWeight: 500,
-  }),
-  //@ts-ignore
-  control: (base) => ({
-    ...base,
-    borderColor: "transparent",
-    boxShadow: "none",
-    borderRadius: "8px",
-    "&:hover": {
-      borderColor: "transparent",
-    },
-    padding: 14,
-  }),
-};
-
-const { overview, overviewList, faq, superb, reviewScore, comments, reviews } = tourDetailsLeft;
-
 // & { setSelectedPackage: (pack: Package | null) => void, description: string }
-export const TourDetailsSidebar = ({ packages, description, startDate, endDate, selectedPackage,title }: ITour & { selectedPackage: Package | null }) => {
+export const TourDetailsSidebar = ({ packages, description, startDate, endDate, selectedPackage, title }: ITour & { selectedPackage: Package | null }) => {
 
 
   return (
@@ -82,9 +38,15 @@ export const TourDetailsSidebar = ({ packages, description, startDate, endDate, 
       <div className="border border-orange-400 rounded-md px-4 py-3.5 shadow-sm hidden lg:block">
         <h3 className="tour-details-two__sidebar-title hidden lg:block">Reservar passeios</h3>
         <p className="w-full text-justify -tracking-normal hidden lg:block">Clique em Reservar para escolher um pacote da tour</p>
-        <DialogPayment packages={packages ?? []} description={description ?? ""} endDate={endDate ?? ""} startDate={startDate ?? ""} selectedPackage={selectedPackage} title={title ?? ""}  />
+        <DialogPayment
+          packages={packages ?? []}
+          description={description ?? ""}
+          endDate={endDate ?? ""}
+          startDate={startDate ?? ""}
+          selectedPackage={selectedPackage}
+          title={title ?? ""}
+        />
       </div>
     </div>
-
   );
 };
