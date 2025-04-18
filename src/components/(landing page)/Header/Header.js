@@ -132,6 +132,8 @@ import React from "react";
 import NavItem from "./NavItem";
 import { MenuIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sheets } from "@/components/menu-sheet";
+import { MenuContent } from "./menu-content";
 
 const { icons, navItems, social, logo, logo2 } = headerData;
 
@@ -166,7 +168,7 @@ const Header = ({ pageTitle }) => {
                 <i className={`fab ${icon}`}></i>
               </a>
             ))} */}
-            {/* <a
+      {/* <a
               href="#"
               className="main-header__top-right-btn bg-[var(--thm-primary)] text-[var(--thm-black)] px-6 py-2 rounded-md text-sm font-semibold hover:bg-[var(--thm-base)] transition"
             >
@@ -224,13 +226,15 @@ const Header = ({ pageTitle }) => {
               <i className="icon-avatar"></i>
             </Link>
             {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMenu}
-              className="block xl:hidden  text-[var(--thm-primary)] hover:text-[var(--thm-black)] transition text-lg"
-            >
-              <MenuIcon size={24} />
-              {/* <i className="fa fa-bars"></i> */}
-            </button>
+            <Sheets openDirection="right" tittle="Menu" content={<MenuContent/>}>
+              <button
+                // onClick={toggleMenu}
+                className="block xl:hidden  text-[var(--thm-primary)] hover:text-[var(--thm-black)] transition text-lg"
+              >
+                <MenuIcon size={24} />
+                {/* <i className="fa fa-bars"></i> */}
+              </button>
+            </Sheets>
           </div>
         </div>
       </nav>

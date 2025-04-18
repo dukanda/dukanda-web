@@ -23,9 +23,9 @@ import Preloader from "@/components/(landing page)/Preloader/Preloader";
 import { useRootContext } from "@/components/(landing page)/context/context";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import MobileMenu from "../MobileMenu/MobileMenu";
 import Search from "../Search/Search";
 import SiteFooter from "../SiteFooter/SiteFooter";
+import { Sheets } from "@/components/menu-sheet";
 
 const Layout = ({ children, pageTitle }) => {
   const [loading, setLoading] = useState(true);
@@ -54,7 +54,6 @@ const Layout = ({ children, pageTitle }) => {
         </div>
         <SiteFooter />
       </main>
-      {menuStatus && <MobileMenu />}
       <Search />
     </>
   );
