@@ -72,7 +72,7 @@ const DestinationsDetailsLeft = ({ details }: { details: ITouristAttraction }) =
 
 
       {/* Visão Geral */}
-      <div className=" ">
+      <div className=" mb-4">
         <h3 className="text-xl md:text-3xl font-bold mb-0">Visão Geral</h3>
         <ul className="p-0">
 
