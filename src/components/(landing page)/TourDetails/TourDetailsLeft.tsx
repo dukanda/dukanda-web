@@ -83,7 +83,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
         </Accordion>
       </div>
 
-      <div className="tour-details-two__location">
+      {/* <div className="tour-details-two__location">
         <h3 className="tour-details-two__title">Localização</h3>
         <iframe
           title="Tour Location Map"
@@ -92,7 +92,7 @@ const TourDetailsLeft = ({ description, packages, itineraries, startDate, endDat
           allowFullScreen
           loading="lazy"
         ></iframe>
-      </div>
+      </div> */}
     </div>
   );
 };
