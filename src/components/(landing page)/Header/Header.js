@@ -123,7 +123,6 @@
 // Mario Comment
 "use client";
 
-import { useRootContext } from "@/components/(landing page)/context/context";
 import headerData from "@/data/headerData";
 import useScroll from "@/hooks/useScroll";
 import Link from "next/link";
@@ -135,11 +134,10 @@ import { Button } from "@/components/ui/button";
 import { Sheets } from "@/components/menu-sheet";
 import { MenuContent } from "./menu-content";
 
-const { icons, navItems, social, logo, logo2 } = headerData;
+const { navItems, logo, logo2 } = headerData;
 
 const Header = ({ pageTitle }) => {
   const scrollTop = useScroll(130);
-  const { toggleMenu, toggleSearch } = useRootContext();
 
   return (
 
@@ -218,9 +216,6 @@ const Header = ({ pageTitle }) => {
             </Link>
 
 
-            <button onClick={toggleSearch} className="main-menu__search text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg">
-              <i className="icon-magnifying-glass"></i>
-            </button>
             <Link href="/auth/register" className="main-menu__user text-[var(--thm-black)] hover:bg-[var(--thm-primary)] hover:text-[var(--thm-base)] transition w-12 h-12 flex items-center justify-center rounded-full bg-[#faf5ee] text-lg" passHref
             >
               <i className="icon-avatar"></i>

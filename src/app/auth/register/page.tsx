@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
-import { FaGoogle } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
@@ -14,7 +13,6 @@ import { authRoutes } from "@/api/routes/Auth/index.routes"
 
 export default function Register() {
   const [name, setName] = useState("")
-  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [tel, setTel] = useState("")
   const [password, setPassword] = useState("")
@@ -29,16 +27,12 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formatted = {
-      firstName: name,
+      name: name,
       email,
       phoneNumber: tel,
       password,
     }
     await register.mutateAsync(formatted)
-  }
-
-  const handleGoogleSignup = () => {
-    console.log("Cadastro com Google")
   }
 
   return (
@@ -54,7 +48,7 @@ export default function Register() {
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6 border border-border">
         <div className="text-center space-y-2">
-          <Image src={logo} alt="Logo" className="mx-auto h-12" priority />
+          <Image src={logo} alt="Logo" className="mx-auto" priority />
           <h1 className="text-2xl font-bold text-foreground">Crie sua conta</h1>
           <p className="text-sm text-muted-foreground">Preencha os dados para começar</p>
         </div>
@@ -73,7 +67,6 @@ export default function Register() {
           {/* <Button
             type="button"
             variant="outline"
-            onClick={handleGoogleSignup}
             className="w-full flex items-center justify-center gap-2"
           >
             <FaGoogle className="h-4 w-4" />

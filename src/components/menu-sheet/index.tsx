@@ -22,7 +22,7 @@ export const Sheets = ({ children, content, tittle, openDirection, isTitle }: { 
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger>{children}</SheetTrigger>
+      <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="w-[90%] h-full" side={openDirection}>
         <SheetHeader>
           <SheetTitle className="text-center text-xl w-full flex items-center justify-between">

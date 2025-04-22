@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ChevronRight, Mail, Phone, LogIn, UserPlus } from "lucide-react"
+import { Mail, Phone } from "lucide-react"
 import Link from "next/link"
 import headerData from "@/data/headerData"
 
@@ -27,7 +27,6 @@ export const MenuContent = () => {
                 passHref
               >
                 {item.label}
-                <ChevronRight className="w-4 h-4 text-muted-foreground" />
               </Link>
             </li>
           ))}
@@ -48,8 +47,8 @@ export const MenuContent = () => {
         </div>
 
         {/* Contact Info */}
-        <ul className="pt-4 space-y-2 text-sm text-muted-foreground flex flex-col items-center">
-          <li className="flex items-center gap-2">
+        <ul className="pt-4 space-y-2 text-sm text-muted-foreground flex flex-col items-center justify-center  p-0">
+          <li className="flex items-center gap-2  ">
             <Mail className="w-4 h-4" />
             <a href="mailto:dukanda@gmail.com" className="hover:underline">
               dukanda@gmail.com

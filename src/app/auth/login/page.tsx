@@ -29,9 +29,6 @@ export default function Login() {
     await login.mutateAsync({ email, password })
   }
 
-  const handleGoogleLogin = () => {
-    console.log("Login com Google")
-  }
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-12 bg-background">
@@ -47,7 +44,7 @@ export default function Login() {
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-6 border border-border">
         <div className="text-center space-y-2">
-          <Image src={logo} alt="Logo" className="mx-auto h-12" priority />
+          <Image src={logo} alt="Logo" className="mx-auto" priority />
           <h1 className="text-2xl font-bold text-foreground">Bem-vindo de volta</h1>
           <p className="text-sm text-muted-foreground">Faça login para continuar</p>
         </div>
@@ -77,8 +74,7 @@ export default function Login() {
           <Button
             type="button"
             variant="outline"
-            onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 text-red-500 "
+            className="w-full items-center justify-center gap-2 text-red-500  hidden "
           >
             <FaGoogle className="h-4 w-4" />
             Entrar com Google

@@ -2,7 +2,7 @@
 interface IUser {
   email: string;
   password: string;
-  firstName: string;
+  name: string;
   // lastName: string;
   phoneNumber: string;
 }
