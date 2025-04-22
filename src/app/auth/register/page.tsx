@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 import logo from "@/assets/images/resources/logo-1.png"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -94,18 +95,33 @@ type FormInputProps = {
 }
 
 function FormInput({ id, label, value, setValue, type = "text" }: FormInputProps) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 relative">
       <Label htmlFor={id} className="text-sm">
         {label}
       </Label>
       <Input
         id={id}
-        type={type}
+        type={type === "password" ? (showPassword ? "text" : "password") : type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         required
       />
+      {type === "password" && (
+        <button
+          type="button"
+          className="absolute right-4 top-[44px] transform text-gray-500 -translate-y-1/2"
+          onClick={() => setShowPassword((prev) => !prev)}
+        >
+          {showPassword ? (
+            <Eye className="w-4 h-4" />
+          ) : (
+            <EyeOff className="w-4 h-4" />
+          )}
+        </button>
+      )}
     </div>
-  )
+  );
 }

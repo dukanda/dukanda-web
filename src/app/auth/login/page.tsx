@@ -2,10 +2,10 @@
 
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
-import { FaGoogle } from "react-icons/fa"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 import logo from "@/assets/images/resources/logo-1.png"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,7 @@ import { authRoutes } from "@/api/routes/Auth/index.routes"
 export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false);
 
   const login = useMutation({
     mutationKey: ["login"],
@@ -32,7 +33,7 @@ export default function Login() {
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-12 bg-background">
-  
+
       <div className="absolute top-4 left-4">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/" passHref>
@@ -58,26 +59,29 @@ export default function Login() {
             setValue={setEmail}
             placeholder="Digite seu e-mail"
           />
-          <FormInput
-            id="password"
-            label="Senha"
-            type="password"
-            value={password}
-            setValue={setPassword}
-            placeholder="Digite sua senha"
-          />
+
+          <div className="relative">
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="Digite a sua senha"
+              aria-label="Senha"
+              className="text-black dark:text-white"
+              autoComplete="off"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="absolute right-4 top-[20px] transform text-gray-500 -translate-y-1/2"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+            </button>
+          </div>
+     
 
           <Button type="submit" className="w-full bg-green-700 hover:bg-green-600" disabled={login.isPending}>
             {login.isPending ? "Entrando..." : "Entrar"}
-          </Button>
-
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full items-center justify-center gap-2 text-red-500  hidden "
-          >
-            <FaGoogle className="h-4 w-4" />
-            Entrar com Google
           </Button>
         </form>
 
@@ -102,20 +106,35 @@ type FormInputProps = {
 }
 
 function FormInput({ id, label, value, setValue, type, placeholder }: FormInputProps) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 relative">
       <Label htmlFor={id} className="text-sm">
         {label}
       </Label>
       <Input
         id={id}
-        type={type}
+        type={type === "password" ? (showPassword ? "text" : "password") : type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
         required
         autoComplete="off"
       />
+      {type === "password" && (
+        <button
+          type="button"
+          className="absolute right-4 top-[38px] transform text-gray-500 -translate-y-1/2"
+          onClick={() => setShowPassword((prev) => !prev)}
+        >
+          {showPassword ? (
+            <Eye className="w-5 h-5" />
+          ) : (
+            <EyeOff className="w-5 h-5" />
+          )}
+        </button>
+      )}
     </div>
-  )
+  );
 }
